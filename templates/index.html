@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Graph</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    {{ plot|safe }}
+    <script>
+        setInterval(function() {
+            $.getJSON('/', function(data) {
+                Plotly.extendTraces('graph', {x: [[data.x]], y: [[data.y]]}, [0]);
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
