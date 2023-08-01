@@ -3,12 +3,32 @@
 <head>
     <title>Real-time Graph</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    {{ plot|safe }}
+    <div id="graph"></div>
     <script>
+        var trace = {
+            x: [],
+            y: [],
+            mode: 'lines',
+            name: 'Real-time Data'
+        };
+
+        var layout = {
+            title: 'Real-time Graph'
+        };
+
+        var data = [trace];
+
+        Plotly.newPlot('graph', data, layout);
+
         setInterval(function() {
-            $.getJSON('/', function(data) {
+            $.getJSON('/data', function(data) {
+                if(trace.x.length > 30) {
+                    trace.x.shift(); // remove the first element from the x array
+                    trace.y.shift(); // remove the first element from the y array
+                }
                 Plotly.extendTraces('graph', {x: [[data.x]], y: [[data.y]]}, [0]);
             });
         }, 1000);

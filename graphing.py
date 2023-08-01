@@ -1,30 +1,32 @@
-import plotly
-import plotly.graph_objs as go
-from flask import Flask, render_template, jsonify
-import random
+from flask import Flask, render_template, jsonify, request
 import datetime
 
 app = Flask(__name__)
 
-data = [go.Scatter(x=[], y=[], mode='lines', name='Real-time Data')]
+# Initialize the data point
+data_point = {'x': None, 'y': None}
 
-layout = go.Layout(title='Real-time Graph')
-
-fig = go.Figure(data=data, layout=layout)
+@app.route('/', methods=['POST'])
+def receive_data():
+    global data_point
+    # Get data from the local machine and store it
+    data = request.get_json()
+    print ('data recieved', data)
+    data_point = {'x': data['timestamp'], 'y': data['random_number']}
+    return 'Data received'
 
 @app.route('/')
 def index():
-    return render_template('index.html', plot=plotly.offline.plot(fig, output_type='div'))
+    return render_template('index.html')
 
-print ('script run')
-
-@app.route('/')
+@app.route('/data')
 def get_data():
-    # Generate some new data and return it as JSON
-    x = datetime.datetime.now().isoformat()
-    y = random.randint(1, 10)
-    print ('this the value', y)
-    return jsonify(x=x, y=y)
+    global data_point
+    # Send the data to the client
+    response = jsonify(data_point)
+    # Reset the data point
+    data_point = {'x': None, 'y': None}
+    return response
 
 if __name__ == '__main__':
     app.run()
