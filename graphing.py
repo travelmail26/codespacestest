@@ -10,6 +10,7 @@ data_point = {'x': None, 'y': None}
 def receive_data():
     global data_point
     # Get data from the local machine and store it
+    print ('raw data', request)
     data = request.get_json()
     print ('data recieved', data)
     data_point = {'x': data['timestamp'], 'y': data['random_number']}
