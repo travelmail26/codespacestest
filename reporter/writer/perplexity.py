@@ -1,7 +1,7 @@
 from openai import OpenAI
 import json
 
-YOUR_API_KEY = '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'
+YOUR_API_KEY = openai_api_key = os.environ.get('PERPLEXITY_KEY')
 
 
 #tools object is in a separate file
