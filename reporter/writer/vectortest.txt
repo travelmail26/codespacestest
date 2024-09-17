@@ -1,0 +1,496 @@
+[
+    // Definitions from Washington SB 5263
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (1)",
+        "definition_term": "Administration session",
+        "full_text_description": "A session held at a psilocybin service center or other permitted location where a client consumes and experiences the effects of a psilocybin product under the supervision of a psilocybin service facilitator.",
+        "keywords": [
+            "administration session",
+            "psilocybin consumption",
+            "supervision",
+            "psilocybin service center",
+            "permitted location",
+            "client",
+            "psilocybin service facilitator"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (2)",
+        "definition_term": "Client",
+        "full_text_description": "An individual who is provided psilocybin services in this state.",
+        "keywords": [
+            "client",
+            "psilocybin services",
+            "individual"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (3)",
+        "definition_term": "Department",
+        "full_text_description": "The Department of Health.",
+        "keywords": [
+            "Department",
+            "Health",
+            "DOH"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (4)",
+        "definition_term": "Integration session",
+        "full_text_description": "A meeting between a client and a psilocybin service facilitator that may occur after the client completes an administration session.",
+        "keywords": [
+            "integration session",
+            "client",
+            "psilocybin service facilitator",
+            "post-administration"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (5)",
+        "definition_term": "Legal entity",
+        "full_text_description": "A corporation, limited liability company, limited partnership, or other legal entity that is registered with the office of the secretary of state or with a comparable office of another jurisdiction.",
+        "keywords": [
+            "legal entity",
+            "corporation",
+            "LLC",
+            "partnership",
+            "registration"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (6)",
+        "definition_term": "Licensee",
+        "full_text_description": "A person that holds a license issued under sections 22, 25, 27, or 96 of this act.",
+        "keywords": [
+            "licensee",
+            "licensed person",
+            "sections 22, 25, 27, 96"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (7)",
+        "definition_term": "Licensee representative",
+        "full_text_description": "An owner, director, officer, manager, employee, agent, or other representative of a licensee acting in a representative capacity.",
+        "keywords": [
+            "licensee representative",
+            "owner",
+            "employee",
+            "agent",
+            "manager"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (8)",
+        "definition_term": "Manufacture",
+        "full_text_description": "The manufacture, planting, cultivation, growing, harvesting, production, preparation, propagation, compounding, conversion, or processing of a psilocybin product either directly or indirectly by extraction from substances of natural origin or by chemical synthesis.",
+        "keywords": [
+            "manufacture",
+            "cultivation",
+            "psilocybin product",
+            "processing",
+            "extraction",
+            "chemical synthesis"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (9)",
+        "definition_term": "Permitted location",
+        "full_text_description": "A safe and comfortable nonservice center location approved by the department for administration sessions. These may include veterans organizations, houses of worship, private residences, and outdoor spaces, but not vehicles or public spaces.",
+        "keywords": [
+            "permitted location",
+            "administration sessions",
+            "approved by department",
+            "nonservice center",
+            "veterans organizations",
+            "houses of worship",
+            "private residences",
+            "outdoor spaces"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (10)",
+        "definition_term": "Premises",
+        "full_text_description": "Includes all public and private enclosed areas at the location licensed under this chapter and any licensed outdoor areas used for the manufacture of psilocybin products or psilocybin services.",
+        "keywords": [
+            "premises",
+            "licensed location",
+            "enclosed areas",
+            "outdoor areas",
+            "manufacture",
+            "psilocybin services"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (11)",
+        "definition_term": "Preparation session",
+        "full_text_description": "A remote or in-person meeting between a client and a psilocybin service facilitator, typically before an administration session.",
+        "keywords": [
+            "preparation session",
+            "client",
+            "psilocybin service facilitator",
+            "remote meeting",
+            "in-person meeting"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (12)",
+        "definition_term": "Psilocybin",
+        "full_text_description": "Psilocybin or psilocin.",
+        "keywords": [
+            "Psilocybin",
+            "psilocin",
+            "psychedelic compound"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (13)",
+        "definition_term": "Psilocybin product manufacturer",
+        "full_text_description": "A person that manufactures psilocybin products in this state.",
+        "keywords": [
+            "psilocybin product manufacturer",
+            "manufacturer",
+            "psilocybin products",
+            "Washington state"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (14)",
+        "definition_term": "Psilocybin products",
+        "full_text_description": "Psilocybin-producing fungi and mixtures or substances containing a detectable amount of psilocybin.",
+        "keywords": [
+            "psilocybin products",
+            "fungi",
+            "mixtures",
+            "detectable psilocybin"
+        ]
+    },
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 5 (15)",
+        "definition_term": "Psilocybin service center",
+        "full_text_description": "An entity licensed by the Department of Health to acquire, possess, transfer, transport, deliver, supply, sell, or dispense psilocybin products to authorized entities or individuals, and to provide psilocybin services to clients within a premises or at permitted locations.",
+        "keywords": [
+            "psilocybin service center",
+            "licensed entity",
+            "psilocybin products",
+            "psilocybin services",
+            "Department of Health",
+            "clients",
+            "authorized entities",
+            "premises",
+            "permitted locations"
+        ]
+    },
+    // Regulation from Washington SB 5263
+    {
+        "law_name": "Washington Psilocybin Services Wellness and Opportunity Act (SB 5263)",
+        "state": "Washington",
+        "section": "Sec. 31",
+        "regulation_title": "Mandatory Preparation Session Before Administration",
+        "full_text": "(1) Before a client participates in an administration session, the client must attend a preparation session with a psilocybin service facilitator.\n(2) A preparation session may be, but need not be, held at a psilocybin service center and may be held in person or remotely.\n(3) The initial preparation session must occur no more than 120 days before the client participates in their first administration session. Thereafter, any subsequent preparation session need only be completed every 12 months.\n(4) If a preparation session is completed in accordance with all applicable requirements, specifications, and guidelines, as determined by the department, the psilocybin service facilitator must certify, in a form and manner prescribed by the department, that the client completed the preparation session.",
+        "summary": "Clients must attend a preparation session with a psilocybin service facilitator before their first administration session. The initial session must occur within 120 days prior to the administration session, and subsequent sessions are required every 12 months. Facilitators must certify the completion of these sessions as per department guidelines.",
+        "keywords": [
+            "Preparation session",
+            "Administration session",
+            "Psilocybin service facilitator",
+            "Client requirement",
+            "Certification"
+        ],
+        "political_context": "Preparation sessions might decrease the likelihood of adverse events or use of emergency services. Critics want to limit adverse events, however rare they are."
+    },
+    // Definitions from New Hampshire HB 1693-FN - AS INTRODUCED
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 I",
+        "definition_term": "Alternative treatment center",
+        "full_text_description": "\"Alternative treatment center\" means a not-for-profit entity registered under RSA 126-X:7 that acquires, possesses, cultivates, manufactures, delivers, transfers, transports, sells, supplies, and dispenses psychedelics, and related supplies and educational materials, to qualifying patients, designated caregivers, other alternative treatment centers, and visiting qualifying patients.",
+        "keywords": [
+            "alternative treatment center",
+            "not-for-profit entity",
+            "psychedelics",
+            "qualifying patients",
+            "designated caregivers",
+            "RSA 126-X:7",
+            "registration"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 II",
+        "definition_term": "Alternative treatment center agent",
+        "full_text_description": "\"Alternative treatment center agent\" means a principal officer, board member, employee, manager, or volunteer of an alternative treatment center who is 21 years of age or older and has not been convicted of a felony or any felony drug-related offense.",
+        "keywords": [
+            "alternative treatment center agent",
+            "employee",
+            "volunteer",
+            "felony",
+            "age requirement",
+            "drug-related offense"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 III",
+        "definition_term": "Cultivation location",
+        "full_text_description": "\"Cultivation location\" means a locked and enclosed site, under the control of an alternative treatment center where natural psychedelics are cultivated, secured with one or more locks or other security devices in accordance with the provisions of this chapter.",
+        "keywords": [
+            "cultivation location",
+            "locked site",
+            "alternative treatment center",
+            "natural psychedelics",
+            "security"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 IV",
+        "definition_term": "Department",
+        "full_text_description": "\"Department\" means the Department of Health and Human Services.",
+        "keywords": [
+            "Department",
+            "Health and Human Services",
+            "DHHS"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 V",
+        "definition_term": "Designated caregiver",
+        "full_text_description": "\"Designated caregiver\" means an individual who: (a) Is at least 21 years of age; (b) Has agreed to assist with one or more, not to exceed 5, qualifying patient's therapeutic use of psychedelics, except if the qualifying patient and designated caregiver each live greater than 50 miles from the nearest alternative treatment center, in which case the designated caregiver may assist with the therapeutic use of psychedelics for up to 9 qualifying patients; (c) Possesses a valid registry identification card issued pursuant to RSA 126-X:4.",
+        "keywords": [
+            "designated caregiver",
+            "age requirement",
+            "assist patients",
+            "registry identification card",
+            "therapeutic use",
+            "patient limit"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 VI",
+        "definition_term": "Facility caregiver",
+        "full_text_description": "\"Facility caregiver\" means a residential care facility, nursing home, hospital, or hospice house licensed under RSA 151 which has agreed to allow one or more qualifying patients who are residents or patients of the facility to utilize therapeutic psychedelics obtained by the resident or the resident's designated caregiver from an alternative treatment center, and which has agreed to assist such residents in the therapeutic use of their psychedelics in accordance with a policy developed by the facility, and in accordance with rules adopted by the commissioner of health and human services pursuant to RSA 541-A. \"Facility caregiver\" shall also include community living facilities certified under RSA 126-A:19 and RSA 126-A:20.",
+        "keywords": [
+            "facility caregiver",
+            "licensed facility",
+            "assist patients",
+            "therapeutic use",
+            "alternative treatment center",
+            "RSA 151"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 VII",
+        "definition_term": "Provider",
+        "full_text_description": "\"Provider\" means: (a) A physician licensed to prescribe drugs to humans under RSA 329 and who possesses an active registration from the United States Drug Enforcement Administration to prescribe controlled substances; (b) An advanced practice registered nurse licensed pursuant to RSA 326-B:18 and who possesses an active registration from the United States Drug Enforcement Administration to prescribe controlled substances; (c) A physician or advanced practice registered nurse licensed to prescribe drugs to humans under the relevant state licensing laws in Maine, Massachusetts, or Vermont and who possesses an active registration from the United States Drug Enforcement Administration to prescribe controlled substances and who is primarily responsible for the patient's care related to his or her qualifying medical condition; (d) A physician assistant licensed pursuant to RSA 328-D and who possesses an active registration from the United States Drug Enforcement Administration to prescribe controlled substances, with the express consent of the supervising physician; (e) A nurse practitioner; or (f) A licensed mental health provider, including counselors, psychiatrists, psychologists, and peer counselors.",
+        "keywords": [
+            "provider",
+            "physician",
+            "nurse practitioner",
+            "physician assistant",
+            "mental health provider",
+            "DEA registration",
+            "licensed professional"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 VIII",
+        "definition_term": "Psilocybin",
+        "full_text_description": "\"Psilocybin\" means any part of Psilocybin-containing botanical fungus, or extract, including Psilocybin-producing spores.",
+        "keywords": [
+            "Psilocybin",
+            "botanical fungus",
+            "extract",
+            "spores",
+            "psychedelic compound"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 IX",
+        "definition_term": "Psychedelics",
+        "full_text_description": "\"Psychedelics\" means any of the following substances: Psilocybin, lysergic acid diethylamide (LSD), and mescaline.",
+        "keywords": [
+            "Psychedelics",
+            "Psilocybin",
+            "LSD",
+            "Mescaline",
+            "psychoactive substances"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 X",
+        "definition_term": "Provider-patient relationship",
+        "full_text_description": "\"Provider-patient relationship\" means a medical relationship between a licensed provider and a patient that includes an in-person exam, a history, a diagnosis, and a treatment plan appropriate for the licensee's medical specialty.",
+        "keywords": [
+            "Provider-patient relationship",
+            "in-person exam",
+            "diagnosis",
+            "treatment plan",
+            "medical specialty"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XI",
+        "definition_term": "Qualifying medical condition",
+        "full_text_description": "\"Qualifying medical condition\" includes various mental health conditions such as anxiety, depression, PTSD, substance use disorder, chronic pain, migraines, and any novel mental illness diagnosed by a state-licensed mental health professional where efficacy of Psilocybin has been observed in a study.",
+        "keywords": [
+            "Qualifying medical condition",
+            "mental health",
+            "anxiety",
+            "depression",
+            "PTSD",
+            "substance use disorder",
+            "chronic pain",
+            "migraines",
+            "novel mental illness"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XII",
+        "definition_term": "Qualifying patient",
+        "full_text_description": "\"Qualifying patient\" means a resident of New Hampshire who has been diagnosed by a provider as having a qualifying medical condition and who possesses a valid registry identification card issued pursuant to 126-EE:4.",
+        "keywords": [
+            "Qualifying patient",
+            "New Hampshire resident",
+            "diagnosed",
+            "provider",
+            "registry identification card"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XIII",
+        "definition_term": "Registry identification card",
+        "full_text_description": "\"Registry identification card\" means a document indicating the date issued, effective date, and expiration date by the department pursuant to 126-EE:4 that identifies an individual as a qualifying patient or a designated caregiver.",
+        "keywords": [
+            "Registry identification card",
+            "qualifying patient",
+            "designated caregiver",
+            "identification",
+            "validity dates"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XIV",
+        "definition_term": "Therapeutic use",
+        "full_text_description": "\"Therapeutic use\" means the acquisition, possession, cultivation, manufacture, preparation, use, delivery, transfer, or transportation of psychedelics or paraphernalia relating to the administration of psychedelics to treat or alleviate a qualifying patient's qualifying medical condition or symptoms or results of treatment associated with the qualifying patient's qualifying medical condition. It shall not include: (a) The use of psychedelics by a designated caregiver who is not a qualifying patient; or (b) Cultivation of natural psychedelics or purchase by a visiting qualifying patient from a qualifying patient or designated caregiver; or (c) Cultivation of natural psychedelics by a designated caregiver or qualifying patient.",
+        "keywords": [
+            "Therapeutic use",
+            "psychedelics administration",
+            "treatment",
+            "qualifying patient",
+            "exclusions"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XV",
+        "definition_term": "Use in adolescence",
+        "full_text_description": "\"Use in adolescence\" means the therapeutic use of psychedelics by any person whose age is within the generally accepted medical and psychiatric definition of an adolescent as ranging in age from 12-25 years old, as well as by individuals younger in age.",
+        "keywords": [
+            "Use in adolescence",
+            "therapeutic use",
+            "adolescents",
+            "age 12-25",
+            "younger individuals"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XVI",
+        "definition_term": "Visiting qualifying patient",
+        "full_text_description": "\"Visiting qualifying patient\" means a person who is not a resident of New Hampshire, or who has been a resident of New Hampshire for fewer than 90 days, who has been issued a valid registry identification card, or its equivalent, under the laws of another state or jurisdiction that allows that person to possess psychedelics for therapeutic purposes.",
+        "keywords": [
+            "Visiting qualifying patient",
+            "non-resident",
+            "registry identification card",
+            "therapeutic purposes",
+            "other jurisdiction"
+        ]
+    },
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:1 XVII",
+        "definition_term": "Written certification",
+        "full_text_description": "\"Written certification\" means documentation of a qualifying medical condition by a provider pursuant to rules adopted by the department pursuant to RSA 541-A for the purpose of issuing registry identification cards, after having completed a full assessment of the patient's medical history and current medical condition made in the course of a provider-patient relationship.",
+        "keywords": [
+            "Written certification",
+            "documentation",
+            "qualifying medical condition",
+            "provider",
+            "assessment",
+            "registry identification card"
+        ]
+    },
+    // Regulation from New Hampshire HB 1693-FN - AS INTRODUCED
+    {
+        "law_name": "New Hampshire HB 1693-FN - AS INTRODUCED",
+        "state": "New Hampshire",
+        "section": "126-EE:2 XVIII",
+        "regulation_title": "Requirement for Regular Appointments with a Certified Mental Health Professional",
+        "full_text": "To maintain the validity of a patient license for the use of medical psilocybin, a qualifying patient may be required by state rules to attend regular appointments with a certified mental health professional.",
+        "summary": "Qualifying patients using medical psilocybin may be required to have regular appointments with a certified mental health professional to keep their patient license valid.",
+        "keywords": [
+            "patient license validity",
+            "medical psilocybin",
+            "regular appointments",
+            "certified mental health professional",
+            "qualifying patient"
+        ],
+        "political_context": "This requirement aims to ensure patient safety and proper monitoring of psilocybin use, addressing concerns about potential misuse or adverse effects. It helps in gaining support from those wary of unsupervised psychedelic therapy."
+    }
+]

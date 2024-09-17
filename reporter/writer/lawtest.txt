@@ -1,0 +1,1818 @@
+S-0084.4
+SENATE BILL 5263
+State of Washington 68th Legislature 2023 Regular Session
+By Senators Salomon, Rivers, Saldaña, Nobles, Lovick, Lovelett, Hunt,
+Hasegawa, Mullet, Trudeau, Robinson, Pedersen, Wellman, Muzzall, C.
+Wilson, Kuderer, Keiser, Liias, Van De Wege, Billig, Conway, and
+Frame
+Read first time 01/11/23. Referred to Committee on Labor & Commerce.
+p. 1 SB 5263
+(a) Determined that preliminary clinical evidence indicates that
+1
+psilocybin may demonstrate substantial improvement over available
+2
+therapies for treatment-resistant depression; and3
+(b) Granted a breakthrough therapy designation for a treatment
+4
+that uses psilocybin as a therapy for such depression;
+5
+(4) It is the intent of Washington to facilitate the
+6
+establishment of safe, legal, and affordable psilocybin service
+7
+centers to provide citizens of Washington who are at least 21 years
+8
+of age with opportunities for supported psilocybin experiences for
+9
+wellness and personal growth;10
+(5) The department of health has direct supervision over all
+11
+matters relating to the preservation of life and health of the people
+12
+of this state;13
+(6) During a two-year program development period, the department
+14
+must adopt rules for the implementation of a comprehensive regulatory
+15
+framework that allows individuals 21 years of age and older in this
+16
+state to be provided psilocybin services; and17
+(7) An advisory board must be established within the department
+18
+to provide advice and recommendations to the department.
+19
+NEW SECTION. Sec. 2. The legislature declares that the purposes
+20
+of this chapter are:
+21
+(1) To improve the physical, mental, and social well-being of all
+22
+people in this state, and to reduce the prevalence of behavioral
+23
+health disorders among adults in this state by providing for
+24
+supported adult use of psilocybin under the supervision of a trained
+25
+and licensed psilocybin service facilitator;26
+(2) To develop a long-term strategic plan for ensuring that
+27
+psilocybin services become and remain a safe, accessible, and
+28
+affordable option for all persons 21 years of age and older in this
+29
+state for whom psilocybin may be appropriate;30
+(3) To protect the safety, welfare, health, and peace of the
+31
+people of this state by prioritizing this state's limited law
+32
+enforcement resources in the most effective, consistent, and rational
+33
+way;34
+(4) After a two-year program development period, to:
+35
+(a) Permit persons licensed and regulated by this state to
+36
+legally manufacture psilocybin products and provide psilocybin
+37
+services to persons 21 years of age and older, subject to the
+38
+provisions of this chapter; and39
+p. 2 SB 5263
+(b) Establish a comprehensive regulatory framework concerning
+1
+psilocybin products and psilocybin services under state law;
+2
+(5) To prevent the distribution of psilocybin products to other
+3
+persons who are not permitted to possess psilocybin products under
+4
+this chapter including but not limited to persons under 21 years of
+5
+age; and6
+(6) To prevent the diversion of psilocybin products from this
+7
+state to other states.8
+NEW SECTION. Sec. 3. This chapter may be known and cited as the
+9
+Washington psilocybin services wellness and opportunity act.
+10
+NEW SECTION. Sec. 4. This chapter may not be construed:
+11
+(1) To require a government medical assistance program or private
+12
+health insurer to reimburse a person for costs associated with the
+13
+use of psilocybin products;14
+(2) To prohibit a recipient of a federal grant or an applicant
+15
+for a federal grant from prohibiting the manufacture, delivery,
+16
+possession, or use of psilocybin products to the extent necessary to
+17
+satisfy federal requirements for the grant;18
+(3) To prohibit a party to a federal contract or a person
+19
+applying to be a party to a federal contract from prohibiting the
+20
+manufacture, delivery, possession, or use of psilocybin products to
+21
+the extent necessary to comply with the terms and conditions of the
+22
+contract or to satisfy federal requirements for the contract; or
+23
+(4) To obstruct the enforcement of a federal law.
+24
+NEW SECTION. Sec. 5. The definitions in this section apply
+25
+throughout this chapter unless the context clearly requires
+26
+otherwise.
+27
+(1) "Administration session" means a session held at a psilocybin
+28
+service center or other permitted location at which a client consumes
+29
+and experiences the effects of a psilocybin product under the
+30
+supervision of a psilocybin service facilitator.31
+(2) "Client" means an individual who is provided psilocybin
+32
+services in this state.33
+(3) "Department" means the department of health.
+34
+(4) "Integration session" means a meeting between a client and a
+35
+psilocybin service facilitator that may occur after the client
+36
+completes an administration session.37
+p. 3 SB 5263
+(5) "Legal entity" means a corporation, limited liability
+1
+company, limited partnership, or other legal entity that is
+2
+registered with the office of the secretary of state or with a
+3
+comparable office of another jurisdiction.4
+(6) "Licensee" means a person that holds a license issued under
+5
+section 22, 25, 27, or 96 of this act.6
+(7) "Licensee representative" means an owner, director, officer,
+7
+manager, employee, agent, or other representative of a licensee, to
+8
+the extent that the person acts in a representative capacity.
+9
+(8) "Manufacture" means the manufacture, planting, cultivation,
+10
+growing, harvesting, production, preparation, propagation,
+11
+compounding, conversion, or processing of a psilocybin product,
+12
+either directly or indirectly, by extraction from substances of
+13
+natural origin, or independently by means of chemical synthesis, or
+14
+by a combination of extraction and chemical synthesis, and includes
+15
+any packaging or repackaging of the psilocybin product or labeling or
+16
+relabeling of its container.17
+(9) "Permitted location" means a safe and comfortable nonservice
+18
+center location approved by the department as a site where
+19
+administration sessions may be held. Permitted locations shall
+20
+include veterans organizations, houses of worship, private
+21
+residences, and outdoor spaces. Other permitted locations shall be
+22
+determined by the department but shall not include vehicles or public
+23
+spaces.24
+(10) "Premises" includes the following areas of a location
+25
+licensed under this chapter:26
+(a) All public and private enclosed areas at the location that
+27
+are used in the business operated at the location, including offices,
+28
+kitchens, restrooms, and storerooms;29
+(b) All areas outside a building that the department has
+30
+specifically licensed for the manufacturing of psilocybin products or
+31
+the operation of a psilocybin service center; and32
+(c) For a location that the department has specifically licensed
+33
+for the operation of a psilocybin service center outside a building,
+34
+that portion of the location used to operate the psilocybin service
+35
+center and provide psilocybin services to clients.
+36
+(11) "Preparation session" means a remote or in-person meeting
+37
+between a client and a psilocybin service facilitator.
+38
+(12) "Psilocybin" means psilocybin or psilocin.
+39
+p. 4 SB 5263
+(13) "Psilocybin product manufacturer" means a person that
+1
+manufactures psilocybin products in this state.2
+(14)(a) "Psilocybin products" means:3
+(i) Psilocybin-producing fungi; and4
+(ii) Mixtures or substances containing a detectable amount of
+5
+psilocybin.6
+(b) "Psilocybin products" does not include psilocybin services.
+7
+(15) "Psilocybin service center" means an entity licensed by the
+8
+department to acquire, possess, transfer, transport, deliver, supply,
+9
+sell, or dispense psilocybin products to authorized entities or
+10
+individuals, and to provide psilocybin services to clients within a
+11
+premises or at permitted locations.12
+(16) "Psilocybin service center operator" means a person that
+13
+operates a psilocybin service center in this state.
+14
+(17) "Psilocybin service facilitator" means an individual that
+15
+facilitates the provision of psilocybin services in this state.
+16
+(18) "Psilocybin service facilitator trainee" means a person
+17
+licensed by the department to provide psilocybin service facilitation
+18
+under the supervision of an approved supervisor while accumulating
+19
+the supervised experience hours for licensure as a psilocybin service
+20
+facilitator.21
+(19)(a) "Psilocybin services" means services provided to a client
+22
+before, during, and after the client's consumption of a psilocybin
+23
+product, including:24
+(i) One preparation session;25
+(ii) One administration session; and26
+(iii) One optional integration session that must be offered to
+27
+each client.28
+(b) "Psilocybin services" shall not constitute medical diagnosis
+29
+or treatment. Psilocybin services are a form of supported adult use
+30
+of psilocybin under the supervision of a licensed psilocybin service
+31
+facilitator.32
+(20) "Secretary" means the secretary of health appointed under
+33
+RCW 43.70.030.34
+(21) "Two-year program development period" means the period
+35
+beginning on September 1, 2023, and ending by September 1, 2025.
+36
+WASHINGTON PSILOCYBIN ADVISORY BOARD
+37
+p. 5 SB 5263
+NEW SECTION. Sec. 6. (1) The Washington psilocybin advisory
+1
+board is established within the department to provide advice and
+2
+recommendations to the department. The Washington psilocybin advisory
+3
+board shall consist of:
+4
+(a) Members appointed by the governor as specified in subsection
+5
+(2) of this section;6
+(b) The secretary or the secretary's designee;7
+(c) The state health officer or a physician acting as the state
+8
+health officer's designee;9
+(d) A representative from the department who is familiar with
+10
+public health programs and public health activities in this state;
+11
+and12
+(e) A designee of the public health advisory board.
+13
+(2) The governor shall appoint the following individuals to the
+14
+Washington psilocybin advisory board:15
+(a) Any four of the following:16
+(i) A state employee who has technical expertise in the field of
+17
+public health;18
+(ii) A local health officer;19
+(iii) An individual who is a member of, or who represents, a
+20
+federally recognized Indian tribe in this state;21
+(iv) An individual who is a member of, or who represents, a body
+22
+that provides policy advice relating to substance use disorder
+23
+policy;24
+(v) An individual who is a member of, or who represents, a body
+25
+that provides policy advice relating to health equity;
+26
+(vi) An individual who is a member of, or who represents, a body
+27
+that provides policy advice related to palliative care and quality of
+28
+life; or29
+(vii) An individual who represents individuals who provide public
+30
+health services directly to the public;31
+(b) A person who has knowledge regarding the indigenous or
+32
+religious use of psilocybin;33
+(c) A psychologist licensed under chapter 18.83 RCW who has
+34
+professional experience engaging in the diagnosis or treatment of a
+35
+mental, emotional, or behavioral condition;36
+(d) A physician licensed under chapter 18.71 RCW;
+37
+(e) A naturopath licensed under chapter 18.36A RCW;
+38
+(f) An expert in the field of public health who has a background
+39
+in academia;40
+p. 6 SB 5263
+(g) Any three of the following:1
+(i) A person who has professional experience conducting
+2
+scientific research regarding the use of psychedelic compounds in
+3
+clinical therapy;4
+(ii) A person who has experience in the field of mycology;
+5
+(iii) A person who has experience in the field of ethnobotany;
+6
+(iv) A person who has experience in the field of
+7
+psychopharmacology; or8
+(v) A person who has experience in the field of harm reduction;
+9
+(h) A person designated by the liquor and cannabis board who has
+10
+experience working with the cannabis central reporting system
+11
+developed for tracking the transfer of cannabis items;
+12
+(i) The attorney general or the attorney general's designee; and
+13
+(j) One, two, or three at large members.14
+(3)(a) Members of the Washington psilocybin advisory board shall
+15
+serve for a term of four years, but at the pleasure of the governor.
+16
+Before the expiration of the term of a member, the governor shall
+17
+appoint a successor whose term begins on January 1st of the following
+18
+year. A member is eligible for reappointment. If there is a vacancy
+19
+for any cause, the governor shall make an appointment to become
+20
+immediately effective for the unexpired term.21
+(b) Members of the board described in subsection (1)(b) through
+22
+(e) of this section are nonvoting ex officio members of the board.
+23
+(4) A majority of the voting members of the board constitutes a
+24
+quorum. Official adoption of advice or recommendations by the
+25
+Washington psilocybin advisory board requires the approval of a
+26
+majority of the voting members of the board.27
+(5) The board shall elect one of its voting members to serve as
+28
+chair.29
+(6) During the two-year program development period, the
+30
+Washington psilocybin advisory board shall meet at least once every
+31
+two calendar months at a time and place determined by the chair or a
+32
+majority of the voting members of the board. After the two-year
+33
+program development period, the board shall meet at least once every
+34
+calendar quarter at a time and place determined by the chair or a
+35
+majority of the voting members of the board. The board may meet at
+36
+other times and places specified by the call of the chair or of a
+37
+majority of the voting members of the board.38
+(7) The Washington psilocybin advisory board may adopt rules
+39
+necessary for the operation of the board.40
+p. 7 SB 5263
+(8) The Washington psilocybin advisory board may establish
+1
+committees and subcommittees necessary for the operation of the
+2
+board.3
+(9) The members of the Washington psilocybin advisory board may
+4
+receive reimbursement or an allowance for expenses within amounts
+5
+appropriated for that specific purpose consistent with RCW 43.03.220.
+6
+NEW SECTION. Sec. 7. The Washington psilocybin advisory board
+7
+must provide advice and recommendations to the department upon
+8
+request with respect to the administration of this chapter and the
+9
+education of the public about psilocybin, including but not limited
+10
+to the following subject areas:
+11
+(1) Recommendations to the department on available medical,
+12
+psychological, and scientific studies, social scientific research,
+13
+and other information relating to the safety of psilocybin and its
+14
+efficacy in ameliorating behavioral health conditions, including but
+15
+not limited to addiction, depression, anxiety disorders, and end-of-
+16
+life psychological distress, and the potential for psilocybin to
+17
+promote community, address trauma, and enhance physical and mental
+18
+wellness;19
+(2) Recommendations to the department on the requirements,
+20
+specifications, and guidelines for providing psilocybin services to a
+21
+client, including:22
+(a) Requirements, specifications, and guidelines for holding and
+23
+verifying the completion of a preparation session, an administration
+24
+session, and an integration session; and25
+(b) The contents of the client information form that a client
+26
+must complete and sign before the client participates in an
+27
+administration session, giving particular consideration to:
+28
+(i) The information that should be solicited from the client to
+29
+determine whether the client should participate in the administration
+30
+session, including information that may identify potential risk
+31
+factors and contraindications, and means of accommodating or
+32
+mitigating them;33
+(ii) The information that should be solicited from the client to
+34
+assist the psilocybin service center operator and the psilocybin
+35
+service facilitator in meeting any public health and safety standards
+36
+and industry best practices during the administration session; and
+37
+p. 8 SB 5263
+(iii) The health and safety warnings and other disclosures that
+1
+should be made to the client before the client participates in the
+2
+administration session;3
+(3) Recommendations to the department on public health and safety
+4
+standards and industry best practices for each type of licensee under
+5
+this chapter;6
+(4) Recommendations to the department on the formulation of a
+7
+code of professional conduct for psilocybin service facilitators,
+8
+giving particular consideration to a code of ethics;
+9
+(5) Recommendations to the department on the education and
+10
+training that psilocybin service facilitators must complete, giving
+11
+particular consideration to:12
+(a) Facilitation skills that are affirming, nonjudgmental,
+13
+culturally competent, and nondirective;14
+(b) Support skills for clients during an administration session,
+15
+including specialized skills for client safety and clients who may
+16
+have a behavioral health disorder;17
+(c) The environment in which psilocybin services should occur;
+18
+and19
+(d) Social and cultural considerations;20
+(6) Recommendations to the department on the examinations that
+21
+psilocybin service facilitators must pass;22
+(7) Recommendations as to the requirements to serve as a
+23
+qualified supervisor for psilocybin service facilitator trainees, and
+24
+appropriate circumstances in which supervised experience requirements
+25
+for trainees may be waived for certain applicants until a sufficient
+26
+supply of qualified supervisors is available;27
+(8) Recommendations to the department on public health and safety
+28
+standards and industry best practices for holding and completing an
+29
+administration session, including:30
+(a) Under what circumstances group administration sessions should
+31
+be available;32
+(b) Whether clients should be able to access common or outside
+33
+areas on the premises of the psilocybin service center at which the
+34
+administration session is held;35
+(c) The circumstances under which an administration session is
+36
+considered complete; and37
+(d) The transportation needs of the client after the completion
+38
+of the administration session;39
+p. 9 SB 5263
+(9) Development of a long-term strategic plan for ensuring that
+1
+psilocybin services will become and remain a safe, accessible, and
+2
+affordable wellness option for all persons 21 years of age and older
+3
+in this state for whom psilocybin may be appropriate;
+4
+(10) Monitoring and studying federal laws, regulations, and
+5
+policies regarding psilocybin;6
+(11) Attempting to meet with the United States attorney's office
+7
+for the Western and Eastern districts of Washington to discuss this
+8
+chapter and potential federal enforcement policies regarding
+9
+psilocybin in Washington after the expiration of the two-year program
+10
+development period; and11
+(12) Recommendations on criteria for the social opportunity
+12
+program under section 114 of this act that promote social equity and
+13
+accessibility.14
+POWERS AND DUTIES OF WASHINGTON DEPARTMENT OF HEALTH
+15
+NEW SECTION. Sec. 8. (1) The department has the duties,
+16
+functions, and powers specified under this chapter and the powers
+17
+necessary or proper to enable the department to carry out its duties,
+18
+functions, and powers under this chapter. The jurisdiction,
+19
+supervision, duties, functions, and powers of the department extend
+20
+to any person that produces, processes, transports, delivers, sells,
+21
+or purchases a psilocybin product in this state or that provides a
+22
+psilocybin service in this state. The department may sue and be sued.
+23
+(2) The duties, functions, and powers of the department specified
+24
+in this chapter include the following:25
+(a) To examine, publish, and distribute to the public available
+26
+medical, psychological, and scientific studies, research, and other
+27
+information relating to the safety and efficacy of psilocybin in
+28
+treating mental health conditions, including but not limited to
+29
+addiction, depression, anxiety disorders, and end-of-life
+30
+psychological distress, and the potential for psilocybin to promote
+31
+community, address trauma, and enhance physical and mental wellness;
+32
+(b) After the two-year program development period:
+33
+(i) To regulate the manufacturing, transportation, delivery,
+34
+sale, and purchase of psilocybin products and the provision of
+35
+psilocybin services in this state in accordance with the provisions
+36
+of this chapter;37
+p. 10 SB 5263
+(ii) To issue, renew, suspend, revoke, or refuse to issue or
+1
+renew licenses for the manufacturing or sale of psilocybin products,
+2
+the provision of psilocybin services, or other licenses related to
+3
+the consumption of psilocybin products; and4
+(iii) To regulate the use of psilocybin products and psilocybin
+5
+services for other purposes as deemed necessary or appropriate by the
+6
+department;7
+(c) To adopt, amend, or repeal rules necessary to carry out the
+8
+intent and provisions of this chapter, including rules that the
+9
+department considers necessary to protect the public health and
+10
+safety;11
+(d) To exercise all powers incidental, convenient, or necessary
+12
+to enable the department to administer or carry out this chapter or
+13
+any other law of this state that charges the department with a duty,
+14
+function, or power related to psilocybin products and psilocybin
+15
+services. Powers described in this subsection include, but are not
+16
+limited to:17
+(i) Issuing subpoenas;18
+(ii) Compelling the attendance of witnesses;19
+(iii) Administering oaths;20
+(iv) Certifying official acts;21
+(v) Taking depositions as provided by law;22
+(vi) Compelling the production of books, payrolls, accounts,
+23
+papers, records, documents, and testimony; and24
+(vii) Establishing fees in addition to the application,
+25
+licensing, and renewal fees described in sections 22, 25, 27, and 96
+26
+of this act, provided that any fee established by the department is
+27
+reasonably calculated to not exceed the cost of the activity for
+28
+which the fee is charged;29
+(e) To adopt rules prohibiting advertising psilocybin products to
+30
+the public;31
+(f) To adopt rules regulating and prohibiting advertising
+32
+psilocybin services in a manner:33
+(i) That is appealing to minors;34
+(ii) That promotes excessive use;35
+(iii) That promotes illegal activity;36
+(iv) That violates the code of professional conduct for
+37
+psilocybin service facilitators formulated by the department; or
+38
+(v) That otherwise presents a significant risk to public health
+39
+and safety.40
+p. 11 SB 5263
+(3) The department may not:1
+(a) Require that a psilocybin product be manufactured by means of
+2
+chemical synthesis;3
+(b) Prohibit the use of naturally grown mushrooms that meet
+4
+quality and safety standards; or5
+(c) Mandate the use of patented products or procedures.
+6
+(4) The department may not require a client to be diagnosed with
+7
+or have any particular medical condition as a condition to being
+8
+provided psilocybin services.9
+(5) The jurisdiction, supervision, duties, functions, and powers
+10
+held by the department under this section are not shared by the
+11
+pharmacy quality assurance commission under chapter 18.64 RCW.
+12
+NEW SECTION. Sec. 9. The department may purchase, possess,
+13
+seize, transfer to a licensee, or dispose of psilocybin products as
+14
+is necessary for the department to ensure compliance with and enforce
+15
+the provisions of this chapter and any rule adopted under this
+16
+chapter.
+17
+TWO-YEAR PROGRAM DEVELOPMENT PERIOD
+18
+NEW SECTION. Sec. 10. The department may not issue any licenses
+19
+under this chapter during the two-year program development period,
+20
+except as otherwise provided by law.
+21
+NEW SECTION. Sec. 11. (1) By September 1, 2023, the governor
+22
+shall appoint the individuals specified in section 6(2) of this act
+23
+to the Washington psilocybin advisory board.
+24
+(2) By October 31, 2023, the Washington psilocybin advisory board
+25
+shall hold its first meeting at a time and place specified by the
+26
+department.27
+(3) The Washington psilocybin advisory board must vote upon and
+28
+submit advice and recommendations to the department on a schedule to
+29
+be agreed upon between the department and the board relating to: The
+30
+department's rule-making duties under this chapter; and the
+31
+development of a long-term plan for ensuring that psilocybin services
+32
+will become and remain a safe, accessible, and affordable wellness
+33
+option for all persons 21 years of age or older in this state for
+34
+whom psilocybin may be appropriate. Advice and recommendations must
+35
+p. 12 SB 5263
+be made with respect for federal laws, regulations, and policies
+1
+regarding psilocybin.2
+NEW SECTION. Sec. 12. (1) By December 31, 2023, and from time
+3
+to time thereafter, the department must publish and distribute to the
+4
+public available medical, psychological, and scientific studies,
+5
+research, and other information relating to the safety and efficacy
+6
+of psilocybin in ameliorating behavioral health conditions, including
+7
+but not limited to addiction, depression, anxiety disorders, and end-
+8
+of-life psychological distress.
+9
+(2) By December 31, 2024, the department shall adopt rules and
+10
+establish forms necessary for the implementation of this chapter.
+11
+APPLICATION PROCESS AND LICENSES
+12
+NEW SECTION. Sec. 13. By January 2, 2024, the department shall
+13
+begin receiving applications for the licensing of persons to:
+14
+(1) Manufacture psilocybin products;15
+(2) Operate a psilocybin service center;16
+(3) Facilitate psilocybin services; and17
+(4) Test psilocybin products.18
+NEW SECTION. Sec. 14. (1) Except as provided in subsection (2)
+19
+of this section, an applicant for a license or renewal of a license
+20
+issued under this chapter shall apply to the department in the form
+21
+required by the department by rule, showing the name and address of
+22
+the applicant, location of the premises that is to be operated under
+23
+the license, and other pertinent information required by the
+24
+department.
+25
+(2) The department may reject any application that is not
+26
+submitted in the form required by the department by rule. The
+27
+department shall give applicants an opportunity to be heard if an
+28
+application is rejected. A hearing under this subsection is not
+29
+subject to the requirements for contested case proceedings under
+30
+chapter 34.05 RCW.31
+(3) Except as provided in subsection (2) of this section, a
+32
+revocation of, or a refusal to issue or renew, a license issued under
+33
+this chapter is subject to the requirements for contested case
+34
+proceedings under chapter 34.05 RCW.35
+p. 13 SB 5263
+(4) An applicant for a facilitator license, trainee license, or
+1
+renewal of a facilitator or trainee license issued under section 27
+2
+of this act need not show the location of any premises.
+3
+NEW SECTION. Sec. 15. (1) The department may not license an
+4
+applicant under this chapter if the applicant is under 21 years of
+5
+age.
+6
+(2) The department may refuse to issue a license or may issue a
+7
+restricted license to an applicant under this chapter if the
+8
+department makes a finding that the applicant:9
+(a) Has not completed required education or training;
+10
+(b) Has not passed an examination required by the department;
+11
+(c) Is in the habit of using alcoholic beverages, habit-forming
+12
+drugs, or controlled substances to excess, impairing their fitness to
+13
+safely perform their duties;14
+(d) Has made false statements to the department;
+15
+(e) Demonstrates a lack of capacity or incompetency to carry on
+16
+the management of the establishment proposed to be licensed;
+17
+(f) Has been convicted of violating a federal law, state law, or
+18
+local ordinance if the conviction is substantially related to the
+19
+fitness and ability of the applicant to lawfully carry out activities
+20
+under the license;21
+(g) Is not of good repute and moral character;
+22
+(h) Does not have a good record of compliance with this chapter
+23
+or any rule adopted under this chapter;24
+(i) Is not the legitimate owner of the premises proposed to be
+25
+licensed, or has not disclosed that other persons have ownership
+26
+interests in the premises proposed to be licensed;
+27
+(j) Has not demonstrated financial responsibility sufficient to
+28
+adequately meet the requirements of the premises proposed to be
+29
+licensed; or30
+(k) Is unable to understand the laws of this state relating to
+31
+psilocybin products, psilocybin services, or the rules adopted under
+32
+this chapter.33
+(3) In determining whether to issue a license or a restricted
+34
+license to an applicant, the department may not consider the prior
+35
+conviction of the applicant or any owner, director, officer, manager,
+36
+employee, agent, or other representative of the applicant for:
+37
+(a) The manufacture of psilocybin or the manufacture of a
+38
+cannabis item; or39
+p. 14 SB 5263
+(b) The possession of a controlled substance, if:
+1
+(i) The date of the conviction is two or more years before the
+2
+date of the application, unless the controlled substance was
+3
+psilocybin or cannabis, in which case no waiting period applies; or
+4
+(ii) The person has not been convicted more than once for the
+5
+possession of a controlled substance other than psilocybin or
+6
+cannabis.7
+NEW SECTION. Sec. 16. For the purpose of requesting a state or
+8
+nationwide criminal records check under RCW 18.130.064, the
+9
+department may require the fingerprints of any individual listed on
+10
+an application submitted under section 14 of this act. The powers
+11
+conferred on the department under this section include the power to
+12
+require the fingerprints of:
+13
+(1) If the applicant is a limited partnership, each general
+14
+partner of the limited partnership;15
+(2) If the applicant is a manager-managed limited liability
+16
+company, each manager of the limited liability company;
+17
+(3) If the applicant is a member-managed limited liability
+18
+company, each voting member of the limited liability company;
+19
+(4) If the applicant is a corporation, each director and officer
+20
+of the corporation; and21
+(5) Any individual who holds a financial interest of 10 percent
+22
+or more in the person applying for the license.23
+NEW SECTION. Sec. 17. A license issued under this chapter:
+24
+(1) Is a personal privilege;25
+(2) Is renewable in the manner provided in section 14 of this
+26
+act, except for a cause that would be grounds for refusal to issue
+27
+the license under section 15 of this act;28
+(3) Is revocable or suspendible as provided in section 61 of this
+29
+act;30
+(4) Except for a license issued to a psilocybin service
+31
+facilitator under section 27 of this act, is transferable from the
+32
+premises for which the license was originally issued to another
+33
+premises subject to the provisions of this chapter, applicable rules
+34
+adopted under this chapter and applicable local ordinances;
+35
+(5) If the license was issued to an individual, expires upon the
+36
+death of the licensee, except as provided under section 48 of this
+37
+act;38
+p. 15 SB 5263
+(6) Does not constitute property;1
+(7) Is not alienable;2
+(8) Is not subject to attachment or execution;3
+(9) Does not descend by the laws of testate or intestate
+4
+devolution; and5
+(10) Does not grant the right to operate in conflict with local
+6
+zoning ordinances and development regulations.7
+NEW SECTION. Sec. 18. (1) The department shall approve or deny
+8
+an application to be licensed under this chapter. Upon receiving an
+9
+application under section 14 of this act, the department may not
+10
+unreasonably delay processing, approving, or denying the application
+11
+or, if the application is approved, issuing the license.
+12
+(2) The licenses described in this chapter must be issued by the
+13
+department, subject to the provisions of this chapter and rules
+14
+adopted under this chapter.15
+(3) The department may not license a premises that does not have
+16
+defined boundaries. The department may not require a premises to be
+17
+enclosed by a wall, fence, or other structure, but the department may
+18
+require a premises to be enclosed as a condition of issuing or
+19
+renewing a license. The department may not license a mobile premises.
+20
+LICENSEES IN GENERAL
+21
+NEW SECTION. Sec. 19. Licensees and licensee representatives
+22
+may manufacture, deliver, and possess psilocybin products subject to
+23
+this chapter. The manufacture, delivery, or possession of psilocybin
+24
+products by a licensee or a licensee representative in compliance
+25
+with this chapter does not constitute a criminal or civil offense
+26
+under the laws of this state.
+27
+NEW SECTION. Sec. 20. An individual may not have a financial
+28
+interest in:
+29
+(1) More than one psilocybin product manufacturer; or
+30
+(2) More than five psilocybin service center operators.
+31
+NEW SECTION. Sec. 21. Subject to section 20 of this act:
+32
+(1) A person may hold multiple service center operator licenses
+33
+under section 25 of this act; and34
+p. 16 SB 5263
+(2) A person may hold both a manufacturer license under section
+1
+22 of this act and a service center operator license under section 25
+2
+of this act at the same or different premises.3
+LICENSE TO MANUFACTURE PSILOCYBIN PRODUCTS
+4
+NEW SECTION. Sec. 22. (1) The manufacture of psilocybin
+5
+products is subject to regulation by the department.
+6
+(2) A psilocybin product manufacturer must have a manufacturer
+7
+license issued by the department for the premises at which the
+8
+psilocybin products are manufactured. To hold a manufacturer license
+9
+issued under this section, a psilocybin product manufacturer:
+10
+(a) Must apply for a license in the manner described in section
+11
+14 of this act;12
+(b) Must provide proof that the applicant is 21 years of age or
+13
+older;14
+(c) Must, until January 1, 2027:15
+(i) If the direct owner of the business operating or to be
+16
+operated under the license is a legal entity, provide proof that more
+17
+than 50 percent of the shares, membership interests, partnership
+18
+interests, or other ownership interests of the legal entity are held,
+19
+directly or indirectly, by one or more individuals who have been
+20
+residents of this state for two or more years;21
+(ii) If the direct owner of the business operating or to be
+22
+operated under the license is a partnership that is not a legal
+23
+entity, provide proof that more than 50 percent of the partnership
+24
+interests of the partnership are held, directly or indirectly, by one
+25
+or more individuals who have been residents of this state for two or
+26
+more years; and27
+(iii) If the direct owner of the business operating or to be
+28
+operated under the license is an individual, provide proof that the
+29
+individual has been a resident of this state for two or more years;
+30
+and31
+(d) Must meet the requirements of any rule adopted by the
+32
+department under subsections (3) and (4) of this section.
+33
+(3)(a) If the applicant is not the owner of the premises at which
+34
+the psilocybin is to be manufactured, the applicant shall submit to
+35
+the department signed informed consent from the owner of the premises
+36
+to manufacture psilocybin at the premises.37
+p. 17 SB 5263
+(b) The department may adopt rules regarding the informed consent
+1
+described in (a) of this subsection.2
+(4) The department shall adopt rules that:3
+(a) Require a psilocybin product manufacturer to annually renew a
+4
+license issued under this section;5
+(b) Establish application, licensure, and renewal of licensure
+6
+fees for psilocybin product manufacturers; and7
+(c) Require psilocybin products manufactured by psilocybin
+8
+product manufacturers to be tested in accordance with section 95 of
+9
+this act.10
+(5) Fees adopted under subsection (4)(b) of this section:
+11
+(a) May not exceed, together with other fees collected under this
+12
+chapter, the cost of administering this chapter; and
+13
+(b) Shall be deposited in the psilocybin control and regulation
+14
+account established under section 66 of this act.15
+NEW SECTION. Sec. 23. (1) The department shall adopt rules that
+16
+designate different types of manufacturing activities. A psilocybin
+17
+product manufacturer may only engage in a type of manufacturing
+18
+activity if the psilocybin product manufacturer has received an
+19
+endorsement from the department for that type of manufacturing
+20
+activity.
+21
+(2) The department must create a microtier manufacturing
+22
+endorsement with lower license fees to reduce barriers to access.
+23
+(3) An applicant must request an endorsement upon submission of
+24
+an initial application but may also request an endorsement at any
+25
+time following licensure.26
+(4) Only one application and license fee is required regardless
+27
+of how many endorsements an applicant or licensee requests or at what
+28
+time the request is made.29
+(5) A psilocybin product manufacturer licensee may hold multiple
+30
+endorsements.31
+(6) The department may deny a psilocybin product manufacturer's
+32
+request for an endorsement or revoke an existing endorsement if the
+33
+psilocybin product manufacturer cannot or does not meet the
+34
+requirements for the endorsement that is requested. If the department
+35
+denies or revokes approval, the psilocybin product manufacturer has a
+36
+right to a hearing under chapter 34.05 RCW.37
+p. 18 SB 5263
+NEW SECTION. Sec. 24. The department may adopt rules
+1
+restricting the quantities of psilocybin products at premises for
+2
+which a license has been issued under section 22 of this act. In
+3
+adopting rules under this section, the department may take into
+4
+consideration the demand for psilocybin services in this state, the
+5
+number of psilocybin product manufacturers applying for a license
+6
+under section 22 of this act, the number of psilocybin product
+7
+manufacturers that hold a license issued under section 22 of this
+8
+act, and whether the availability of psilocybin products in this
+9
+state is commensurate with the demand for psilocybin services.
+10
+LICENSE TO OPERATE PSILOCYBIN SERVICE CENTER
+11
+NEW SECTION. Sec. 25. (1)(a) The operation of a psilocybin
+12
+service center is subject to regulation by the department.
+13
+(b) A psilocybin service center is not a health care facility
+14
+subject to chapter 70.37 RCW.15
+(2) A psilocybin service center operator must have a service
+16
+center operator license issued by the department for any premises at
+17
+which psilocybin services are provided. To hold a service center
+18
+operator license under this section, a psilocybin service center
+19
+operator:20
+(a) Must apply for a license in the manner described in section
+21
+14 of this act;22
+(b) Must provide proof that the applicant is 21 years of age or
+23
+older;24
+(c) Must, until January 1, 2027:25
+(i) If the direct owner of the business operating or to be
+26
+operated under the license is a legal entity, provide proof that more
+27
+than 50 percent of the shares, membership interests, partnership
+28
+interests, or other ownership interests of the legal entity are held,
+29
+directly or indirectly, by one or more individuals who have been
+30
+residents of this state for two or more years;31
+(ii) If the direct owner of the business operating or to be
+32
+operated under the license is a partnership that is not a legal
+33
+entity, provide proof that more than 50 percent of the partnership
+34
+interests of the partnership are held, directly or indirectly, by one
+35
+or more individuals who have been residents of this state for two or
+36
+more years; and37
+p. 19 SB 5263
+(iii) If the direct owner of the business operating or to be
+1
+operated under the license is an individual, provide proof that the
+2
+individual has been a resident of this state for two or more years;
+3
+(d) Must meet the requirements of any rule adopted by the
+4
+department under subsection (3) of this section.5
+(3) The department shall adopt rules that:6
+(a) Require a psilocybin service center operator to annually
+7
+renew a license issued under this section;8
+(b) Establish application, licensure, and renewal of licensure
+9
+fees for psilocybin service center operators;10
+(c) Require psilocybin products sold by a psilocybin service
+11
+center operator to be tested under section 95 of this act;
+12
+(d) Establish circumstances in which psilocybin services can be
+13
+safely and comfortably administered in the home of a client or other
+14
+location permitted by the department; and15
+(e) Require a psilocybin service center operator to meet any
+16
+public health and safety standards and industry best practices
+17
+established by the department by rule.18
+(4) Fees adopted under subsection (3)(b) of this section:
+19
+(a) May not exceed, together with other fees collected under this
+20
+chapter, the cost of administering this chapter; and
+21
+(b) Shall be deposited in the psilocybin control and regulation
+22
+account established under section 66 of this act.23
+NEW SECTION. Sec. 26. The department may adopt rules
+24
+establishing the circumstances under which the department may require
+25
+a psilocybin service center operator that holds a license issued
+26
+under section 25 of this act to use an age verification scanner or
+27
+any other equipment used to verify a person's age for the purpose of
+28
+ensuring that the psilocybin service center operator does not provide
+29
+psilocybin services to a person under 21 years of age. Information
+30
+obtained under this section may not be retained after verifying a
+31
+person's age and may not be used for any purpose other than verifying
+32
+a person's age.
+33
+LICENSE TO FACILITATE PSILOCYBIN SERVICES
+34
+NEW SECTION. Sec. 27. (1) The facilitation of psilocybin
+35
+services is subject to regulation by the department.
+36
+p. 20 SB 5263
+(2) A psilocybin service facilitator must have a facilitator
+1
+license issued by the department. To hold a facilitator license
+2
+issued under this section, a psilocybin service facilitator must:
+3
+(a) Apply for a license in the manner described under section 14
+4
+of this act;5
+(b) Provide proof that the applicant is 21 years of age or older;
+6
+(c) Until January 1, 2026, provide proof that the applicant has
+7
+been a resident of this state for two or more years;
+8
+(d) Have a high school diploma or equivalent education;
+9
+(e) Submit evidence of completion of education and training
+10
+prescribed and approved by the department;11
+(f) Submit evidence of having completed 250 hours of supervised
+12
+training under a qualified supervisor, of which 48 hours must include
+13
+direct cotherapy alongside the supervising practitioner;
+14
+(g) Have passed an examination approved, administered, or
+15
+recognized by the department; and16
+(h) Meet the requirements of any rule adopted by the department
+17
+under subsection (5) of this section.18
+(3) A psilocybin service facilitator trainee must have a license
+19
+issued by the department. A trainee must complete all the
+20
+requirements for licensure as a facilitator except the supervised
+21
+training requirement. A trainee may work in paid employment in the
+22
+psilocybin industry in the capacity of a facilitator under the
+23
+supervision of a qualified supervisor. Qualified supervisors shall
+24
+include all persons who have been licensed as psilocybin service
+25
+facilitators for at least two years and other individuals as
+26
+determined by the department. Until a sufficient number of qualified
+27
+supervisors are available, the department shall waive the supervised
+28
+training requirement for individuals who it determines with the
+29
+advice of the psilocybin advisory board to have acquired sufficient
+30
+experience in psilocybin service facilitation through other means, in
+31
+order to allow those individuals to be licensed as psilocybin service
+32
+facilitators and to provide a supervision resource for trainees.
+33
+(4) The department may not require a psilocybin service
+34
+facilitator or psilocybin service facilitator trainee to have a
+35
+degree from a university, college, postsecondary institution, or
+36
+other institution of higher education.37
+(5) The department shall adopt rules that:38
+p. 21 SB 5263
+(a) Require a psilocybin service facilitator or psilocybin
+1
+service facilitator trainee to annually renew a license issued under
+2
+this section;3
+(b) Establish application, licensure, and renewal of licensure
+4
+fees for psilocybin service facilitators and psilocybin service
+5
+facilitator trainees; and6
+(c) Require a psilocybin service facilitator or psilocybin
+7
+service facilitator trainee to meet any public health and safety
+8
+standards and industry best practices established by the department
+9
+by rule.10
+(6) Fees adopted under subsection (5)(b) of this section:
+11
+(a) May not exceed, together with other fees collected under this
+12
+chapter, the cost of administering this chapter; and
+13
+(b) Shall be deposited in the psilocybin control and regulation
+14
+account established under section 66 of this act.15
+(7) A psilocybin service facilitator or psilocybin service
+16
+facilitator trainee may be, but need not be, an employee, manager,
+17
+director, officer, partner, member, shareholder, or direct or
+18
+indirect owner of one or more psilocybin service centers.
+19
+(8) A license issued to a psilocybin service facilitator or
+20
+psilocybin service facilitator trainee under this section is not
+21
+limited to any one or more premises.22
+NEW SECTION. Sec. 28. The department shall offer an examination
+23
+for applicants for licenses to facilitate psilocybin services at
+24
+least twice a year. An applicant who fails any part of the
+25
+examination may retake the failed section in accordance with rules
+26
+adopted by the department.
+27
+NEW SECTION. Sec. 29. The department may adopt rules
+28
+establishing the circumstances under which the department may require
+29
+a psilocybin service facilitator that holds a license issued under
+30
+section 27 of this act to use an age verification scanner or any
+31
+other equipment used to verify a person's age for the purpose of
+32
+ensuring that the psilocybin service facilitator does not provide
+33
+psilocybin services to a person under 21 years of age. Information
+34
+obtained under this section may not be retained after verifying a
+35
+person's age and may not be used for any purpose other than verifying
+36
+a person's age.
+37
+p. 22 SB 5263
+PSILOCYBIN SERVICES
+1
+NEW SECTION. Sec. 30. The department shall adopt by rule the
+2
+requirements, specifications, and guidelines for:
+3
+(1) Providing psilocybin services to a client, including
+4
+maintaining the confidentiality of client information to the greatest
+5
+extent possible;6
+(2) Providing for group administration sessions where one or more
+7
+psilocybin service facilitators provide psilocybin services to more
+8
+than one patient as part of the same administration session;
+9
+(3) Holding and verifying the completion of a preparation
+10
+session;11
+(4) Having a client complete, sign, and deliver a client
+12
+information form to a psilocybin service center operator and a
+13
+psilocybin service facilitator;14
+(5) Holding and verifying the completion of an administration
+15
+session; and16
+(6) Holding and verifying the completion of an integration
+17
+session.18
+NEW SECTION. Sec. 31. (1) Before a client participates in an
+19
+administration session, the client must attend a preparation session
+20
+with a psilocybin service facilitator.
+21
+(2) A preparation session may be, but need not be, held at a
+22
+psilocybin service center and may be held in person or remotely.
+23
+(3) The initial preparation session must occur no more than 120
+24
+days before the client participates in their first administration
+25
+session. Thereafter, any subsequent preparation session need only be
+26
+completed every 12 months.27
+(4) If a preparation session is completed in accordance with all
+28
+applicable requirements, specifications, and guidelines, as
+29
+determined by the department, the psilocybin service facilitator must
+30
+certify, in a form and manner prescribed by the department, that the
+31
+client completed the preparation session.32
+NEW SECTION. Sec. 32. (1) Before a client participates in an
+33
+administration session:
+34
+(a) The client must complete and sign a client information form,
+35
+in a form and manner prescribed by the department; and
+36
+p. 23 SB 5263
+(b) A copy of the completed and signed client information form
+1
+must be delivered to:2
+(i) The psilocybin service center operator that operates the
+3
+psilocybin service center at which the administration session is to
+4
+be held; and5
+(ii) The psilocybin service facilitator that will supervise the
+6
+administration session.7
+(2) The client information form:8
+(a) Must solicit from the client information necessary:
+9
+(i) To enable a psilocybin service center operator and a
+10
+psilocybin service facilitator to determine whether the client should
+11
+participate in an administration session, including information that
+12
+may identify risk factors and contraindications; and
+13
+(ii) To assist the psilocybin service center operator and the
+14
+psilocybin service facilitator in meeting any public health and
+15
+safety standards and industry best practices during the
+16
+administration session; and17
+(b) Must contain health and safety warnings and other disclosures
+18
+to the client as required by the department.19
+NEW SECTION. Sec. 33. (1) After a client completes a
+20
+preparation session and completes and signs a client information
+21
+form, the client may participate in an administration session.
+22
+(2) If an administration session is completed in accordance with
+23
+all applicable requirements, specifications, and guidelines, as
+24
+determined by the department, the psilocybin service facilitator must
+25
+certify, in a form and manner prescribed by the department, that the
+26
+client completed the administration session.27
+NEW SECTION. Sec. 34. (1) After a client completes an
+28
+administration session, the psilocybin service facilitator who
+29
+supervised the administration session must offer the client an
+30
+opportunity to participate in an integration session. The client may,
+31
+but need not, participate in an integration session.
+32
+(2) An integration session may be, but need not be, held at a
+33
+psilocybin service center and may be held in person or remotely.
+34
+(3) If an integration session is completed in accordance with all
+35
+applicable requirements, specifications, and guidelines, as
+36
+determined by the department, the psilocybin service facilitator must
+37
+p. 24 SB 5263
+certify, in a form and manner prescribed by the department, that the
+1
+client completed the integration session.2
+NEW SECTION. Sec. 35. (1) If a client information form is
+3
+offered as evidence in any administrative or criminal prosecution of
+4
+a licensee or licensee representative for sale or service of a
+5
+psilocybin product to a client, the licensee or licensee
+6
+representative is not guilty of any offense prohibiting a person from
+7
+selling or serving a psilocybin product to a client unless it is
+8
+demonstrated that a reasonable person would have determined that the
+9
+responses provided by the client on the client information form were
+10
+incorrect or altered.
+11
+(2) A licensee or licensee representative may rely upon all
+12
+statements, declarations, and representations made by a client in a
+13
+client information form unless it is demonstrated that:
+14
+(a) A reasonable person would have determined that one or more of
+15
+the statements, declarations, and representations made by the client
+16
+in the client information form were incorrect or altered; or
+17
+(b) The licensee or licensee representative violated a provision
+18
+of this chapter or a department rule relative to the client
+19
+information form.20
+(3) Except as provided in subsection (2) of this section, no
+21
+licensee or licensee representative shall incur legal liability by
+22
+virtue of any untrue statements, declarations, or representations so
+23
+relied upon in good faith by the licensee or licensee representative.
+24
+NEW SECTION. Sec. 36. (1) Subject to other applicable law, a
+25
+licensee or licensee representative may refuse to provide psilocybin
+26
+services to a potential client for any or no reason.
+27
+(2)(a) Except as provided in (b) of this subsection, and subject
+28
+to other applicable law, a licensee or licensee representative may
+29
+cease providing psilocybin services to a client for any or no reason.
+30
+(b) A psilocybin service center operator and a psilocybin service
+31
+facilitator may not cease providing psilocybin services to a client
+32
+during an administration session after the client has consumed a
+33
+psilocybin product, except as authorized by the department by rule,
+34
+or as necessary in an emergency.35
+POWERS AND DUTIES OF WASHINGTON STATE DEPARTMENT OF HEALTH WITH
+36
+RESPECT TO LICENSEES
+37
+p. 25 SB 5263
+NEW SECTION. Sec. 37. The department shall:
+1
+(1) Determine the qualifications, training, education, and
+2
+fitness of applicants for licenses to facilitate psilocybin services,
+3
+giving particular consideration to:4
+(a) Facilitation skills that are affirming, nonjudgmental,
+5
+culturally competent, and nondirective;6
+(b) Support skills for clients during an administration session,
+7
+including specialized skills for:8
+(i) Client safety; and9
+(ii) Clients who may have a behavioral health condition;
+10
+(c) The environment in which psilocybin services should occur;
+11
+and12
+(d) Social and cultural considerations.13
+(2) Formulate a code of professional conduct for psilocybin
+14
+service facilitators, giving particular consideration to a code of
+15
+ethics;16
+(3) Serve as the disciplinary authority for this chapter under
+17
+the uniform disciplinary act, chapter 18.130 RCW, which shall govern
+18
+uncertified practice, the issuance and denial of licenses, and the
+19
+discipline of persons certified under this chapter except as
+20
+explicitly provided in this chapter or by rules promulgated by the
+21
+department. The department may establish specific standards of
+22
+practice and professional responsibility for individuals licensed by
+23
+the department to facilitate psilocybin services;24
+(4) Select licensing examinations for licenses to facilitate
+25
+psilocybin services; and26
+(5) Appoint representatives to conduct or supervise examinations
+27
+of applicants for licenses to facilitate psilocybin services.
+28
+NEW SECTION. Sec. 38. (1) The department shall adopt by rule
+29
+minimum standards of education and training requirements for
+30
+psilocybin service facilitators.
+31
+(2) The department shall approve courses for psilocybin service
+32
+facilitators. To obtain approval of a course, the provider of a
+33
+course must submit an outline of instruction to the department. The
+34
+outline must include the approved courses, total hours of
+35
+instruction, hours of lectures in theory, and the hours of
+36
+instruction in application of practical skills.37
+(3) Psilocybin service facilitator training must be modular,
+38
+allowing the offering of comprehensive training programs and partial
+39
+p. 26 SB 5263
+training programs, so that a candidate may elect to piece together a
+1
+training curriculum among modules offered by different training
+2
+programs.3
+(4) The core curriculum may be completed in person or through
+4
+distance education. The practical portion of the curriculum must be
+5
+completed in person.6
+NEW SECTION. Sec. 39. (1) The department may, after 72 hours'
+7
+notice, make an examination of the books of a licensee for the
+8
+purpose of determining compliance with this chapter and rules adopted
+9
+under this chapter.
+10
+(2) The department may at any time make an examination of a
+11
+premises for which a license has been issued under this chapter for
+12
+the purpose of determining compliance with this chapter and rules
+13
+adopted under this chapter.14
+(3) The department may not require the books of a licensee to be
+15
+maintained on a premises of the licensee.16
+NEW SECTION. Sec. 40. If a licensee holds more than one license
+17
+issued under this chapter for the same premises, the department may
+18
+require the premises to be segregated into separate areas for
+19
+conducting the activities permitted under each license as is
+20
+necessary to protect the public health and safety.
+21
+NEW SECTION. Sec. 41. As is necessary to protect the public
+22
+health and safety, the department may require a licensee to maintain
+23
+general liability insurance in an amount that the department
+24
+determines is reasonably affordable and available for the purpose of
+25
+protecting the licensee against damages resulting from a cause of
+26
+action related to activities undertaken under the license held by the
+27
+licensee.
+28
+NEW SECTION. Sec. 42. (1) The department shall develop rules
+29
+prescribing procedures for licensees under this chapter that allow
+30
+for the tracking of psilocybin products from the point of manufacture
+31
+to the point of sale to a client of a psilocybin service center,
+32
+which includes any intermediate sale or purchase of psilocybin
+33
+products between licensees, transfer of psilocybin products between
+34
+licensed premises, or other activities permitted by this chapter. The
+35
+purpose of these procedures is to:
+36
+p. 27 SB 5263
+(a) Prevent the diversion of psilocybin products to other states
+1
+or unauthorized users;2
+(b) Protect psilocybin products from substitution or tampering;
+3
+(c) Enable an accurate accounting of the production, processing,
+4
+and sale of psilocybin products;5
+(d) Ensure that laboratory testing results are accurately
+6
+reported; and7
+(e) Ensure compliance with other rules adopted under this chapter
+8
+and laws of this state related to psilocybin.9
+(2) The department is not required to direct the use of any
+10
+particular technology, platform, or system in rules promulgated under
+11
+this section. In developing rules, the department shall consider
+12
+factors including but not limited to cost, ease of administration by
+13
+licensees, ease of compliance monitoring, and the time available in
+14
+the two-year program development period and risk of causing delay to
+15
+implementation of the system.16
+(3) The department may enter into an agreement with the liquor
+17
+and cannabis board under which the board permits the department to
+18
+use the system developed and maintained by the board to track
+19
+cannabis products to track the transfer of psilocybin products
+20
+between premises for which the department has issued licenses under
+21
+this chapter if the department determines this method is suitable,
+22
+cost-effective, and not unduly burdensome. The department may enter
+23
+into an agreement to purchase or license a tracking system used in
+24
+another state, or it may develop its own system or set of procedures.
