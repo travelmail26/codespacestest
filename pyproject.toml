@@ -12,6 +12,8 @@ bleak = "^0.22.2"
 flask = "^3.0.3"
 numpy = "^2.1.1"
 openai = "^1.45.1"
+replit = "^4.1.0"
+gspread = "^6.1.2"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

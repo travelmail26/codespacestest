@@ -7,6 +7,9 @@ openai_api_key = os.environ.get('OPENAI_API_KEY')
 
 print ("DEBUG: openai_api_key: ", openai_api_key)
 
+with open('reporter/writer/tools.txt', 'r') as file:
+    tools = file.read()
+
 class AIHandler:
     def __init__(self, openai_key=None):
         self.openai_key = openai_key or openai_api_key
@@ -36,7 +39,8 @@ class AIHandler:
             'messages': messages,
             'temperature': 0.5,
             'max_tokens': 4096,
-            'stream': True
+            'stream': True,
+            'tools': tools
         }
 
         try:
@@ -61,6 +65,15 @@ class AIHandler:
                                 if content:
                                     print(content, end='', flush=True)  # Print content without newlines
                                     full_response += content
+
+                                    # Extract the arguments for get_delivery_date
+                                    tool_call = json_data['choices'][0]['message']['tool_calls'][0]
+                                    arguments = json.loads(tool_call['function']['arguments'])
+                                    
+                                    order_id = arguments.get('order_id')
+
+                                    # Call the get_delivery_date function with the extracted order_id
+                                    delivery_date = get_delivery_date(order_id)
                         except json.JSONDecodeError:
                             pass  # Skip any malformed JSON
             return full_response

@@ -1,4 +1,4 @@
-tools = [
+[
     {
         "type": "function",
         "function": {
@@ -9,12 +9,30 @@ tools = [
                 "properties": {
                     "query": {
                         "type": "string",
-                        "description": "The search query to pass to Perplexity AI.",
-                    },
+                        "description": "The search query to pass to Perplexity AI."
+                    }
                 },
                 "required": ["query"],
-                "additionalProperties": False,
-            },
-        },
+                "additionalProperties": false
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "test_function",
+            "description": "when I want to run a test of the function calling trigger. I will ask to test a function and give it a simple one word query.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "query word that passes to test_function."
+                    }
+                },
+                "required": ["query"],
+                "additionalProperties": false
+            }
+        }
     }
 ]
