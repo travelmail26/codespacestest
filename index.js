@@ -1,3 +1,18 @@
+const express = require('express');
+const ngrok = require('ngrok');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.listen(port, async () => {
+  console.log(`App listening on port ${port}`);
+  const url = await ngrok.connect(port);
+  console.log(`Ngrok tunnel created at: ${url}`);
+});
+
 let express = require('express');
 let app = express();
 let ejs = require('ejs');

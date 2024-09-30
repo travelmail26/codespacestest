@@ -5,12 +5,14 @@ import json
 # Fetching environment variables for API key
 openai_api_key = os.environ.get('OPENAI_API_KEY')
 
-print ("DEBUG: openai_api_key: ", openai_api_key)
+print("DEBUG: openai_api_key: ", openai_api_key)
 
 with open('reporter/writer/tools.txt', 'r') as file:
     tools = file.read()
 
+
 class AIHandler:
+
     def __init__(self, openai_key=None):
         self.openai_key = openai_key or openai_api_key
 
@@ -18,14 +20,18 @@ class AIHandler:
         self.extended_context = "Here is the extended context: "
         try:
             print("DEBUG: articletexttest.txt executed")
-            with open('/workspaces/codespacestest/reporter/writer/articletexttest.txt', 'r') as file:
+            with open(
+                    '/workspaces/codespacestest/reporter/writer/articletexttest.txt',
+                    'r') as file:
                 text_from_file = file.read()
                 self.extended_context += "\n" + text_from_file
                 print("DEBUG: Extended context: ", self.extended_context[:50])
         except FileNotFoundError:
-            print("DEBUG: articletexttest.txt not found. Using default extended context.")
+            print(
+                "DEBUG: articletexttest.txt not found. Using default extended context."
+            )
             self.extended_context = "Here is some default extended context."
-        
+
     def openai_request(self, messages):
         if not self.openai_key:
             return "OpenAI API key is missing."
@@ -45,7 +51,11 @@ class AIHandler:
 
         try:
             # Send the request to OpenAI and stream the response
-            response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data, stream=True)
+            response = requests.post(
+                'https://api.openai.com/v1/chat/completions',
+                headers=headers,
+                json=data,
+                stream=True)
             response.raise_for_status()
 
             # Process the streamed response in chunks
@@ -60,16 +70,21 @@ class AIHandler:
                             json_data = json.loads(chunk_data)
 
                             # Extract and print the content from the delta if it exists
-                            if 'choices' in json_data and 'delta' in json_data['choices'][0]:
-                                content = json_data['choices'][0]['delta'].get('content', '')
+                            if 'choices' in json_data and 'delta' in json_data[
+                                    'choices'][0]:
+                                content = json_data['choices'][0]['delta'].get(
+                                    'content', '')
                                 if content:
-                                    print(content, end='', flush=True)  # Print content without newlines
+                                    print(content, end='', flush=True
+                                          )  # Print content without newlines
                                     full_response += content
 
                                     # Extract the arguments for get_delivery_date
-                                    tool_call = json_data['choices'][0]['message']['tool_calls'][0]
-                                    arguments = json.loads(tool_call['function']['arguments'])
-                                    
+                                    tool_call = json_data['choices'][0][
+                                        'message']['tool_calls'][0]
+                                    arguments = json.loads(
+                                        tool_call['function']['arguments'])
+
                                     order_id = arguments.get('order_id')
 
                                     # Call the get_delivery_date function with the extracted order_id
@@ -80,13 +95,20 @@ class AIHandler:
 
         except requests.RequestException as e:
             return f"Error in OpenAI request: {str(e)}"
-    
+
     def chat(self):
         # Initialize conversation history
-        messages = [
-            {"role": "system", "content": "You are given information about public policy. If asked questions about policy, give priority to information in the extended context. documents separated by something like but may be slightly different ***DOCUMENT***."},
-            {"role": "system", "content": "This is the extended context: " + self.extended_context}
-        ]
+        messages = [{
+            "role":
+            "system",
+            "content":
+            "You are given information about public policy. If asked questions about policy, give priority to information in the extended context. documents separated by something like but may be slightly different ***DOCUMENT***."
+        }, {
+            "role":
+            "system",
+            "content":
+            "This is the extended context: " + self.extended_context
+        }]
 
         first_input = True
 
@@ -113,6 +135,7 @@ class AIHandler:
 
             # Print AI response
             print("\nAI: ", response)
+
 
 # Example usage
 if __name__ == "__main__":

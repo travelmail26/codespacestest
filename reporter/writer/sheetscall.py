@@ -91,7 +91,7 @@ def add_chatlog_entry(entry):
     current_time = datetime.now().isoformat()
     new_row = [current_time, entry]
     chatlog_sheet.append_row(new_row)
-    print(f"Added new row to 'chatlog': {new_row}")
+    #print(f"Added new row to 'chatlog': {new_row}")
 
 
 if __name__ == "__main__":

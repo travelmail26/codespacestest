@@ -6,47 +6,70 @@ from openai import OpenAI
 
 YOUR_API_KEY = openai_api_key = os.environ['PERPLEXITY_KEY']
 
-#tools object is in a separate file
 try:
     with open('tools.txt', 'r') as file:
         tools = json.load(file)
-except:
-    tools = ""
+except Exception:
+    None
 
-messages = [
-    {
-        "role":
-        "system",
-        "content":
-        ("You are an artificial intelligence assistant and you need to "
-         "engage in a helpful, detailed, polite conversation with a user."),
-    },
-    {
-        "role":
-        "user",
-        "content":
-        ("""find two reddit comments that give tips for making a small brisken pound of meat less than 2 pounds
-            give a url of the comment and the user names with actual quotes."""
-         ),
-    },
-]
+messages = [{
+    "role":
+    "system",
+    "content":
+    ("""You are an artificial intelligence assistant. Just say hi back to me."""
+     ),
+}]
 
-client = OpenAI(api_key=YOUR_API_KEY, base_url="https://api.perplexity.ai")
 
-# chat completion without streaming
-response = client.chat.completions.create(
-    model="llama-3.1-sonar-large-128k-online", messages=messages, tools=tools)
-#for tools function call
-if response.choices[0].message.tool_calls:
-    tool_call = response.choices[0].message.tool_calls[0]
-    if tool_call['function']['name'] == "call_perplexity_ai":
-        query = json.loads(tool_call['function']['arguments'])['query']
-        # Call the Perplexity AI function
-        perplexity_result = call_perplexity_ai(query)
-        print(perplexity_result)
-else:
+def perplexitychat():
+    print('**DEBUG: persplexitychat triggered**')
+
+    first_input = True
+    user_input = ""
+
+    while True:
+        user_input = input("User: ")
+        if first_input:
+            user_input = user_input
+            first_input = False
+
+        # Add user input to messages
+        messages.append({"role": "user", "content": user_input})
+
+        # Get response from OpenAI
+        response = perplexitycall(messages)
+
+        # Add AI response to messages
+        messages.append({"role": "assistant", "content": response})
+        print('**DEBUG: message after response**', messages)
+
+        # Print AI response
+        print("\nAI: ", response)
+
+
+def perplexitycall(messages):
+    print('**DEBUG: perplexitycall triggered**')
+
+    client = OpenAI(api_key=YOUR_API_KEY, base_url="https://api.perplexity.ai")
+
+    print ('**DEBUG: messages sent perplexity api**', messages)
+
+    # chat completion without streaming
+    response = client.chat.completions.create(
+        model="llama-3.1-sonar-large-128k-online", messages=messages)
+
     add_chatlog_entry(str(response))
     # If no function call is needed, just print the model's response
+    print('DEBUG RAW RESPONSE', response)
+
     print(response.choices[0].message.content)
-print(response.choices[0].message.content)
-print(type(response))
+    print(type(response))
+
+    content = response.choices[0].message.content
+    print(content)
+    print(type(response))
+    return content  # Return the content of the response
+
+
+if __name__ == "__main__":
+    handler = perplexitychat()
