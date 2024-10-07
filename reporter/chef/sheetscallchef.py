@@ -25,7 +25,7 @@ def sheets_call():
 
         # Authorize and create a client to interact with Google Sheets
         client = gspread.authorize(creds)
-        print("Authorized Google Sheets client successfully.")
+        #print("Authorized Google Sheets client successfully.")
     except FileNotFoundError:
         print(
             f"Error: Service account file not found at path: {SERVICE_ACCOUNT_FILE}"
@@ -41,14 +41,14 @@ def sheets_call():
     # print(f"Spreadsheet '{spreadsheet.title}' opened successfully.")
 
     # Access the worksheet by name
-    print(f"Attempting to access the worksheet named: {sheet_name}")
+    #print(f"Attempting to access the worksheet named: {sheet_name}")
     sheet = spreadsheet.worksheet(sheet_name)
     # print(f"Worksheet '{sheet_name}' accessed successfully.")
 
     # Fetch data from the sheet
-    print("Attempting to fetch data from the worksheet...")
+    #print("Attempting to fetch data from the worksheet...")
     data = sheet.get_all_values()
-    print('json format', json.dumps(data))
+    #print('json format', json.dumps(data))
 
     # print ('get all values', sheet.get_all_values())
     # print ('get A value', sheet.acell('A1').value)
@@ -88,7 +88,7 @@ def add_chatlog_entry(entry):
         )
         return
     spreadsheet_id = '1HiSZNWimhPHUW7CuXc-rBNLR55tYhbagQa0EgF8nHn8'
-    chatlog_sheet_name = 'sheet1'
+    chatlog_sheet_name = 'chatlog'
     spreadsheet = client.open_by_key(spreadsheet_id)
     chatlog_sheet = spreadsheet.worksheet(chatlog_sheet_name)
     current_time = datetime.now().isoformat()

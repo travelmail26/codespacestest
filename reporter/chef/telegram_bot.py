@@ -1,13 +1,16 @@
 import os
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from datatest import main
+from chefwriter import AIHandler
+
+handler = AIHandler()
 
 print("Telegram bot script started")
 
 # Retrieve the bot token from environment variables
 TOKEN = os.environ['TELEGRAM_KEY']
 print(f"Bot token retrieved: {TOKEN[:5]}...{TOKEN[-5:]}")
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     print(f"Received /start command from user {update.effective_user.id}")
@@ -16,14 +19,18 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(response)
     print(f"Sent response to user {update.effective_user.id}: {response}")
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+
+async def help_command(update: Update,
+                       context: ContextTypes.DEFAULT_TYPE) -> None:
     print(f"Received /help command from user {update.effective_user.id}")
     print(f"Payload: {update.to_dict()}")
     # Prepare the prompt for the LLM
     await update.message.reply_text(response)
     print(f"Sent response to user {update.effective_user.id}: {response}")
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+
+async def handle_message(update: Update,
+                         context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text
     print(f"Received message from user {update.effective_user.id}: {text}")
     print(f"Payload: {update.to_dict()}")
@@ -33,9 +40,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     """
 
     # Generate response using LLM
-    response = main(prompt)
+    response = handler.agentchat(prompt)
+
+    print(f"DEBUG: payload from agentchat function: {response}")
+
+    # Check if the response is empty
+    if not response:
+        response = "Sorry, I didn't get that. Can you please repeat?"
+
+    # Ensure response is not empty before sending it
     await update.message.reply_text(response)
     print(f"Sent response to user {update.effective_user.id}: {response}")
+
 
 def run_bot(keep_polling, update_bot_status):
     print("Setting up the Telegram bot")
@@ -45,10 +61,12 @@ def run_bot(keep_polling, update_bot_status):
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    application.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     print("Handlers added to the application")
 
     print("Starting bot polling")
     application.run_polling()
+
 
 # No need for main() function or __main__ block in this file

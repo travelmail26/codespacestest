@@ -41,7 +41,7 @@ class AIHandler:
             'Content-Type': 'application/json'
         }
         data = {
-            'model': 'gpt-4o-mini',
+            'model': 'o1-preview',
             'messages': messages,
             'temperature': 0.5,
             'max_tokens': 4096,
