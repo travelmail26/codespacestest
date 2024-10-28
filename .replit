@@ -1,6 +1,6 @@
 modules = ["python-3.10:v18-20230807-322e88b", "nodejs-18:v3-20230608-f4cd419"]
 hidden = [".pythonlibs"]
-run = "python reporter/chef/test.py"
+run = "python reporter/chef/main.py"
 # run = "npm run start"
 
 [nix]

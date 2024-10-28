@@ -11,6 +11,12 @@ print("Telegram bot script started")
 TOKEN = os.environ['TELEGRAM_KEY']
 print(f"Bot token retrieved: {TOKEN[:5]}...{TOKEN[-5:]}")
 
+def split_message(message, chunk_size=300):
+    # Check if message is empty or not a string
+    if not isinstance(message, str) or len(message) == 0:
+        return []
+        
+    return [message[i:i+chunk_size] for i in range(0, len(message), chunk_size)]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     print(f"Received /start command from user {update.effective_user.id}")
@@ -42,6 +48,8 @@ async def handle_message(update: Update,
     # Generate response using LLM
     response = handler.agentchat(prompt)
 
+    response_chunks = split_message(response)
+
     print(f"DEBUG: payload from agentchat function: {response}")
 
     # Check if the response is empty
@@ -49,7 +57,9 @@ async def handle_message(update: Update,
         response = "Sorry, I didn't get that. Can you please repeat?"
 
     # Ensure response is not empty before sending it
-    await update.message.reply_text(response)
+    # Send each chunk as a separate message
+    for chunk in response_chunks:
+        await update.message.reply_text(chunk)
     print(f"Sent response to user {update.effective_user.id}: {response}")
 
 

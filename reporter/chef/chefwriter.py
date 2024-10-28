@@ -8,13 +8,11 @@ from sheetscallchef import add_chatlog_entry, sheets_call
 # Note for LLM agents: this is how the token secret is getting
 openai_api_key = os.environ['OPENAI_API_KEY']
 
-print("DEBUG: openai_api_key: ", openai_api_key)
+#print("DEBUG: openai_api_key: ", openai_api_key)
 
 sheets_call_data = sheets_call()
 
-extended_context = f"Here is the extended context: \n{sheets_call_data}"
-
-print(extended_context)
+extended_context = f"Here is the extended context data to prioritize for your answer: \n{sheets_call_data}"
 
 
 class AIHandler:
@@ -24,18 +22,28 @@ class AIHandler:
         self.messages = self.initialize_messages()
 
     def initialize_messages(self):
+
+        # Open the file 'additional_instructions.txt' for reading
+        with open('reporter/chef/additional_instructions_branch.txt', 'r') as file:
+            additional_instructions_branch = file.read()
+        with open('reporter/chef/logicprompt.txt', 'r') as file:
+            logic_prompt = file.read()
         content = (
-            "You are a helpful assistant, especially around recipes and food. This is extended context: \n"
-            f"{extended_context}\n"
-            """Extended context is from an important key database of recipes.
-            It will include recipes, equipment and, user preferences. 
-            Prioritize first using this information in your response.
-            Additionally, if you are asked to "browse" for an answer, 
-            you will use a function tools call that uses another LLM agent to return information"""
-        )
+            "You are a helpful assistant for cooking.\n"
+            #f"Here is ADDITIONAL COOKING INSTRUCTION: {additional_instructions} END OF ADDITIONAL COOKING INSTRUCTIONS\n "
+            "Extended context is from an important key database of recipes."
+            "It will include recipes, equipment and, user preferences. \n"
+            #"Use extended context if the user prompts you with a specific user or recipe it contains. Otherwise ignore extended context. \n"
+            "Prioritize first using this information in your response.\n"
+            "Additionally, if you are asked to \"browse\" for an answer, \n"
+            "you will use a function tools call that uses another LLM agent to return information\n"
+            #f"Here is the extended context: {extended_context}\n"
+            #f"Finally, when making a response to the user, you will use this logic: {logic_prompt}"
+        )  # Concatenation of strings and formatted strings combined correctly.
         return [{"role": "system", "content": content}]
 
     def openai_request(self):
+        print(f"DEBUG: openai_request triggered")
         if not self.openai_key:
             return "OpenAI API key is missing."
 
@@ -44,6 +52,7 @@ class AIHandler:
             'Content-Type': 'application/json'
         }
 
+        #TOOLS
         tools = [{
             "type": "function",
             "function": {
@@ -86,7 +95,7 @@ class AIHandler:
             # Extract the assistant's message
             assistant_message = response_json['choices'][0]['message']
 
-            # Check if the assistant wants to call a function (tool)
+            # TOOLS Check if the assistant wants to call a function (tool)
             if 'tool_calls' in assistant_message:
                 tool_calls = assistant_message['tool_calls']
                 for tool_call in tool_calls:
@@ -147,11 +156,11 @@ class AIHandler:
 
                             # Add the assistant's message and function result to the conversation
                             self.messages.append(assistant_message)
-                            print('DEBUG: assistant_message: ',
-                                  assistant_message)
+                            # print('DEBUG: assistant_message: ',
+                            #       assistant_message)
                             self.messages.append(function_call_result_message)
-                            print('DEBUG: function_call_result_message: ',
-                                  function_call_result_message)
+                            # print('DEBUG: function_call_result_message: ',
+                            #       function_call_result_message)
 
                             # Prepare the payload for the second API call
                             completion_payload = {
@@ -189,7 +198,12 @@ class AIHandler:
                                              'No content in the response.')
 
         except requests.RequestException as e:
-            return f"Error in OpenAI request: {str(e)}"
+            error_message = f"Error in OpenAI request: {str(e)}"
+            # Add more detailed information about the error
+            if hasattr(e, 'response') and e.response is not None:
+                error_message += f"\nResponse Status: {e.response.status_code}"
+                error_message += f"\nResponse Body: {e.response.text}"
+            return error_message
 
     def agentchat(self, prompt=None):
         print('DEBUG: agent chat triggered')
@@ -200,13 +214,11 @@ class AIHandler:
         # Get response from OpenAI
         response = self.openai_request()
 
-        # Add AI response to messages
-        #self.messages.append({"role": "assistant", "content": response})
 
-        # Print AI response
-        print("\nAI: ", response)
+        
         try:
-            add_chatlog_entry(response)
+            #print (f"DEBUG: attempt chatlog entry:")
+            add_chatlog_entry(self.messages)
         except:
             print("Error adding chatlog entry")
         return response

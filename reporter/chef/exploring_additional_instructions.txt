@@ -1,0 +1,104 @@
+### **Exploring Strategy Instructions**
+
+- **Identify Key Variables:**
+  - When a user opts for the "exploring" strategy, the AI should outline the **five most common ways** to modify the recipe that impact taste, texture, or appearance.
+
+- **Minimal Changes per Variation:**
+  - Each suggested variation should change only **one element** of the recipe at a time. This helps the user understand the specific effect of each change.
+
+- **Provide Clear Options:**
+  - Present the variations as options, explaining what each change entails and how it might affect the outcome.
+
+- **Encourage Small Batch Testing:**
+  - Advise the user to create small test portions for each variation. This conserves resources while allowing for comparison.
+
+- **Example Implementation:**
+  - Use practical examples to illustrate how to apply the strategy (like the meatball example you mentioned).
+
+---
+
+### **Example: Exploring Meatball Recipes**
+
+#### **Base Recipe Overview**
+
+- **Ingredients:**
+  - Ground meat
+  - Breadcrumbs
+  - Egg
+  - Seasonings
+
+- **Objective:**
+  - Understand how mixing intensity and added liquids affect meatball texture and juiciness.
+
+#### **Five Common Ways to Modify Meatballs**
+
+1. **Mixing Intensity:**
+   - **Option A:** Minimal mixing for a loose, tender texture.
+   - **Option B:** Moderate mixing for a balance of texture and cohesion.
+   - **Option C:** Vigorous mixing for a denser, firmer meatball.
+
+2. **Adding Liquids:**
+   - **Option D:** Incorporate broth or stock to increase juiciness.
+   - **Option E:** Add milk-soaked breadcrumbs (panade) for moisture and tenderness.
+
+#### **Instructions for Testing Variations**
+
+1. **Prepare the Base Mixture:**
+   - Combine ground meat, breadcrumbs, egg, and seasonings in a bowl.
+
+2. **Divide Into Portions:**
+   - Split the mixture into **three equal parts** for testing different variations.
+
+3. **Variation 1: Minimal Mixing (Control)**
+   - Gently combine ingredients until just mixed.
+   - Form meatballs without additional handling.
+
+4. **Variation 2: Moderate Mixing**
+   - Mix the ingredients a bit more to develop slight binding.
+   - Form meatballs, handling the mixture moderately.
+
+5. **Variation 3: Normal Mixing with Added Broth**
+   - Mix the ingredients thoroughly.
+   - Add a small amount of broth or stock to the mixture.
+   - Form meatballs, ensuring the broth is well incorporated.
+
+6. **Cooking the Meatballs:**
+   - Place all meatballs on a baking sheet.
+   - Bake in a preheated oven at the recommended temperature (e.g., 375°F or 190°C) for the same amount of time.
+
+7. **Tasting and Comparing:**
+   - Once cooked, taste each meatball variation.
+   - **Observe Differences:**
+     - **Texture:** Note if the meatball is fluffy, firm, or dense.
+     - **Juiciness:** Assess the moisture level in each one.
+     - **Flavor:** See if the broth adds depth to the taste.
+
+#### **Documenting Results**
+
+- Encourage the user to **take notes** on each variation.
+- Suggest they **rate** each meatball based on their preferences.
+- This will help them decide which method they like best for future cooking.
+
+---
+
+### **Summarized Steps for the AI**
+
+1. **Ask the User:**
+   - Confirm they want to use the "exploring" strategy.
+   - Check for any ingredient preferences or restrictions.
+
+2. **Present Modification Options:**
+   - List the five common ways to modify the recipe.
+   - Explain each option briefly.
+
+3. **Guide Through Testing:**
+   - Provide step-by-step instructions for preparing each variation.
+   - Emphasize minimal changes per test to isolate effects.
+
+4. **Encourage Observation:**
+   - Prompt the user to note differences and preferences.
+   - Offer tips on what to look for in terms of taste and texture.
+
+5. **Conclude the Experiment:**
+   - Summarize findings.
+   - Suggest which variation might be best suited to their taste based on observations.
