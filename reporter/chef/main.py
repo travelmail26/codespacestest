@@ -1,63 +1,41 @@
 import os
-import threading
-import time
-from pyngrok import ngrok, conf
+import signal
+import sys
+from flask import Flask
+from threading import Thread
+import asyncio
+import nest_asyncio
 from telegram_bot import run_bot
+from deployment import app, keep_polling, update_bot_status
 
-def setup_ngrok():
-    ngrok_token = os.environ.get('NGROK_TOKEN')
-    if not ngrok_token:
-        print("NGROK_TOKEN not found in environment variables. Please add it to Replit secrets.")
-        return
+# Allow nested event loops
+nest_asyncio.apply()
 
-    ngrok_config = conf.PyngrokConfig(auth_token=ngrok_token)
-    conf.set_default(ngrok_config)
 
-    try:
-        public_url = ngrok.connect(5000)  # Connect to the Flask server port
-        print(f' * ngrok tunnel "{public_url}" -> "http://127.0.0.1:5000"')
-    except Exception as e:
-        print(f"An error occurred while setting up ngrok: {str(e)}")
+def signal_handler(signum, frame):
+    print("Received shutdown signal, cleaning up...")
+    sys.exit(0)
 
-def run_flask_server():
-    from deployment import run
-    run()
 
-def keep_polling():
-    t = threading.Thread(target=run_flask_server)
-    t.start()
+def run_flask():
+    app.run(host='0.0.0.0', port=80)
 
-def update_bot_status():
-    from deployment import update_bot_status as update_status
-    update_status()
 
 def main():
     print("Starting main.py")
+    signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGINT, signal_handler)
 
-    # Start the Flask server in a separate thread
-    server_thread = threading.Thread(target=keep_polling, daemon=True)
-    server_thread.start()
+    # Start Flask in a separate thread
+    flask_thread = Thread(target=run_flask, daemon=True)
+    flask_thread.start()
 
-    # Wait for the Flask server to start
-    time.sleep(2)
+    try:
+        # Run telegram bot in main thread
+        asyncio.run(run_bot(keep_polling, update_bot_status))
+    except Exception as e:
+        print(f"Error in main: {e}")
 
-    # Set up ngrok in a separate thread
-    ngrok_thread = threading.Thread(target=setup_ngrok, daemon=True)
-    ngrok_thread.start()
-
-    print("Starting keep_polling in a separate thread")
-    # This line is redundant now as we've already started the server thread
-    # polling_thread = threading.Thread(target=keep_polling, daemon=True)
-    # polling_thread.start()
-
-    print("Calling run_bot()")
-    run_bot(keep_polling, update_bot_status)
-
-    # These lines will not be reached as run_bot() runs indefinitely
-    # server_thread.join()
-    # ngrok_thread.join()
-
-    print("Main script execution completed")
 
 if __name__ == "__main__":
     main()

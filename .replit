@@ -1,7 +1,9 @@
 modules = ["python-3.10:v18-20230807-322e88b", "nodejs-18:v3-20230608-f4cd419"]
 hidden = [".pythonlibs"]
 run = "python reporter/chef/main.py"
-# run = "npm run start"
+
+[env]
+REPLIT_NO_WEBVIEW = "true"
 
 [nix]
 channel = "stable-23_05"
@@ -10,9 +12,9 @@ channel = "stable-23_05"
 language = "python3"
 
 [deployment]
-run = ["sh", "-c", "npx npm run start"]
-deploymentTarget = "cloudrun"
-build = ["sh", "-c", "npm install"]
+deploymentTarget = "gce"
+build = ["sh", "-c", "pip install gunicorn && npm install"]
+run = ["sh", "-c", "PYTHONUNBUFFERED=1 gunicorn -w 4 'reporter.chef.deployment:app' --bind 0.0.0.0:80"]
 
 [languages.javascript]
 pattern = "**/*.{js,jsx,ts,tsx,json}"
@@ -20,17 +22,9 @@ pattern = "**/*.{js,jsx,ts,tsx,json}"
 start = ["typescript-language-server", "--stdio"]
 
 [[ports]]
-localPort = 3000
-externalPort = 3000
+localPort = 80
+externalPort = 80
 
 [[ports]]
 localPort = 5000
 externalPort = 5000
-
-[[ports]]
-localPort = 8000
-externalPort = 8000
-
-[[ports]]
-localPort = 8080
-externalPort = 80

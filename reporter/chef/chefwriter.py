@@ -2,18 +2,26 @@ import json
 import os
 
 import requests
+from datetime import datetime
+import pytz
 from perplexitychef import perplexitycall
-from sheetscallchef import add_chatlog_entry, sheets_call
+from sheetscallchef import add_chatlog_entry, sheets_call, fetch_chatlog, task_create, fetch_preferences, fetch_recipes
 
+
+from postprocess import auto_postprocess
 # Note for LLM agents: this is how the token secret is getting
 openai_api_key = os.environ['OPENAI_API_KEY']
 
 #print("DEBUG: openai_api_key: ", openai_api_key)
 
-sheets_call_data = sheets_call()
+sheets_call_data = fetch_chatlog()
 
 extended_context = f"Here is the extended context data to prioritize for your answer: \n{sheets_call_data}"
 
+def get_current_time():
+    eastern = pytz.timezone('America/New_York')
+    print ('DEBUG: get_current_time triggered', datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S %Z'))
+    return datetime.now(eastern).strftime('%Y-%m-%d %H:%M:%S %Z')
 
 class AIHandler:
 
@@ -22,25 +30,32 @@ class AIHandler:
         self.messages = self.initialize_messages()
 
     def initialize_messages(self):
+        # Initialize a list to hold parts of the system content
+        system_content_parts = []
 
-        # Open the file 'additional_instructions.txt' for reading
-        with open('reporter/chef/additional_instructions_branch.txt', 'r') as file:
-            additional_instructions_branch = file.read()
-        with open('reporter/chef/logicprompt.txt', 'r') as file:
-            logic_prompt = file.read()
-        content = (
-            "You are a helpful assistant for cooking.\n"
-            #f"Here is ADDITIONAL COOKING INSTRUCTION: {additional_instructions} END OF ADDITIONAL COOKING INSTRUCTIONS\n "
-            "Extended context is from an important key database of recipes."
-            "It will include recipes, equipment and, user preferences. \n"
-            #"Use extended context if the user prompts you with a specific user or recipe it contains. Otherwise ignore extended context. \n"
-            "Prioritize first using this information in your response.\n"
-            "Additionally, if you are asked to \"browse\" for an answer, \n"
-            "you will use a function tools call that uses another LLM agent to return information\n"
-            #f"Here is the extended context: {extended_context}\n"
-            #f"Finally, when making a response to the user, you will use this logic: {logic_prompt}"
-        )  # Concatenation of strings and formatted strings combined correctly.
-        return [{"role": "system", "content": content}]
+        # Add current time context as the first instruction
+        current_time = datetime.now().isoformat()
+        system_content_parts.append(f"=== CURRENT TIME CONTEXT ===\nCurrent time: {current_time} ==END CURRENT TIME CONTEXT==\n")
+
+        # Load and append contents from each file
+        with open('reporter/chef/instructions_base.txt', 'r') as file:
+            system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +
+                                        file.read())
+        with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
+            system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" + file.read())
+        with open('reporter/chef/exploring_additional_instructions.txt','r') as file:
+            system_content_parts.append("=== EXPLORING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        with open('reporter/chef/instructions_log.txt', 'r') as file:
+            system_content_parts.append("=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        with open('reporter/chef/instructions_mealplan.txt', 'r') as file:
+            system_content_parts.append("=== MEAL PLAN ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        with open('reporter/chef/instructions_spiritual.txt', 'r') as file:
+            system_content_parts.append("=== SPIRITUAL INSTRUCTIONS ===\n" + file.read())
+
+        combined_content = "\n\n".join(system_content_parts)
+
+        # Return the full message content as a single system message
+        return [{"role": "system", "content": combined_content}]
 
     def openai_request(self):
         print(f"DEBUG: openai_request triggered")
@@ -53,29 +68,132 @@ class AIHandler:
         }
 
         #TOOLS
-        tools = [{
-            "type": "function",
-            "function": {
-                "name": "perplexitycall",
-                "description":
-                "Browse the internet for an answer to the user's query.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "query": {
-                            "type": "string",
-                            "description": "The user's query to search for"
-                        }
+        tools = [
+            # Perplexitycall tool
+            {
+                "type": "function",
+                "function": {
+                    "name": "fetch_recipes",
+                    "description":
+                    "Fetch all recipes from the recipes database",
+                    "parameters": {
+                        "type": "object",
+                        "properties":
+                        {},  # No parameters needed as we're fetching all recipes
+                        "additionalProperties": False
                     },
-                    "required": ["query"],
-                    "additionalProperties": False
+                    "strict": False
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "fetch_preferences",
+                    "description": "get preferences for user greg."
+                    # "parameters": {
+                    #     "type": "object",
+                    #     "properties": {
+                    #         "tab": {
+                    #             "type": "string",
+                    #             "description": "fill it verbatim with string 'preferences' "
+                    #         }
+                    #     },
+                    #     "required": ["query"],
+                    #     "additionalProperties": False
                 },
                 "strict": False
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "sheets_call",
+                    "description":
+                    "return database of tasks. User will ask to review tasks.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "tab": {
+                                "type":
+                                "string",
+                                "description":
+                                "fill it verbatim with string 'tasks' "
+                            }
+                        },
+                        "required": ["query"],
+                        "additionalProperties": False
+                    },
+                    "strict": False
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "perplexitycall",
+                    "description":
+                    "Browse the internet for an answer to the user's query.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string",
+                                "description": "The user's query to search for"
+                            }
+                        },
+                        "required": ["query"],
+                        "additionalProperties": False
+                    },
+                    "strict": False
+                }
+            },
+            # Task_create tool
+            {
+                "type": "function",
+                "function": {
+                    "name": "task_create",
+                    "description":
+                    ""ONLY use this when explicitly asked to create a new task. Do not create tasks for general conversation or suggestions. Must have clear task details. This function sreates a new task row in the spreadsheet with ID, date, title, description, and notes. Trigger if a user asks to create a task",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type":
+                                "string",
+                                "description":
+                                "Unique identifier. Should be 12 digits from current time year month day hour minute second"
+                            },
+                            "date": {
+                                "type":
+                                "string",
+                                "description":
+                                "Date of task creation in ISO format"
+                            },
+                            "title": {
+                                "type":
+                                "string",
+                                "description":
+                                "Summarize 2-4 word title from description"
+                            },
+                            "description": {
+                                "type":
+                                "string",
+                                "description":
+                                "1-5 sentence description of the task"
+                            },
+                            "notes": {
+                                "type": "string",
+                                "description": "Do not fill this in ever"
+                            }
+                        },
+                        "required": ["id", "date", "title", "description"],
+                        "additionalProperties": False
+                    },
+                    "strict": False
+                }
             }
-        }]
+        ]
 
         data = {
-            'model': 'gpt-4o',
+            'model': 'gpt-4o-mini',
             'messages': self.messages,
             'temperature': 0.5,
             'max_tokens': 4096,
@@ -97,6 +215,7 @@ class AIHandler:
 
             # TOOLS Check if the assistant wants to call a function (tool)
             if 'tool_calls' in assistant_message:
+                print (f"DEBUG: tool_calls in assistant_message")
                 tool_calls = assistant_message['tool_calls']
                 for tool_call in tool_calls:
                     function_name = tool_call['function']['name']
@@ -104,6 +223,7 @@ class AIHandler:
                         'arguments', '{}'))
                     tool_call_id = tool_call['id']
 
+                    #perplexity call function
                     if function_name == 'perplexitycall':
                         query = function_args.get('query')
                         if query:
@@ -188,6 +308,237 @@ class AIHandler:
                                 'content', 'No content in the response.')
                         else:
                             return "Error: No query provided for browsing."
+
+                    #recipes fetch
+                    elif function_name == 'fetch_recipes':
+                        print("DEBUG: triggered tool recipes")
+
+                        try:
+                            result_data = fetch_recipes()
+                        except Exception as e:
+                            print(f"ERROR: fetching recipes: {e}")
+                            return "Failed to fetch recipes"
+
+                        # First add the tool response message
+                        function_call_result_message = {
+                            "role": "tool",
+                            "content": str(result_data),
+                            "tool_call_id": tool_call_id
+                        }
+
+                        # Create database context message
+                        database_recipe_context = {
+                            "role": "system",
+                            "content": f"""This is a database of recipes. Prioritize them when making recommendations. After the function, just tell me "recipes loaded into memory"
+
+                            *RECIPE CONTENT FOLLOWS*:
+                            {str(result_data)} *END RECIPE CONTENT*
+
+                            """
+                        }
+
+                        # Update messages in correct sequence
+                        self.messages.append(assistant_message)
+                        self.messages.append(function_call_result_message)  # Required tool response
+                        self.messages.append(database_recipe_context)
+
+                        # Second API call
+                        completion_payload = {
+                            "model": 'gpt-4o-mini',
+                            "messages": self.messages
+                        }
+
+                        # DEBUG: Print a slice of the API call payload
+                        print(f"DEBUG: first few recipe messages: {self.messages[:1]}")
+
+                        # Second API call
+                        try:
+                            second_response = requests.post(
+                                'https://api.openai.com/v1/chat/completions',
+                                headers=headers,
+                                json=completion_payload)
+                            second_response.raise_for_status()
+                        except requests.exceptions.RequestException as e:
+                            print(f"ERROR: API call failed: {e}")
+                            return "Failed to fetch completion"
+
+                        # Process final response
+                        second_response_json = second_response.json()
+                        final_assistant_message = second_response_json['choices'][0]['message']
+
+                        # Add final response to conversation
+                        self.messages.append(final_assistant_message)
+
+                        return final_assistant_message.get('content', 'No content in response.')
+
+
+
+                    # Handle the task_create function call
+                    elif function_name == 'task_create':
+                        print(
+                            f"DEBUG: triggered tool function called task creation"
+                        )
+                        # Extract parameters from function_args
+                        id = function_args.get('id')
+                        date = function_args.get('date')
+                        title = function_args.get('title')
+                        description = function_args.get('description')
+                        notes = function_args.get('notes')
+
+                        # Call task_create function
+                        result = task_create(id, date, title, description,
+                                             notes)
+
+                        # Format the response
+                        function_call_result_message = {
+                            "role": "tool",
+                            "content": str(result),
+                            "tool_call_id": tool_call_id
+                        }
+
+                        # Add messages to conversation
+                        self.messages.append(assistant_message)
+                        self.messages.append(function_call_result_message)
+
+                        return "Task created successfully" if result else "Failed to create task"
+
+                # When sheets_call is triggered in tool_calls
+                    elif function_name == 'sheets_call':
+                        print("DEBUG: triggered tool sheetscall")
+                        tab = function_args.get('tab')
+                        result = sheets_call(tab)
+
+                        # First add the tool response message
+                        function_call_result_message = {
+                            "role": "tool",
+                            "content": str(result),
+                            "tool_call_id": tool_call_id
+                        }
+
+                        # Create database context message
+                        database_context = {
+                            "role":
+                            "system",
+                            "content":
+                            """Review the following cooking task database.
+                            For each task you should:
+                            1. Check if it was attempted
+                            2. Ask specific questions about:
+                               - What worked/didn't work
+                               - Any modifications made
+                               - Taste and texture results
+                               - Why it wasn't attempted (if not done)
+                            Keep questions focused and brief.
+            
+                            DATABASE CONTENT FOLLOWS:
+                            """ + str(result)
+                        }
+
+                        # Update messages in correct sequence
+                        self.messages.append(assistant_message)
+                        self.messages.append(function_call_result_message
+                                             )  # Required tool response
+                        self.messages.append(database_context)
+
+                        # Second API call
+                        completion_payload = {
+                            "model": 'gpt-4o-mini',
+                            "messages": self.messages
+                        }
+
+                        # Second API call
+                        second_response = requests.post(
+                            'https://api.openai.com/v1/chat/completions',
+                            headers=headers,
+                            json=completion_payload)
+                        second_response.raise_for_status()
+
+                        # Process final response
+                        second_response_json = second_response.json()
+                        final_assistant_message = second_response_json[
+                            'choices'][0]['message']
+
+                        # Add final response to conversation
+                        self.messages.append(final_assistant_message)
+
+                        return final_assistant_message.get(
+                            'content', 'No content in response.')
+
+                    #user preferences function call
+                    elif function_name == 'fetch_preferences':
+                        print("DEBUG: triggered tool preferences")
+                        tab = function_args.get('tab')
+                        prefs, conditions = fetch_preferences()
+
+                        result_data = {
+                            "preferences": prefs,
+                            "conditions": conditions
+                        }
+                        # First add the tool response message
+                        function_call_result_message = {
+                            "role": "tool",
+                            "content": str(result_data),
+                            "tool_call_id": tool_call_id
+                        }
+
+                        # Create database context message
+                        database_context = {
+                            "role":
+                            "system",
+                            "content":
+                            f"""This is food preferences and conditions for user Greg.
+                            --when giving recommendation, prioritize preferences and conditions
+                            --Some preferences have an associated 'constraints'. Only use these rules if the constraints are present. When in doubt, as about any conditions present. User will likely tell you if conditions are present. 
+                            --The conditions list has additional context on logistical rules related to preferences. They be related to time equipment that may effect how a user will be able to cook a certain meal
+                            --Once you have preferences and or conditions, tell the user you have uploaded the preferences into your system.
+                            --Preferences are pairwise comparisons. Rank preferences based on all pairwise comparisons before giving answers
+                            --"Reasoning" column is context. Weight your attention based on this column appropriateness.
+                            --"Example" column is additional logic context with specific templates. They are just logic templates and your answers should be agnostic to the food or processes described in the examples. Weight your attention based on this column appropriateness.
+    
+                            *PREFERENCES AND CONDITIONS DATABASE CONTENT FOLLOWS*:
+                            {str(prefs)} *END PREFERENCES CONTENT*
+                            
+                            *CONDITIONS DATABASE CONTENT FOLLOWS*:
+                            {str(conditions)} *END CONDITIONS DATABASE CONTENT*
+                            
+                            
+                            """
+                        }
+
+                        # Update messages in correct sequence
+                        self.messages.append(assistant_message)
+                        self.messages.append(function_call_result_message
+                                             )  # Required tool response
+                        self.messages.append(database_context)
+
+                        # Second API call
+                        completion_payload = {
+                            "model": 'gpt-4o-mini',
+                            "messages": self.messages
+                        }
+
+                        # DEBUG: Print a slice of the API call payload
+                        print(
+                            f"DEBUG: first few messages: {self.messages[:10]}")
+
+                        # Second API call
+                        second_response = requests.post(
+                            'https://api.openai.com/v1/chat/completions',
+                            headers=headers,
+                            json=completion_payload)
+                        second_response.raise_for_status()
+
+                        # Process final response
+                        second_response_json = second_response.json()
+                        final_assistant_message = second_response_json[
+                            'choices'][0]['message']
+
+                        # Add final response to conversation
+                        self.messages.append(final_assistant_message)
+
+                        return final_assistant_message.get(
+                            'content', 'No content in response.')
+
                     else:
                         return f"Unknown function called: {function_name}"
 
@@ -214,13 +565,17 @@ class AIHandler:
         # Get response from OpenAI
         response = self.openai_request()
 
-
-        
         try:
             #print (f"DEBUG: attempt chatlog entry:")
             add_chatlog_entry(self.messages)
         except:
             print("Error adding chatlog entry")
+
+        try:
+            #print (f"DEBUG: attempt chatlog entry:")
+            auto_postprocess(self.messages)
+        except:
+            print("Error adding summary")
         return response
 
 
@@ -228,4 +583,19 @@ handler = AIHandler()
 
 # Example usage
 if __name__ == "__main__":
-    handler.agentchat("Can you find me a recipe for vegan brownies?")
+    import sys
+    handler = AIHandler()
+
+    if sys.stdin.isatty() and not os.environ.get('REPLIT_DEPLOYMENT'):
+        while True:
+            try:
+                user_input = input("Enter your prompt (or 'quit' to exit): ")
+                if user_input.lower() == 'quit':
+                    break
+                response = handler.agentchat(user_input)
+                print("\nResponse:", response, "\n")
+            except KeyboardInterrupt:
+                print("\nExiting...")
+                break
+            except Exception as e:
+                print(f"Error: {e}")
