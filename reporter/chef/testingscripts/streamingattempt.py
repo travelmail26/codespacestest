@@ -863,3 +863,42 @@ if __name__ == "__main__":
                 break
             except Exception as e:
                 print(f"Error: {e}")
+
+
+##### and function from telegram
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    try:
+        message_info = {
+            'chat_id': update.message.chat.id,
+            'user_id': update.message.from_user.id,
+            'username': update.message.from_user.username,
+            'first_name': update.message.from_user.first_name,
+            'message_id': update.message.message_id,
+            'text': update.message.text
+        }
+        print('DEBUG: message_info', message_info)
+
+        with open('reporter/chef/chat_info.txt', 'w') as f:
+            json.dump(message_info, f)
+
+        if not update.message.text:
+            await update.message.reply_text("I received an empty message. Please send some text!")
+            return
+
+        # Get response from handler and collect the streamed content
+        response_generator = handler.agentchat(update.message.text)
+        full_response = ""
+        for chunk in response_generator:
+            if chunk:
+                full_response += chunk
+                # Send chunks as they come in
+                if len(chunk.strip()) > 0:
+                    await update.message.reply_text(chunk)
+
+        if not full_response:
+            await update.message.reply_text("I apologize, but I couldn't generate a proper response. Please try again.")
+
+    except Exception as e:
+        print(f"Error in handle_message: {str(e)}")
+        await update.message.reply_text("An error occurred while processing your message. Please try again.")

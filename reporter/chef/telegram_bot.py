@@ -72,32 +72,36 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             'message_id': update.message.message_id,
             'text': update.message.text
         }
-        print('DEBUG: message_info', message_info)
-
+        print ('DEBUG: message_info', message_info)
+        
+        # Save this information (could be to file or database)
         with open('reporter/chef/chat_info.txt', 'w') as f:
             json.dump(message_info, f)
-
         if not update.message.text:
             await update.message.reply_text("I received an empty message. Please send some text!")
             return
-
-        # Get response from handler and collect the streamed content
-        response_generator = handler.agentchat(update.message.text)
-        full_response = ""
-        for chunk in response_generator:
-            if chunk:
-                full_response += chunk
-                # Send chunks as they come in
-                if len(chunk.strip()) > 0:
-                    await update.message.reply_text(chunk)
-
-        if not full_response:
+    
+        response = handler.agentchat(update.message.text)
+    
+        # Handle empty response from agentchat
+        if not response or response.strip() == "":
             await update.message.reply_text("I apologize, but I couldn't generate a proper response. Please try again.")
-
-    except Exception as e:
-        print(f"Error in handle_message: {str(e)}")
-        await update.message.reply_text("An error occurred while processing your message. Please try again.")
+            return
         
+        await update.message.reply_text(response)
+    except Exception as e:
+        await update.message.reply_text("An error occurred while processing your message. Please try again.")
+
+async def run_telegram_bot():
+    try:
+        setup_hot_reload()  # Add this line
+        application = Application.builder().token(TOKEN).build()
+        application.add_handler(CommandHandler("start", start))
+        application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+        await application.run_polling()
+    except Exception as e:
+        raise
+
 async def run_bot(keep_polling, update_bot_status):
     try:
         application = Application.builder().token(TOKEN).build()
