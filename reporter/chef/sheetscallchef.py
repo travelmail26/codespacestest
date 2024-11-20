@@ -92,9 +92,10 @@ def add_chatlog_entry(entry):
     # Create new_row with current timestamp and entry
     current_time = datetime.now().isoformat()
     new_row = [current_time, str(entry)]
-
+        
     try:
         chatlog_sheet.append_row(new_row)
+        return True
         #print(f"Added new row to 'chatlog': {new_row}")
     except gspread.exceptions.APIError as e:
         print(f"Google Sheets API error occurred: {e}")
@@ -381,6 +382,111 @@ def add_insight(entry):
         print(f"An unspecified error occurred with gspread: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
+
+def update_task(task_id, updates):
+    """
+    Update specific columns of a task by ID.
+    Args:
+        task_id (str): The ID of the task to update
+        updates (dict): Dictionary of column names and new values to update
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    print('DEBUG: update task triggered')
+    try:
+        service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
+        creds = Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
+        client = gspread.authorize(creds)
+    except FileNotFoundError:
+        print(f"Error: Service account file not found")
+        return False
+
+    spreadsheet_id = '1RsNekDFNwk67j66g57VN3WOUM2I-4yXGfVtWUg56C20'
+    tasks_sheet_name = 'tasks'
+
+    try:
+        spreadsheet = client.open_by_key(spreadsheet_id)
+        tasks_sheet = spreadsheet.worksheet(tasks_sheet_name)
+
+        # Get all data and find row with matching ID
+        data = tasks_sheet.get_all_values()
+        headers = data[0]
+
+        # Find ID column index
+        id_col = headers.index('id')
+
+        # Find row with matching ID
+        row_idx = None
+        for idx, row in enumerate(data[1:], start=2):  # start=2 because sheets are 1-indexed and we skip header
+            if row[id_col] == str(task_id):
+                row_idx = idx
+                break
+
+        if not row_idx:
+            print(f"Task with ID {task_id} not found")
+            return False
+
+        # Update specified columns
+        for col_name, new_value in updates.items():
+            if col_name in headers:
+                col_idx = headers.index(col_name) + 1  # Convert to A1 notation
+                tasks_sheet.update_cell(row_idx, col_idx, str(new_value))
+
+        return True
+
+    except Exception as e:
+        print(f"An error occurred while updating task: {e}")
+        return False
+
+def fetch_sheet_data_rows(tab_name, start_row=None, end_row=None):
+    """
+    Fetches specific rows from a sheet tab efficiently using batch_get
+
+    Args:
+        tab_name (str): Name of the sheet tab to fetch from
+        start_row (int, optional): Starting row number (1-based indexing)
+        end_row (int, optional): Ending row number (1-based indexing)
+
+    Returns:
+        list: List of dictionaries containing the row data with headers as keys
+    """
+    try:
+        service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
+        creds = Credentials.from_service_account_info(service_account_info,
+                                                      scopes=SCOPES)
+        client = gspread.authorize(creds)
+    except FileNotFoundError:
+        print(f"Error: Service account file not found")
+        return None
+
+    spreadsheet_id = '1RsNekDFNwk67j66g57VN3WOUM2I-4yXGfVtWUg56C20'
+
+    try:
+        spreadsheet = client.open_by_key(spreadsheet_id)
+        sheet = spreadsheet.worksheet(tab_name)
+
+        # First, get just the headers
+        headers = sheet.row_values(1)
+
+        # Calculate range
+        start = start_row if start_row else 2
+        end = end_row if end_row else sheet.row_count
+
+        # Fetch specified rows
+        rows = sheet.batch_get([f'A{start}:Z{end}'])[0]
+
+        # Convert to list of dicts
+        return [dict(zip(headers, row)) for row in rows]
+
+        return result_rows
+
+    except gspread.exceptions.WorksheetNotFound:
+        print(f"Sheet tab '{tab_name}' not found")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
 
 if __name__ == "__main__":
     sheets_call()

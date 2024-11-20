@@ -110,7 +110,7 @@ class AIHandler:
                 }
             },
             #tasks update
-            
+
             {
                 "type": "function",
                 "function": {
@@ -285,18 +285,38 @@ class AIHandler:
             'stream': False,
             'tools': tools
         }
-
         try:
-            # First API call
             response = requests.post(
                 'https://api.openai.com/v1/chat/completions',
                 headers=headers,
-                json=data)
+                json=data,
+                stream=False
+            )
             response.raise_for_status()
-            response_json = response.json()
+            print('DEBUG: response.status_code', response.status_code)
+            print('DEBUG: response.headers', response.headers)
 
-            # Extract the assistant's message
-            assistant_message = response_json['choices'][0]['message']
+            buffer = ""
+            for line in response.iter_lines():
+                if line and b'data: [DONE]' not in line:
+                    chunk = json.loads(line.decode('utf-8').replace('data: ', ''))
+                    if chunk['choices'][0]['delta'].get('content'):
+                        buffer += chunk['choices'][0]['delta']['content']
+                        # Yield when buffer reaches 30 characters
+                        if len(buffer) >= 30:
+                            yield buffer
+                            buffer = ""
+            # Yield any remaining content in the buffer
+            if buffer:
+                yield buffer
+        except requests.RequestException as e:
+            error_message = f"Error in OpenAI request: {str(e)}"
+            if hasattr(e, 'response') and e.response is not None:
+                error_message += f"\nResponse Status: {e.response.status_code}"
+                error_message += f"\nResponse Body: {e.response.text}"
+            yield error_message
+        except Exception as e:
+            yield f"Unexpected error: {str(e)}"
 
             # TOOLS Check if the assistant wants to call a function (tool)
             if 'tool_calls' in assistant_message:
@@ -366,31 +386,36 @@ class AIHandler:
                             self.messages.append(function_call_result_message)
                             # print('DEBUG: function_call_result_message: ',
                             #       function_call_result_message)
-
+                            try: 
+                                stream_second_completion(self.messages)
                             # Prepare the payload for the second API call
-                            completion_payload = {
-                                "model": 'gpt-4o-mini',
-                                "messages": self.messages
-                            }
+                            # completion_payload = {
+                            #     "model": 'gpt-4o-mini',
+                            #     "messages": self.messages
+                            # }
+
 
                             # Make the second API call
-                            second_response = requests.post(
-                                'https://api.openai.com/v1/chat/completions',
-                                headers=headers,
-                                json=completion_payload)
-                            second_response.raise_for_status()
+                            # second_response = requests.post(
+                            #     'https://api.openai.com/v1/chat/completions',
+                            #     headers=headers,
+                            #     stream=True,
+                            #     json=completion_payload)
+                            # second_response.raise_for_status()
 
-                            # Process the final response after the function call
-                            second_response_json = second_response.json()
-                            final_assistant_message = second_response_json[
-                                'choices'][0]['message']
+                            # # Process the final response after the function call
+                            # second_response_json = second_response.json()
+                            # final_assistant_message = second_response_json[
+                            #     'choices'][0]['message']
 
-                            # Add the assistant's final response to the conversation
-                            self.messages.append(final_assistant_message)
+                            # # Add the assistant's final response to the conversation
+                            # self.messages.append(final_assistant_message)
 
-                            # Return the assistant's final response content
-                            return final_assistant_message.get(
-                                'content', 'No content in the response.')
+                            # # Return the assistant's final response content
+                            # return final_assistant_message.get(
+                            #     'content', 'No content in the response.')
+                            except requests.RequestException as e:
+                                error_message = print (f"Error in OpenAI request second streaming: {str(e)}")
                         else:
                             return "Error: No query provided for browsing."
 
@@ -484,34 +509,34 @@ class AIHandler:
                             "content": str(result_data),
                             "tool_call_id": tool_call_id
                         }
-    
+
                         # Create database context message
                         database_recipe_context = {
                             "role":
                             "system",
                             "content":
                             f"""alarm notifiation message: {str(result_data)}"""
-    
-                            
+
+
                         }
-    
+
                         # Update messages in correct sequence
                         self.messages.append(assistant_message)
                         self.messages.append(function_call_result_message
                                              )  # Required tool response
                         self.messages.append(database_recipe_context)
-    
+
                         # Second API call
                         completion_payload = {
                             "model": 'gpt-4o-mini',
                             "messages": self.messages
                         }
-    
+
                         # DEBUG: Print a slice of the API call payload
                         print(
                             f"DEBUG: alarm after second api call"
                         )
-    
+
                         # Second API call
                         try:
                             second_response = requests.post(
@@ -522,19 +547,19 @@ class AIHandler:
                         except requests.exceptions.RequestException as e:
                             print(f"ERROR: API call failed: {e}")
                             return "Failed to alarm completion"
-    
+
                         # Process final response
                         second_response_json = second_response.json()
                         final_assistant_message = second_response_json[
                             'choices'][0]['message']
-    
+
                         # Add final response to conversation
                         self.messages.append(final_assistant_message)
-    
+
                         return final_assistant_message.get('content', 'No content in response.')
 
 
-                    
+
                     #update task
                     elif function_name == 'update_task':
                         print("DEBUG: triggered tool function update task")
@@ -623,7 +648,7 @@ class AIHandler:
                                - Taste and texture results
                                - Why it wasn't attempted (if not done)
                             Keep questions focused and brief.
-            
+
                             DATABASE CONTENT FOLLOWS: {str(result)} ~~END DATABASE CONTENT~~
                             """
                         }
@@ -688,14 +713,14 @@ class AIHandler:
                             --Preferences are pairwise comparisons. Rank preferences based on all pairwise comparisons before giving answers
                             --"Reasoning" column is context. Weight your attention based on this column appropriateness.
                             --"Example" column is additional logic context with specific templates. They are just logic templates and your answers should be agnostic to the food or processes described in the examples. Weight your attention based on this column appropriateness.
-    
+
                             *PREFERENCES AND CONDITIONS DATABASE CONTENT FOLLOWS*:
                             {str(prefs)} ~~*END PREFERENCES CONTENT*~~
-                            
+
                             *CONDITIONS DATABASE CONTENT FOLLOWS*:
                             {str(conditions)} ~~*END CONDITIONS DATABASE CONTENT*~~
-                            
-                            
+
+
                             """
                         }
 
@@ -760,13 +785,13 @@ class AIHandler:
         response = self.openai_request()
 
         #function: add chats to google sheets
-        try:
-            #print (f"DEBUG: attempt chatlog entry:")
-            self.logger.log_conversation(str(self.messages))
-            #add_chatlog_entry(self.messages)
+        # try:
+        #     #print (f"DEBUG: attempt chatlog entry:")
+        #     self.logger.log_conversation(str(self.messages))
+        #     #add_chatlog_entry(self.messages)
 
-        except:
-            print("Error adding chatlog entry agentchat")
+        # except:
+        #     print("Error adding chatlog entry agentchat")
 
         # try:
         #     #print (f"DEBUG: attempt chatlog entry:")
@@ -776,7 +801,49 @@ class AIHandler:
         return response
 
 
+def stream_second_completion(self, messages):
+    """Handle streaming for second API calls"""
+    print ('DEBUG: stream_second_completion triggered:', messages)
+    headers = {
+        "Authorization": f"Bearer {self.openai_key}",
+        "Content-Type": "application/json"
+    }
+
+    completion_payload = {
+        "model": 'gpt-4',
+        "messages": messages,
+        "stream": True
+    }
+
+    try:
+        response = requests.post(
+            'https://api.openai.com/v1/chat/completions',
+            headers=headers,
+            json=completion_payload,
+            stream=True
+        )
+        response.raise_for_status()
+
+        buffer = ""
+        for line in response.iter_lines():
+            if line and b'data: [DONE]' not in line:
+                chunk = json.loads(line.decode('utf-8').replace('data: ', ''))
+                if chunk['choices'][0]['delta'].get('content'):
+                    buffer += chunk['choices'][0]['delta']['content']
+                    if len(buffer) >= 30:
+                        yield buffer
+                        buffer = ""
+
+        # Send any remaining buffer
+        if buffer:
+            yield buffer
+
+    except Exception as e:
+        yield f"Error in second API call: {str(e)}"
+
 handler = AIHandler()
+
+
 
 # Example usage
 if __name__ == "__main__":

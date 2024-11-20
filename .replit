@@ -14,7 +14,7 @@ language = "python3"
 [deployment]
 deploymentTarget = "gce"
 build = ["sh", "-c", "pip install gunicorn && npm install"]
-run = ["sh", "-c", "PYTHONUNBUFFERED=1 gunicorn -w 4 'reporter.chef.deployment:app' --bind 0.0.0.0:80"]
+run = ["sh", "-c", "PYTHONUNBUFFERED=1 gunicorn -w 4 'reporter.chef.main:app' --bind 0.0.0.0:80 --log-level info --capture-output --enable-stdio-inheritance --access-logfile - --error-logfile -"]
 
 [languages.javascript]
 pattern = "**/*.{js,jsx,ts,tsx,json}"
@@ -28,3 +28,8 @@ externalPort = 80
 [[ports]]
 localPort = 5000
 externalPort = 5000
+
+# Commented out to avoid port conflict
+# [[ports]]
+# localPort = 5000
+# externalPort = 5000
