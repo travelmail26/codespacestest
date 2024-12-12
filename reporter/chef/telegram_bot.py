@@ -28,44 +28,7 @@ except Exception as e:
 conversations = {}
 
 
-##PHOTO HANDLER FUNCTION
-async def handle_photo(update: Update,
-                       context: ContextTypes.DEFAULT_TYPE) -> None:  # Add this import
 
-    try:
-        print(f"DEBUG: Photo received: {update.message.photo}")
-        photo = update.message.photo[-1]  # Get highest resolution photo
-        file_id = photo.file_id
-        file = await context.bot.get_file(file_id)
-        file_url = file.file_path
-
-        # Set up local path for saving
-        photo_dir = 'saved_photos'
-        os.makedirs(photo_dir, exist_ok=True)
-        local_path = f"{photo_dir}/{photo.file_id}.jpg"
-
-        # Download and save photo to local_path
-        await file.download_to_drive(local_path)
-
-        # Verify file was saved
-        if os.path.exists(local_path):
-            print(f"Photo saved successfully at: {local_path}")
-        else:
-            raise Exception("Failed to save photo locally")
-
-        # Upload to Firebase
-        firebase_url = firebase_get_media_url(local_path)
-
-        if firebase_url:
-            await update.message.reply_text(f"Photo uploaded successfully! URL: {firebase_url}")
-        else:
-            await update.message.reply_text("Sorry, there was an error uploading your photo.")
-
-            # Optionally clean up local file
-            os.remove(local_path)
-
-    except Exception as e:
-        await update.message.reply_text(f"Error processing photo: {str(e)}")
 
 
 # Telegram Bot Functions
@@ -108,9 +71,30 @@ async def handle_message(update: Update,
         }
         print('DEBUG: message_info', message_info)
 
-        if not update.message.text:
+        if update.message.photo:
+            print("Photo received")
+            photo = update.message.photo[-1]  # Get highest resolution
+            file = await context.bot.get_file(photo.file_id)
+            
+            # Save locally
+            photo_dir = 'saved_photos'
+            os.makedirs(photo_dir, exist_ok=True)
+            local_path = f"{photo_dir}/{photo.file_id}.jpg"
+            
+            await file.download_to_drive(local_path)
+            print(f"Photo saved at {local_path}")
+            
+            # Upload to Firebase and get URL
+            firebase_url = firebase_get_media_url(local_path)
+            
+            # Update message info with photo URL
+            message_info['text'] = f"[Image URL: {firebase_url}]"
+            
+            await update.message.reply_text("Photo processed successfully!")
+            
+        elif not update.message.text:
             await update.message.reply_text(
-                "I received an empty message. Please send some text!")
+                "I received an empty message. Please send some text or a photo!")
             return
 
         # Retrieve or create an AIHandler instance for the user
@@ -254,3 +238,41 @@ if __name__ == "__main__":
     # app = Flask(__name__)
 
     # Get tokens from environment with validation
+
+    # async def handle_photo(update: Update,
+    #        context: ContextTypes.DEFAULT_TYPE) -> None:  # Add this import
+
+    # try:
+    # print(f"DEBUG: Photo received: {update.message.photo}")
+    # photo = update.message.photo[-1]  # Get highest resolution photo
+    # file_id = photo.file_id
+    # file = await context.bot.get_file(file_id)
+    # file_url = file.file_path
+
+    # # Set up local path for saving
+    # photo_dir = 'saved_photos'
+    # os.makedirs(photo_dir, exist_ok=True)
+    # local_path = f"{photo_dir}/{photo.file_id}.jpg"
+
+    # # Download and save photo to local_path
+    # await file.download_to_drive(local_path)
+
+    # # Verify file was saved
+    # if os.path.exists(local_path):
+    # print(f"Photo saved successfully at: {local_path}")
+    # else:
+    # raise Exception("Failed to save photo locally")
+
+    # # Upload to Firebase
+    # firebase_url = firebase_get_media_url(local_path)
+
+    # if firebase_url:
+    # await update.message.reply_text(f"Photo uploaded successfully! URL: {firebase_url}")
+    # else:
+    # await update.message.reply_text("Sorry, there was an error uploading your photo.")
+
+    # # Optionally clean up local file
+    # os.remove(local_path)
+
+    # except Exception as e:
+    # await update.message.reply_text(f"Error processing photo: {str(e)}")
