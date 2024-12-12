@@ -39,19 +39,22 @@ async def handle_photo(update: Update,
         file = await context.bot.get_file(file_id)
         file_url = file.file_path
 
-        # Save locally first
+        # Set up local path for saving
         photo_dir = 'saved_photos'
         os.makedirs(photo_dir, exist_ok=True)
-        filename = f"{file_id}.jpg"
-        filepath = os.path.join(photo_dir, filename)
+        local_path = f"{photo_dir}/{photo.file_id}.jpg"
 
-        # Download and save photo locally
-        response = requests.get(file_url)
-        with open(filepath, 'wb') as f:
-            f.write(response.content)
+        # Download and save photo to local_path
+        await file.download_to_drive(local_path)
+
+        # Verify file was saved
+        if os.path.exists(local_path):
+            print(f"Photo saved successfully at: {local_path}")
+        else:
+            raise Exception("Failed to save photo locally")
 
         # Upload to Firebase
-        firebase_url = firebase_get_media_url(filepath)
+        firebase_url = firebase_get_media_url(local_path)
 
         if firebase_url:
             await update.message.reply_text(f"Photo uploaded successfully! URL: {firebase_url}")
@@ -59,10 +62,10 @@ async def handle_photo(update: Update,
             await update.message.reply_text("Sorry, there was an error uploading your photo.")
 
             # Optionally clean up local file
-            os.remove(filepath)
+            os.remove(local_path)
 
-        except Exception as e:
-            await update.message.reply_text(f"Error processing photo: {str(e)}")
+    except Exception as e:
+        await update.message.reply_text(f"Error processing photo: {str(e)}")
 
 
 # Telegram Bot Functions
@@ -92,6 +95,8 @@ def get_user_handler(user_id):
 
 async def handle_message(update: Update,
                          context: ContextTypes.DEFAULT_TYPE) -> None:
+    print(f"DEBUG: Received message type: {type(update.message)}")
+
     try:
         message_info = {
             'chat_id': update.message.chat.id,
@@ -99,48 +104,20 @@ async def handle_message(update: Update,
             'username': update.message.from_user.username,
             'first_name': update.message.from_user.first_name,
             'message_id': update.message.message_id,
+            'text': update.message.text
         }
+        print('DEBUG: message_info', message_info)
 
-        # Handle photo if present
-        if update.message.photo:
-            photo = update.message.photo[-1]  # Get highest resolution photo
-            file_id = photo.file_id
-            file = await context.bot.get_file(file_id)
-            file_url = file.file_path
-            
-            # Save photo locally first
-            photo_dir = 'saved_photos'
-            os.makedirs(photo_dir, exist_ok=True)
-            filename = f"{file_id}.jpg"
-            filepath = os.path.join(photo_dir, filename)
-            
-            # Download photo
-            response = requests.get(file_url)
-            with open(filepath, 'wb') as f:
-                f.write(response.content)
-                
-            # Upload to Firebase and get URL
-            firebase_url = firebase_get_media_url(filepath)
-            os.remove(filepath)  # Clean up local file
-            
-            message_info['media_type'] = 'photo'
-            message_info['media_url'] = firebase_url
-            message_info['text'] = update.message.caption or ''
-        else:
-            message_info['media_type'] = 'text'
-            message_info['text'] = update.message.text
-
-        if not message_info['text'] and message_info['media_type'] == 'text':
-            await update.message.reply_text("I received an empty message. Please send some text!")
+        if not update.message.text:
+            await update.message.reply_text(
+                "I received an empty message. Please send some text!")
             return
 
         # Retrieve or create an AIHandler instance for the user
         user_handler = get_user_handler(message_info['user_id'])
 
-        # Pass the message info to the user's AIHandler instance
-        response = user_handler.agentchat(
-            f"{message_info['text']} [Image URL: {message_info.get('media_url', '')}]" if message_info.get('media_url') else message_info['text']
-        )
+        # Pass the message to the user's AIHandler instance
+        response = user_handler.agentchat(message_info['text'])
 
         # Handle empty response from agentchat
         if not response or response.strip() == "":
@@ -162,7 +139,7 @@ async def run_bot(keep_polling, update_bot_status):
         application.add_handler(CommandHandler("start", start))
         application.add_handler(
             MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-        application.add_handler(MessageHandler(filters.PHOTO, handle_message))
+        application.add_handler(MessageHandler(filters.PHOTO, handle_photo)) #Corrected handler
         keep_polling()  # Start the Flask server
         await application.run_polling(allowed_updates=Update.ALL_TYPES)
     except Exception as e:
