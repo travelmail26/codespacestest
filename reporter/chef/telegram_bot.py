@@ -92,8 +92,6 @@ def get_user_handler(user_id):
 
 async def handle_message(update: Update,
                          context: ContextTypes.DEFAULT_TYPE) -> None:
-    print(f"DEBUG: Received message type: {type(update.message)}")
-
     try:
         message_info = {
             'chat_id': update.message.chat.id,
@@ -105,18 +103,18 @@ async def handle_message(update: Update,
 
         # Handle photo if present
         if update.message.photo:
-            photo = update.message.photo[-1]
+            photo = update.message.photo[-1]  # Get highest resolution photo
             file_id = photo.file_id
             file = await context.bot.get_file(file_id)
             file_url = file.file_path
             
-            # Save locally first
+            # Save photo locally first
             photo_dir = 'saved_photos'
             os.makedirs(photo_dir, exist_ok=True)
             filename = f"{file_id}.jpg"
             filepath = os.path.join(photo_dir, filename)
             
-            # Download and save photo locally
+            # Download photo
             response = requests.get(file_url)
             with open(filepath, 'wb') as f:
                 f.write(response.content)
@@ -131,10 +129,9 @@ async def handle_message(update: Update,
         else:
             message_info['media_type'] = 'text'
             message_info['text'] = update.message.text
-            
+
         if not message_info['text'] and message_info['media_type'] == 'text':
-            await update.message.reply_text(
-                "I received an empty message. Please send some text!")
+            await update.message.reply_text("I received an empty message. Please send some text!")
             return
 
         # Retrieve or create an AIHandler instance for the user
