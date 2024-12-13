@@ -86,6 +86,21 @@ def setup_hot_reload():
 
 def run():
     try:
+        import sys
+        import logging
+        
+        # Configure both logging and stdout
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(message)s',
+            stream=sys.stdout,
+            force=True
+        )
+        
+        # Ensure immediate output
+        sys.stdout.reconfigure(line_buffering=True)
+        sys.stderr.reconfigure(line_buffering=True)
+        
         setup_hot_reload()
         app.run(host='0.0.0.0', port=80)
     except Exception as e:
