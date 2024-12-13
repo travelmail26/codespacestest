@@ -55,6 +55,14 @@ def bot_status():
             "active_modules": status["active_modules"]
         })
 
+@app.route('/restart', methods=['POST'])
+def restart_bot():
+    try:
+        os._exit(0)  # This will trigger Cloud Run to restart the container
+        return jsonify({"status": "restarting"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
 @app.route('/reload', methods=['POST'])
 def manual_reload():
     module_name = request.json.get('module', None)
