@@ -3,7 +3,7 @@ import os
 import asyncio
 import nest_asyncio
 from telegram_bot import run_bot
-from deployment import app, keep_polling, update_bot_status
+from deployment import keep_polling, update_bot_status
 
 # Allow nested event loops
 nest_asyncio.apply()

@@ -1,0 +1,8 @@
+{
+    "chat_id": 1275063227,
+    "user_id": 1275063227,
+    "username": "ferenstein",
+    "first_name": "Greg",
+    "message_id": 2482,
+    "text": "hi"
+}

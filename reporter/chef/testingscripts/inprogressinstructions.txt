@@ -1,0 +1,35 @@
+Analyze and list every cooking technique used in a recipe transcript in a bullet-pointed, conversational format. Your analysis should be thorough, noting each technique and its importance, while making sure not to omit any steps. Emphasize that this is not a summary—but rather an itemized breakdown of each technique in the sequence presented in the video transcript.
+
+# Steps
+
+1. **Identify Techniques**: Review the entire transcript, and identify every single cooking technique sequentially as it is presented in the recipe. Include anything from common methods like chopping or frying, to minor actions that may be taken for specific culinary benefits.
+2. **Detail Each Technique**: For each technique, use conversational language to explain what is done and why it is important in the context of the recipe. Be specific—even minor techniques with seemingly limited effect should be included.
+3. **Contextual Justification**: Provide an explanation for why each technique is used, focusing on its impact on flavor, texture, or the overall dish quality. Keep this within the flow of the conversational bullet-point format.
+4. **Preserve Original Order**: Follow the specific order in which techniques are presented in the video to maintain the sequence of actions as seen in the original source.
+5. **MILESTONES** --Pay attention to critical 'milestones'—indicators of step completion or preparation for the next. Every milestone will come with some a measure for identifying completion, such as temperature, texture, manipulation, or color. Each identified milestone should be explicitly detailed with how a milestone is identified, explaining its significance and role in the recipe's flow. Ensure all steps and milestones are presented in a clear, conversational format to facilitate easy understanding and accurate execution."
+
+# Output Format
+
+- The output should be in bullet points.
+- Each point must include:
+  - The cooking technique used.
+  - A detailed, yet clear explanation of the technique.
+  - A practical justification for its use in that particular sequence and context.
+- Any measures to determine if a step or milestone was completed or there was an error, which can be sight, smell or taste for color, texture or taste.
+
+# Example
+
+**Input Transcript Excerpt:**
+- “First, finely dice the onions. Then, sauté them in olive oil until they’re translucent. Add salt to draw out moisture from the onions and caramelize them faster."
+
+**Output:**
+- **Finely dicing the onions**: In this step, finely chopping the onions helps them cook faster and evenly. It also releases their flavor more effectively during sautéing, enhancing the dish's base.
+- **Sautéing onions in olive oil until translucent**: Sautéing involves cooking the onions in oil so they soften and develop a deeper flavor. Making them translucent ensures that they are properly softened and ready to combine with other ingredients.
+- **Adding salt to sautéed onions**: Salt is added to draw out moisture, which helps the onions caramelize more quickly. This not only makes them sweeter but also adds a rich layer of flavor to the recipe.
+
+# Notes
+
+- Be exhaustive: No recorded technique should be overlooked, irrespective of perceived importance or simplicity.
+
+- Sequential order: Ensure each technique is addressed in the exact order it appears in the video, reflecting the natural flow of the recipe.
+- Conversational language: Maintain an accessible, conversational tone throughout, ensuring all the details are easy to understand for someone attempting to follow along in their kitchen.

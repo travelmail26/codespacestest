@@ -1,0 +1,70 @@
+import os
+import requests
+
+# Retrieve Firebase API key from environment variable
+firebasekey = os.environ['FIREBASE_KEY']  # Ensure you've set this variable in your environment
+
+# Your Firebase project bucket
+STORAGE_BUCKET = "cheftest-f174c.appspot.com"  # Replace with your Firebase project's storage bucket
+
+def upload_file_to_firebase(file_path):
+    """
+    Uploads a file to Firebase Storage and retrieves its dynamic URL.
+
+    Args:
+        file_path (str): The local path to the file to be uploaded.
+
+    Returns:
+        str: The dynamic URL of the uploaded file.
+    """
+    try:
+        # Read the file content
+        with open(file_path, "rb") as file:
+            file_data = file.read()
+
+        # Extract the filename to use as the destination path
+        destination_path = os.path.basename(file_path)
+
+        # Firebase Storage REST API endpoint
+        upload_url = f"https://firebasestorage.googleapis.com/v0/b/{STORAGE_BUCKET}/o?uploadType=media&name={destination_path}"
+
+        # Headers for the request
+        headers = {
+            "Authorization": f"Bearer {firebasekey}",
+            "Content-Type": "application/octet-stream",
+        }
+
+        # Make the request to upload the file
+        response = requests.post(upload_url, headers=headers, data=file_data)
+
+        # Check for a successful response
+        if response.status_code == 200:
+            # Parse the JSON response to get the download tokens and file path
+            json_response = response.json()
+            file_name = json_response["name"]
+
+            # Construct the dynamic URL using Firebase's format
+            dynamic_url = f"https://firebasestorage.googleapis.com/v0/b/{STORAGE_BUCKET}/o/{file_name}?alt=media"
+            print(f"File uploaded successfully! Dynamic URL: {dynamic_url}")
+            return dynamic_url
+        else:
+            # Handle errors
+            print(f"Failed to upload file. Response: {response.text}")
+            return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+
+# Example usage
+if __name__ == "__main__":
+    # Path to the local file to be uploaded
+    local_file_path = "saved_photos/AgACAgEAAxkBAAIJmWdN6TliC6Bs_SBWl7K-aS3Oyt4tAAIUrzEbDQhxRsQ0OPsGD-V1AQADAgADeQADNgQ.jpg"
+
+    # Upload the file and get the dynamic URL
+    dynamic_url = upload_file_to_firebase(local_file_path)
+
+    if dynamic_url:
+        print(f"Dynamic URL: {dynamic_url}")
+    else:
+        print("File upload failed.")

@@ -10,6 +10,7 @@ from loggerbackup import ConversationLogger
 
 from postprocess import auto_postprocess
 from alarm import append_alarm
+from serpapirecipes import search_recipes_serpapi
 
 # Note for LLM agents: this is how the token secret is getting
 openai_api_key = os.environ['OPENAI_API_KEY']
@@ -30,10 +31,16 @@ def get_current_time():
 
 class AIHandler:
 
-    def __init__(self, openai_key=None):
+    def __init__(self, user_id, openai_key=None):
         self.openai_key = openai_key or openai_api_key
         self.logger = ConversationLogger()
         self.messages = self.initialize_messages()
+        self.user_id = user_id
+        self.conversation_info = {
+            "messages": self.messages,
+            "user_id": self.user_id
+        }
+
 
     def initialize_messages(self):
         # Initialize a list to hold parts of the system content
@@ -48,22 +55,22 @@ class AIHandler:
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
             system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +file.read())
-        with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
-            system_content_parts.append(
-                "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
-        with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
-            system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
-                                        file.read())
-        with open('reporter/chef/exploring_additional_instructions.txt',
-                  'r') as file:
-            system_content_parts.append(
-                "=== EXPLORING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
-        with open('reporter/chef/instructions_log.txt', 'r') as file:
-            system_content_parts.append(
-                "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
-        with open('reporter/chef/instructions_mealplan.txt', 'r') as file:
-            system_content_parts.append(
-                "=== MEAL PLAN ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        # with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
+        #     system_content_parts.append(
+        #         "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
+        # with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
+        #     system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
+        #                                 file.read())
+        # with open('reporter/chef/exploring_additional_instructions.txt',
+        #           'r') as file:
+        #     system_content_parts.append(
+        #         "=== EXPLORING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        # with open('reporter/chef/instructions_log.txt', 'r') as file:
+        #     system_content_parts.append(
+        #         "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        # with open('reporter/chef/instructions_mealplan.txt', 'r') as file:
+        #     system_content_parts.append(
+        #         "=== MEAL PLAN ADDITIONAL INSTRUCTIONS ===\n" + file.read())
         # with open('reporter/chef/instructions_spiritual.txt', 'r') as file:
         #     system_content_parts.append("=== SPIRITUAL INSTRUCTIONS ===\n" + file.read())
 
@@ -72,6 +79,8 @@ class AIHandler:
         # Return the full message content as a single system message
         return [{"role": "system", "content": combined_content}]
 
+    
+    
     def openai_request(self):
         print(f"DEBUG: openai_request triggered")
         if not self.openai_key:
@@ -85,7 +94,28 @@ class AIHandler:
         #TOOLS
         tools = [
 
+            # Add this in the tools definition section
+            {
+                "type": "function",
+                "function": {
+                    "name": "search_recipes_serpapi",
+                    "description": "Search for recipes. The user will explicit calls ' google search recipes for <query>''. DO NOT MISTAKE this for the browsing function call.'",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string",
+                                "description": "Search term for recipes"
+                            }
+                        },
+                        "required": ["query"],
+                        "additionalProperties": False
+                    },
+                    "strict": False
+                }
+            },
 
+            
             {
                 "type": "function",
                 "function": {
@@ -394,6 +424,79 @@ class AIHandler:
                         else:
                             return "Error: No query provided for browsing."
 
+                    #search google recipes
+
+                    elif function_name == 'search_recipes_serpapi':
+                        print("DEBUG: triggered tool search recipes")
+
+                        query = function_args.get('query')
+                        try:
+                            result_data = search_recipes_serpapi(query)
+                        except Exception as e:
+                            print(f"ERROR: fetching recipes: {e}")
+                            return "Failed to fetch recipes"
+    
+                        # First add the tool response message
+                        function_call_result_message = {
+                            "role": "tool",
+                            "content": str(result_data),
+                            "tool_call_id": tool_call_id
+                        }
+    
+                        # Create database context message
+                        database_recipe_context = {
+                            "role":
+                            "system",
+                            "content":
+                            f"""This is a search result of recipes. THe user requested search results and this was the result
+    
+                            *RECIPE CONTENT FOLLOWS*:
+                            {str(result_data)} ~~*END RECIPE API CALL CONTENT*~~
+    
+                            """
+                        }
+    
+                        # Update messages in correct sequence
+                        self.messages.append(assistant_message)
+                        self.messages.append(function_call_result_message
+                                             )  # Required tool response
+                        self.messages.append(database_recipe_context)
+    
+                        # Second API call
+                        completion_payload = {
+                            "model": 'gpt-4o-mini',
+                            "messages": self.messages
+                        }
+    
+                        # DEBUG: Print a slice of the API call payload
+                        print(
+                            f"DEBUG: first few recipe messages: {self.messages[:1]}"
+                        )
+    
+                        # Second API call
+                        try:
+                            second_response = requests.post(
+                                'https://api.openai.com/v1/chat/completions',
+                                headers=headers,
+                                json=completion_payload)
+                            second_response.raise_for_status()
+                        except requests.exceptions.RequestException as e:
+                            print(f"ERROR: API call failed: {e}")
+                            return "Failed to fetch completion"
+    
+                        # Process final response
+                        second_response_json = second_response.json()
+                        final_assistant_message = second_response_json[
+                            'choices'][0]['message']
+    
+                        # Add final response to conversation
+                        self.messages.append(final_assistant_message)
+    
+                        return final_assistant_message.get(
+                            'content', 'No content in response.')
+                    
+                    
+                    
                     #recipes fetch
                     elif function_name == 'fetch_recipes':
                         print("DEBUG: triggered tool recipes")
@@ -752,21 +855,24 @@ class AIHandler:
 
     def agentchat(self, prompt=None):
         print('DEBUG: agent chat triggered')
+        print(f"DEBUG: user_id {self.user_id}")
 
         # Add user input to messages
+
+        
         self.messages.append({"role": "user", "content": prompt})
 
         # Get response from OpenAI
         response = self.openai_request()
 
         #function: add chats to google sheets
-        try:
-            #print (f"DEBUG: attempt chatlog entry:")
-            self.logger.log_conversation(str(self.messages))
-            #add_chatlog_entry(self.messages)
+        # try:
+        #     #print (f"DEBUG: attempt chatlog entry:")
+        #     self.logger.log_conversation(str(self.messages))
+        #     add_chatlog_entry(self.messages)
 
-        except:
-            print("Error adding chatlog entry agentchat")
+        # except:
+        #     print("Error adding chatlog entry agentchat")
 
         # try:
         #     #print (f"DEBUG: attempt chatlog entry:")
@@ -776,7 +882,6 @@ class AIHandler:
         return response
 
 
-handler = AIHandler()
 
 # Example usage
 if __name__ == "__main__":

@@ -9,11 +9,6 @@ from loggerbackup import ConversationLogger
 
 
 
-result = fetch_sheet_data_rows('chatlog', start_row=107, end_row=108)
-print(result)
-
-
-
 
 
 
@@ -32,3 +27,4 @@ import pytz
 
 # logger = ConversationLogger()  # Create an instance first
 # logger.log_conversation("test message") 
+
