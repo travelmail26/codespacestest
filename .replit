@@ -1,3 +1,4 @@
+
 modules = ["python-3.10:v18-20230807-322e88b", "nodejs-18:v3-20230608-f4cd419"]
 hidden = [".pythonlibs"]
 run = "python reporter/chef/main.py"
@@ -12,9 +13,8 @@ channel = "stable-23_05"
 language = "python3"
 
 [deployment]
-deploymentTarget = "gce"
-build = ["sh", "-c", "pip install gunicorn && npm install"]
-run = ["sh", "-c", "PYTHONUNBUFFERED=1 gunicorn -w 4 'reporter.chef.main:app' --bind 0.0.0.0:80 --log-level info --capture-output --enable-stdio-inheritance --access-logfile - --error-logfile -"]
+run = "python reporter/chef/main.py"
+deploymentTarget = "cloudrun"
 
 [languages.javascript]
 pattern = "**/*.{js,jsx,ts,tsx,json}"
@@ -28,8 +28,3 @@ externalPort = 80
 [[ports]]
 localPort = 5000
 externalPort = 5000
-
-# Commented out to avoid port conflict
-# [[ports]]
-# localPort = 5000
-# externalPort = 5000
