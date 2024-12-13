@@ -87,7 +87,7 @@ def setup_hot_reload():
 def run():
     try:
         setup_hot_reload()
-        app.run(host='0.0.0.0', port=5000)
+        app.run(host='0.0.0.0', port=80)
     except Exception as e:
         print(f"Flask app error: {str(e)}")
 
