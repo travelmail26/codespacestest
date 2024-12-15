@@ -312,7 +312,7 @@ class AIHandler:
             'messages': self.messages,
             'temperature': 0.5,
             'max_tokens': 4096,
-            'stream': False,
+            'stream': True,
             'tools': tools
         }
 
@@ -321,12 +321,32 @@ class AIHandler:
             response = requests.post(
                 'https://api.openai.com/v1/chat/completions',
                 headers=headers,
-                json=data)
+                json=data,
+                stream=True)
             response.raise_for_status()
-            response_json = response.json()
 
-            # Extract the assistant's message
-            assistant_message = response_json['choices'][0]['message']
+            buffer = ""
+            full_response = ""
+            for line in response.iter_lines():
+                if line and b'data: [DONE]' not in line:
+                    chunk = json.loads(line.decode('utf-8').replace('data: ', ''))
+                    if 'choices' in chunk and 'delta' in chunk['choices'][0]:
+                        content = chunk['choices'][0]['delta'].get('content', '')
+                        if content:
+                            buffer += content
+                            full_response += content
+                            if len(buffer) >= 300:
+                                print(buffer, end='', flush=True)
+                                buffer = ""
+            
+            if buffer:  # Print any remaining content
+                print(buffer, end='', flush=True)
+
+            # Create assistant message structure
+            assistant_message = {
+                "role": "assistant",
+                "content": full_response
+            }
 
             # TOOLS Check if the assistant wants to call a function (tool)
             if 'tool_calls' in assistant_message:

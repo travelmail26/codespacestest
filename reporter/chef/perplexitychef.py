@@ -41,14 +41,25 @@ def perplexitycall(messages):
         #print('**DEBUG: type messages sent perplexity api**', type(messages))
         #print('**DEBUG: messages sent perplexity api**', messages)
 
-        response = client.chat.completions.create(
-            model="llama-3.1-sonar-large-128k-online", messages=messages)
+        stream = client.chat.completions.create(
+            model="llama-3.1-sonar-large-128k-online", 
+            messages=messages,
+            stream=True
+        )
 
-        #print('**DEBUG: Response received from perplexity**' if response else '**DEBUG: No response received**')
-
-        content = 'DEBUG: FROM PERPLEXITY: ' + str(
-            response.choices[0].message.content)
-        #print('**DEBUG: from perplexitycall content**', content)
+        buffer = ""
+        content = ""
+        for chunk in stream:
+            if chunk.choices[0].delta.content is not None:
+                buffer += chunk.choices[0].delta.content
+                content += chunk.choices[0].delta.content
+                if len(buffer) >= 300:
+                    print(buffer, end='', flush=True)
+                    buffer = ""
+        
+        if buffer:  # Print any remaining content
+            print(buffer, end='', flush=True)
+            
         return content
 
     except Exception as e:
