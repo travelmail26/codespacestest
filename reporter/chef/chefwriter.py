@@ -4,10 +4,9 @@ import os
 import requests
 from datetime import datetime
 import pytz
-#from perplexitychef import perplexitycall
-from sheetscallchef import add_chatlog_entry, sheets_call, fetch_chatlog, task_create, fetch_preferences, fetch_recipes, update_task
-from loggerbackup import ConversationLogger
 from perplexity import perplexitycall
+from sheetscall import add_chatlog_entry, sheets_call, fetch_chatlog, task_create, fetch_preferences, fetch_recipes, update_task
+#from loggerbackup import ConversationLogger
 
 from postprocess import auto_postprocess
 from alarm import append_alarm
@@ -34,7 +33,7 @@ class AIHandler:
 
     def __init__(self, user_id, openai_key=None):
         self.openai_key = openai_key or openai_api_key
-        self.logger = ConversationLogger()
+        #self.logger = ConversationLogger()
         self.messages = self.initialize_messages()
         self.user_id = user_id
         self.conversation_info = {
@@ -96,25 +95,25 @@ class AIHandler:
         tools = [
 
             # Add this in the tools definition section
-            {
-                "type": "function",
-                "function": {
-                    "name": "search_recipes_serpapi",
-                    "description": "Search for recipes. The user will explicit calls ' google search recipes for <query>''. DO NOT MISTAKE this for the browsing function call.'",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "query": {
-                                "type": "string",
-                                "description": "Search term for recipes"
-                            }
-                        },
-                        "required": ["query"],
-                        "additionalProperties": False
-                    },
-                    "strict": False
-                }
-            },
+            # {
+            #     "type": "function",
+            #     "function": {
+            #         "name": "search_recipes_serpapi",
+            #         "description": "Search for recipes. The user will explicit calls ' google search recipes for <query>''. DO NOT MISTAKE this for the browsing function call.'",
+            #         "parameters": {
+            #             "type": "object",
+            #             "properties": {
+            #                 "query": {
+            #                     "type": "string",
+            #                     "description": "Search term for recipes"
+            #                 }
+            #             },
+            #             "required": ["query"],
+            #             "additionalProperties": False
+            #         },
+            #         "strict": False
+            #     }
+            # },
 
             
             {
@@ -246,7 +245,7 @@ class AIHandler:
                 "function": {
                     "name": "perplexitycall",
                     "description":
-                    "Browse the internet for an answer to the user's query.",
+                    "Trigger when a user asks to Browse the internet for an answer. Then fill in the parameter with the user's query.",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -313,7 +312,7 @@ class AIHandler:
             'messages': self.messages,
             'temperature': 0.5,
             'max_tokens': 4096,
-            'stream': True,
+            'stream': False,
             'tools': tools
         }
 
@@ -322,32 +321,12 @@ class AIHandler:
             response = requests.post(
                 'https://api.openai.com/v1/chat/completions',
                 headers=headers,
-                json=data,
-                stream=True)
+                json=data)
             response.raise_for_status()
+            response_json = response.json()
 
-            buffer = ""
-            full_response = ""
-            for line in response.iter_lines():
-                if line and b'data: [DONE]' not in line:
-                    chunk = json.loads(line.decode('utf-8').replace('data: ', ''))
-                    if 'choices' in chunk and 'delta' in chunk['choices'][0]:
-                        content = chunk['choices'][0]['delta'].get('content', '')
-                        if content:
-                            buffer += content
-                            full_response += content
-                            if len(buffer) >= 300:
-                                print(buffer, end='', flush=True)
-                                buffer = ""
-            
-            if buffer:  # Print any remaining content
-                print(buffer, end='', flush=True)
-
-            # Create assistant message structure
-            assistant_message = {
-                "role": "assistant",
-                "content": full_response
-            }
+            # Extract the assistant's message
+            assistant_message = response_json['choices'][0]['message']
 
             # TOOLS Check if the assistant wants to call a function (tool)
             if 'tool_calls' in assistant_message:
@@ -447,74 +426,74 @@ class AIHandler:
 
                     #search google recipes
 
-                    elif function_name == 'search_recipes_serpapi':
-                        print("DEBUG: triggered tool search recipes")
+                    # elif function_name == 'search_recipes_serpapi':
+                    #     print("DEBUG: triggered tool search recipes")
 
-                        query = function_args.get('query')
-                        try:
-                            result_data = search_recipes_serpapi(query)
-                        except Exception as e:
-                            print(f"ERROR: fetching recipes: {e}")
-                            return "Failed to fetch recipes"
+                    #     query = function_args.get('query')
+                    #     try:
+                    #         result_data = search_recipes_serpapi(query)
+                    #     except Exception as e:
+                    #         print(f"ERROR: fetching recipes: {e}")
+                    #         return "Failed to fetch recipes"
     
-                        # First add the tool response message
-                        function_call_result_message = {
-                            "role": "tool",
-                            "content": str(result_data),
-                            "tool_call_id": tool_call_id
-                        }
+                    #     # First add the tool response message
+                    #     function_call_result_message = {
+                    #         "role": "tool",
+                    #         "content": str(result_data),
+                    #         "tool_call_id": tool_call_id
+                    #     }
     
-                        # Create database context message
-                        database_recipe_context = {
-                            "role":
-                            "system",
-                            "content":
-                            f"""This is a search result of recipes. THe user requested search results and this was the result
+                    #     # Create database context message
+                    #     database_recipe_context = {
+                    #         "role":
+                    #         "system",
+                    #         "content":
+                    #         f"""This is a search result of recipes. THe user requested search results and this was the result
     
-                            *RECIPE CONTENT FOLLOWS*:
-                            {str(result_data)} ~~*END RECIPE API CALL CONTENT*~~
+                    #         *RECIPE CONTENT FOLLOWS*:
+                    #         {str(result_data)} ~~*END RECIPE API CALL CONTENT*~~
     
-                            """
-                        }
+                    #         """
+                    #     }
     
-                        # Update messages in correct sequence
-                        self.messages.append(assistant_message)
-                        self.messages.append(function_call_result_message
-                                             )  # Required tool response
-                        self.messages.append(database_recipe_context)
+                    #     # Update messages in correct sequence
+                    #     self.messages.append(assistant_message)
+                    #     self.messages.append(function_call_result_message
+                    #                          )  # Required tool response
+                    #     self.messages.append(database_recipe_context)
     
-                        # Second API call
-                        completion_payload = {
-                            "model": 'gpt-4o-mini',
-                            "messages": self.messages
-                        }
+                    #     # Second API call
+                    #     completion_payload = {
+                    #         "model": 'gpt-4o-mini',
+                    #         "messages": self.messages
+                    #     }
     
-                        # DEBUG: Print a slice of the API call payload
-                        print(
-                            f"DEBUG: first few recipe messages: {self.messages[:1]}"
-                        )
+                    #     # DEBUG: Print a slice of the API call payload
+                    #     print(
+                    #         f"DEBUG: first few recipe messages: {self.messages[:1]}"
+                    #     )
     
-                        # Second API call
-                        try:
-                            second_response = requests.post(
-                                'https://api.openai.com/v1/chat/completions',
-                                headers=headers,
-                                json=completion_payload)
-                            second_response.raise_for_status()
-                        except requests.exceptions.RequestException as e:
-                            print(f"ERROR: API call failed: {e}")
-                            return "Failed to fetch completion"
+                    #     # Second API call
+                    #     try:
+                    #         second_response = requests.post(
+                    #             'https://api.openai.com/v1/chat/completions',
+                    #             headers=headers,
+                    #             json=completion_payload)
+                    #         second_response.raise_for_status()
+                    #     except requests.exceptions.RequestException as e:
+                    #         print(f"ERROR: API call failed: {e}")
+                    #         return "Failed to fetch completion"
     
-                        # Process final response
-                        second_response_json = second_response.json()
-                        final_assistant_message = second_response_json[
-                            'choices'][0]['message']
+                    #     # Process final response
+                    #     second_response_json = second_response.json()
+                    #     final_assistant_message = second_response_json[
+                    #         'choices'][0]['message']
     
-                        # Add final response to conversation
-                        self.messages.append(final_assistant_message)
+                    #     # Add final response to conversation
+                    #     self.messages.append(final_assistant_message)
     
-                        return final_assistant_message.get(
-                            'content', 'No content in response.')
+                    #     return final_assistant_message.get(
+                    #         'content', 'No content in response.')
                     
                     
                     

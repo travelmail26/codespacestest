@@ -2,7 +2,7 @@ import json
 import os
 
 import requests
-from sheetscallchef import add_insight, fetch_chatlog_time, add_insight
+from sheetscall import add_insight, fetch_chatlog_time, add_insight
 import sys
 from datetime import datetime
 
