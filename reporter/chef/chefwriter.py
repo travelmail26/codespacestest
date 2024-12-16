@@ -4,9 +4,10 @@ import os
 import requests
 from datetime import datetime
 import pytz
-from perplexitychef import perplexitycall
+#from perplexitychef import perplexitycall
 from sheetscallchef import add_chatlog_entry, sheets_call, fetch_chatlog, task_create, fetch_preferences, fetch_recipes, update_task
 from loggerbackup import ConversationLogger
+from perplexity import perplexitycall
 
 from postprocess import auto_postprocess
 from alarm import append_alarm

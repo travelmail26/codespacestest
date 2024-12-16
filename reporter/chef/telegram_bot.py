@@ -16,9 +16,13 @@ from testingscripts.accesschat import readchatfile, appendturn
 from firebase import firebase_get_media_url
 
 try:
-    TOKEN = os.environ['TELEGRAM_KEY']
+
+    TOKEN = os.environ['TELEGRAM_DEV_KEY']
     if not TOKEN:
-        raise ValueError("TELEGRAM_KEY is empty")
+        raise Exception("TELEGRAM_DEV_KEY not found in environment variables")
+    # TOKEN = os.environ['TELEGRAM_KEY']
+    # if not TOKEN:
+    #     raise ValueError("TELEGRAM_KEY is empty")
 
 except KeyError:
     raise
