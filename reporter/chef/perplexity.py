@@ -79,4 +79,8 @@ def perplexitycall(messages):
 
 
 if __name__ == "__main__":
-    handler = perplexitychat()
+    test_messages = [
+        {"role": "user", "content": "recipe for short meatballs"}
+    ]
+    result = perplexitycall(test_messages)
+    print(result)
