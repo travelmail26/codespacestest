@@ -54,21 +54,28 @@ def perplexitycall(messages):
 
     print ('**DEBUG: messages sent perplexity api**', messages)
 
-    # chat completion without streaming
-    response = client.chat.completions.create(
-        model="llama-3.1-sonar-large-128k-online", messages=messages)
+    # chat completion with streaming
+    stream = client.chat.completions.create(
+        model="llama-3.1-sonar-large-128k-online", 
+        messages=messages,
+        stream=True
+    )
 
-    add_chatlog_entry(str(response))
-    # If no function call is needed, just print the model's response
-    print('DEBUG RAW RESPONSE', response)
-
-    print(response.choices[0].message.content)
-    print(type(response))
-
-    content = response.choices[0].message.content
-    print(content)
-    print(type(response))
-    return content  # Return the content of the response
+    buffer = ""
+    content = ""
+    for chunk in stream:
+        if chunk.choices[0].delta.content is not None:
+            buffer += chunk.choices[0].delta.content
+            content += chunk.choices[0].delta.content
+            if len(buffer) >= 300:
+                print(buffer, end='', flush=True)
+                buffer = ""
+    
+    if buffer:  # Print any remaining content
+        print(buffer, end='', flush=True)
+    
+    add_chatlog_entry(content)
+    return content  # Return the complete content
 
 
 if __name__ == "__main__":
