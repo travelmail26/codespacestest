@@ -5,7 +5,12 @@ import os
 import logging
 import sys
 import asyncio
+import logging
 from telegram import Update
+
+# Disable debug logging for httpx and telegram
+logging.getLogger('httpx').setLevel(logging.WARNING)
+logging.getLogger('telegram').setLevel(logging.WARNING)
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from chefwriter import AIHandler
 from threading import Thread
@@ -62,7 +67,7 @@ def get_user_handler(user_id):
 
 async def handle_message(update: Update,
                          context: ContextTypes.DEFAULT_TYPE) -> None:
-    print(f"DEBUG: Received message type: {type(update.message)}")
+    #print(f"DEBUG: Received message type: {type(update.message)}")
 
     try:
         message_info = {
@@ -73,7 +78,7 @@ async def handle_message(update: Update,
             'message_id': update.message.message_id,
             'text': update.message.text
         }
-        print('DEBUG: message_info', message_info)
+        #print('DEBUG: message_info', message_info)
 
         # Retrieve or create an AIHandler instance for the user
         user_handler = get_user_handler(message_info['user_id'])
@@ -120,6 +125,7 @@ async def handle_message(update: Update,
 
         await update.message.reply_text(response)
     except Exception as e:
+        print ('DEBUG: error in handle_message', e)
         await update.message.reply_text(
             "An error occurred while processing your message. Please try again."
         )
