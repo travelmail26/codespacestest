@@ -35,3 +35,15 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Replit config
+.replit
+
+# Chef folder specific
+reporter/chef/**/*.key
+reporter/chef/**/*.pem
+reporter/chef/**/*.env
+reporter/chef/**/secrets/
+reporter/chef/**/*_key*
+reporter/chef/**/*_secret*
+reporter/chef/**/api_key*
