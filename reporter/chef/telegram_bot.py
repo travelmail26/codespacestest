@@ -29,7 +29,8 @@ try:
         print("Running in DEVELOPMENT mode")
 
     if not TOKEN:
-        raise ValueError(f"No Telegram token found for {ENVIRONMENT} environment")
+        raise ValueError(
+            f"No Telegram token found for {ENVIRONMENT} environment")
 
 except KeyError as e:
     raise ValueError(f"Missing required token for {ENVIRONMENT} environment")
@@ -39,18 +40,23 @@ except Exception as e:
 conversations = {}
 handlers_per_user = {}
 
+
 def get_user_handler(user_id):
     if user_id not in handlers_per_user:
         handlers_per_user[user_id] = AIHandler(user_id)
     return handlers_per_user[user_id]
 
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     try:
-        await update.message.reply_text('Hello! I am your AI assistant. How can I help you today?')
+        await update.message.reply_text(
+            'Hello! I am your AI assistant. How can I help you today?')
     except Exception as e:
         await update.message.reply_text("error in telegram start")
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+
+async def handle_message(update: Update,
+                         context: ContextTypes.DEFAULT_TYPE) -> None:
     try:
         message_info = {
             'chat_id': update.message.chat.id,
@@ -92,35 +98,45 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             await update.message.reply_text("Video processed successfully!")
 
         elif not update.message.text:
-            await update.message.reply_text("I received an empty message. Please send some text or a photo!")
+            await update.message.reply_text(
+                "I received an empty message. Please send some text or a photo!"
+            )
             return
 
         response = user_handler.agentchat(message_info['text'])
 
         if not response or response.strip() == "":
-            await update.message.reply_text("I apologize, but I couldn't generate a proper response. Please try again.")
+            await update.message.reply_text(
+                "I apologize, but I couldn't generate a proper response. Please try again."
+            )
             return
 
         await update.message.reply_text(response)
     except Exception as e:
         print('DEBUG: error in handle_message', e)
-        await update.message.reply_text("An error occurred while processing your message. Please try again.")
+        await update.message.reply_text(
+            "An error occurred while processing your message. Please try again."
+        )
+
 
 async def setup_bot():
     application = Application.builder().token(TOKEN).build()
     await application.initialize()
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    application.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     application.add_handler(MessageHandler(filters.PHOTO, handle_message))
     application.add_handler(MessageHandler(filters.VIDEO, handle_message))
     return application
+
 
 async def run_bot():
     application = None
     try:
         application = await setup_bot()
         # Run the bot via polling (no Flask server, no keep_polling)
-        await application.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
+        await application.run_polling(allowed_updates=Update.ALL_TYPES,
+                                      drop_pending_updates=True)
     finally:
         if application:
             try:
