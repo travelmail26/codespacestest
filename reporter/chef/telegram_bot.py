@@ -15,8 +15,8 @@ from testingscripts.accesschat import readchatfile, appendturn
 from firebase import firebase_get_media_url
 
 # Disable debug logging
-logging.getLogger('httpx').setLevel(logging.WARNING)
-logging.getLogger('telegram').setLevel(logging.WARNING)
+# logging.getLogger('httpx').setLevel(logging.WARNING)
+# logging.getLogger('telegram').setLevel(logging.WARNING)
 
 try:
     ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
