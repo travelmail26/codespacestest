@@ -5,7 +5,7 @@ run = "python reporter/chef/main.py"
 
 [env]
 REPLIT_NO_WEBVIEW = "true"
-ENVIRONMENT = "development"
+ENVIRONMENT = "production"
 
 [nix]
 channel = "stable-23_05"
