@@ -1,0 +1,52 @@
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpcore/_async/http11.py", line 224, in _receive_event
+2024-12-18 10:46:21.83
+data = await self._network_stream.read(
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpcore/_backends/anyio.py", line 32, in read
+2024-12-18 10:46:21.83
+with map_exceptions(exc_map):
+2024-12-18 10:46:21.83
+File "/nix/store/418nyl05dzqb57brvqjd1g22p27xyqbq-python3-3.10.14/lib/python3.10/contextlib.py", line 153, in __exit__
+2024-12-18 10:46:21.83
+self.gen.throw(typ, value, traceback)
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+2024-12-18 10:46:21.83
+raise to_exc(exc) from exc
+2024-12-18 10:46:21.83
+httpcore.ReadError
+2024-12-18 10:46:21.83
+2024-12-18 10:46:21.83
+The above exception was the direct cause of the following exception:
+2024-12-18 10:46:21.83
+2024-12-18 10:46:21.83
+Traceback (most recent call last):
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/telegram/request/_httpxrequest.py", line 292, in do_request
+2024-12-18 10:46:21.83
+res = await self._client.request(
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpx/_client.py", line 1585, in request
+2024-12-18 10:46:21.83
+return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpx/_client.py", line 1674, in send
+2024-12-18 10:46:21.83
+response = await self._send_handling_auth(
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpx/_client.py", line 1702, in _send_handling_auth
+2024-12-18 10:46:21.83
+response = await self._send_handling_redirects(
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpx/_client.py", line 1739, in _send_handling_redirects
+2024-12-18 10:46:21.83
+response = await self._send_single_request(request)
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpx/_client.py", line 1776, in _send_single_request
+2024-12-18 10:46:21.83
+response = await transport.handle_async_request(request)
+2024-12-18 10:46:21.83
+File "/home/runner/a65ff4ee-259c-4cb6-abd7-25fdc4bcf0c5/.pythonlibs/lib/python3.10/site-packages/httpx/_transports/default.py", line 376, in handle_async_request
+2024-12-18 10:46:21.83
+with map_httpcore_exceptions():

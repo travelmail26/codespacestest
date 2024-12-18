@@ -5,6 +5,16 @@ from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 
+
+##logging
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s",
+    handlers=[logging.StreamHandler()]
+)
 # Path to your service account JSON file
 SERVICE_ACCOUNT_FILE = os.environ['SERVICE_ACCOUNT_FILE_PH']
 SCOPES = [
@@ -70,6 +80,7 @@ def sheets_call(tab='database'):
 
 def add_chatlog_entry(entry):
     print('DEBUG: chatlog entry triggered')
+    logging.info("DEBUG: chatlog entry triggered")
     if not entry:  # This checks if entry is None, empty string, or any falsy value
         print("No entry provided. Skipping chatlog update.")
         return
