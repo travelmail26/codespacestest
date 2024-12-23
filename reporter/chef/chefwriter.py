@@ -67,16 +67,16 @@ class AIHandler:
         # with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
         #     system_content_parts.append(
         #         "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
-        # with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
-        #     system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
-        #                                 file.read())
+        with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
+            system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
+                                        file.read())
         # with open('reporter/chef/exploring_additional_instructions.txt',
         #           'r') as file:
         #     system_content_parts.append(
         #         "=== EXPLORING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
-        # with open('reporter/chef/instructions_log.txt', 'r') as file:
-        #     system_content_parts.append(
-        #         "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        with open('reporter/chef/instructions_log.txt', 'r') as file:
+            system_content_parts.append(
+                "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
         # with open('reporter/chef/instructions_mealplan.txt', 'r') as file:
         #     system_content_parts.append(
         #         "=== MEAL PLAN ADDITIONAL INSTRUCTIONS ===\n" + file.read())
