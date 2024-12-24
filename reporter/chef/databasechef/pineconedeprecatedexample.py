@@ -31,7 +31,8 @@ for emb in embeddings.data:
 # Create a serverless index
 index_name = "example-index"
 
-if not pc.has_index(index_name):
+existing_indexes = pc.list_indexes()
+if index_name not in [index.name for index in existing_indexes]:
     pc.create_index(
         name=index_name,
         dimension=1024,
