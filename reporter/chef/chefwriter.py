@@ -55,6 +55,8 @@ class AIHandler:
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
             system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +file.read())
+        with open('reporter/chef/instructions_latka.txt', 'r') as file:
+            system_content_parts.append("===LATKA INSTRUCTIONS ===\n" +file.read())
         # with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
         #     system_content_parts.append(
         #         "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
@@ -240,6 +242,32 @@ class AIHandler:
                     "strict": False
                 }
             },
+
+
+            ##latka load function
+            {
+                "type": "function",
+                "function": {
+                    "name": "sheets_call",
+                    "description":
+                    "return database recipe for Latkas, friend potato pancakes. User will ask to load latka recipes. Inform the user the recipe has been loaded",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "tab": {
+                                "type":
+                                "string",
+                                "description":
+                                "fill it verbatim with string 'latkatest' "
+                            }
+                        },
+                        "required": ["query"],
+                        "additionalProperties": False
+                    },
+                    "strict": False
+                }
+            },
+            
             {
                 "type": "function",
                 "function": {

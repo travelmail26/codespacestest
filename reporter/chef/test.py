@@ -1,13 +1,13 @@
 #from chefwriter import AIHandler
 from perplexity import perplexitycall
-from sheetscall import fetch_chatlog, fetch_preferences, fetch_chatlog_time, fetch_recipes, fetch_sheet_data_rows, add_chatlog_entry
+from sheetscall import  sheets_call
 #from postprocess import postprocess
 import pytz
 from datetime import datetime
 
 
 
-
+print(sheets_call('latkatest'))
 
 
 

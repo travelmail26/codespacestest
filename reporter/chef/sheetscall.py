@@ -55,13 +55,11 @@ def sheets_call(tab='database'):
     all_rows = []
 
     # Loop through each row (skipping the header row)
-    for row in data[1:]:
+    for idx, row in enumerate(data[1:], start=1):  # Start enumeration at 1
         row_dict = {}  # Initialize an empty dictionary for each row
+        row_dict["sequence"] = idx  # Add the enumerated sequence as a new key
         for i in range(len(headers)):
-            print(headers[i])
-            print(row[i])
-            row_dict[headers[i]] = row[
-                i]  # Assign each header as a key and the corresponding row value as the value
+            row_dict[headers[i]] = row[i]  # Map headers to their corresponding row values
         all_rows.append(row_dict)
 
     json_data = all_rows
