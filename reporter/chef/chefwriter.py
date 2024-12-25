@@ -55,21 +55,21 @@ class AIHandler:
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
             system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +file.read())
-        with open('reporter/chef/instructions_latka.txt', 'r') as file:
-            system_content_parts.append("===LATKA INSTRUCTIONS ===\n" +file.read())
+        with open('reporter/chef/instructions_recipe.txt', 'r') as file:
+            system_content_parts.append("===RECIPE INSTRUCTIONS ===\n" +file.read())
         # with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
         #     system_content_parts.append(
         #         "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
-        with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
-            system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
-                                        file.read())
+        # with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
+        #     system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
+        #                                 file.read())
         # with open('reporter/chef/exploring_additional_instructions.txt',
         #           'r') as file:
         #     system_content_parts.append(
         #         "=== EXPLORING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
-        with open('reporter/chef/instructions_log.txt', 'r') as file:
-            system_content_parts.append(
-                "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        # with open('reporter/chef/instructions_log.txt', 'r') as file:
+        #     system_content_parts.append(
+        #         "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
         # with open('reporter/chef/instructions_mealplan.txt', 'r') as file:
         #     system_content_parts.append(
         #         "=== MEAL PLAN ADDITIONAL INSTRUCTIONS ===\n" + file.read())
@@ -338,7 +338,7 @@ class AIHandler:
         data = {
             'model': 'gpt-4o-mini',
             'messages': self.messages,
-            'temperature': 0.5,
+            'temperature': 0.2,
             'max_tokens': 4096,
             'stream': False,
             'tools': tools
