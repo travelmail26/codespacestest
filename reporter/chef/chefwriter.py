@@ -55,8 +55,8 @@ class AIHandler:
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
             system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +file.read())
-        with open('reporter/chef/instructions_recipe.txt', 'r') as file:
-            system_content_parts.append("===RECIPE INSTRUCTIONS ===\n" +file.read())
+        # with open('reporter/chef/instructions_recipe.txt', 'r') as file:
+        #     system_content_parts.append("===RECIPE INSTRUCTIONS ===\n" +file.read())
         # with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
         #     system_content_parts.append(
         #         "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
