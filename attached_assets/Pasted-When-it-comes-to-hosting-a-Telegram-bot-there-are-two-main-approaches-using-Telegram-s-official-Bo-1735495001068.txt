@@ -1,0 +1,51 @@
+When it comes to hosting a Telegram bot, there are two main approaches: using Telegram's official Bot API or self-hosting a local Bot API server. The key difference between these methods lies in their file size limitations for sending and receiving files.
+
+## Official Telegram Bot API
+
+The official Telegram Bot API, which is used when hosting a bot on Telegram's servers, has the following file size restrictions:
+
+- File upload limit: up to 50 MB[8]
+- File download limit: up to 20 MB[8]
+
+These limitations apply to most standard bot implementations and are enforced by Telegram to ensure fair usage and maintain service performance.
+
+## Self-Hosted Bot API Server
+
+Self-hosting a local Bot API server allows you to significantly increase these file size limits:
+
+- File upload limit: up to 2000 MB (2 GB)[8]
+- File download limit: up to 2000 MB (2 GB)[8]
+
+This substantial increase in file size capacity is one of the primary advantages of self-hosting a Telegram bot.
+
+## Documentation and Implementation
+
+Several sources confirm the ability to bypass the 50 MB limit through self-hosting:
+
+1. The official Telegram Bot API documentation states:
+   "With local Telegram Bot API server you are allowed to send InputStream with a 2000Mb file size limit, raised from 50Mb default."[2]
+
+2. The grammY documentation, a popular Telegram bot framework, mentions:
+   "If you want to support uploading files up to 2000 MB (maximum file size on Telegram) and downloading files of any size (4000 MB with Telegram Premium), you must host your own Bot API server in addition to hosting your bot."[6]
+
+3. A Stack Overflow answer provides implementation details:
+   "Using a Local Bot API Server you can send a large file up to 2GB."[2]
+
+To implement a self-hosted Bot API server, you'll need to:
+
+1. Build and install the local Bot API server on your own infrastructure[2].
+2. Configure it with your API ID and API hash, which can be obtained from my.telegram.org[9].
+3. Modify your bot's code to use the local server instead of the official Telegram API endpoints.
+
+By self-hosting, you can create more powerful bots capable of handling larger files, which is particularly useful for applications like file-sharing or media processing bots.
+
+Citations:
+[1] https://www.reddit.com/r/selfhosted/comments/r9st8a/selfhosted_telegram_bot_is_it_safe_free_options/
+[2] https://stackoverflow.com/questions/52288231/how-to-send-large-file-with-telegram-bot-api
+[3] https://www.youtube.com/watch?v=k9csUT478AA
+[4] https://stackoverflow.com/questions/53161316/how-can-i-successfully-host-my-telegram-bot-written-in-python-on-the-cloud-for
+[5] https://www.reddit.com/r/Telegram/comments/6ff6af/qa_is_telegram_really_limited_to_50mb_upload/
+[6] https://grammy.dev/guide/files
+[7] https://codecapsules.io/comparing-telegram-bot-hosting-providers/
+[8] https://limits.tginfo.me/en
+[9] https://www.reddit.com/r/zlibrary/comments/117xi9s/suggestion_for_zlibrary_increasing_the_telegram/
