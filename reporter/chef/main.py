@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-print("Deployment starting...")
-
 import sys
-print(f"Python path: {sys.path}")
+print("Starting deployment...", flush=True)
+sys.stdout.flush()
+print(f"Python path: {sys.path}", flush=True)
 
 import asyncio
 import nest_asyncio
