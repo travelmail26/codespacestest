@@ -1,5 +1,4 @@
-
-run = "python reporter/chef/main.py"
+run = "npm run dev"
 
 [env]
 REPLIT_NO_WEBVIEW = "true"
@@ -9,7 +8,7 @@ ENVIRONMENT = "production"
 channel = "stable-23_05"
 
 [deployment]
-run = "python reporter/chef/main.py"
+run = ["sh", "-c", "npm run dev"]
 deploymentTarget = "gce"
 
 [[ports]]
