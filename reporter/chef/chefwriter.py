@@ -39,8 +39,9 @@ class AIHandler:
     def __init__(self, user_id, openai_key=None):
         self.openai_key = openai_key or openai_api_key
         #self.logger = ConversationLogger()
-        self.messages = self.initialize_messages()
         self.user_id = user_id
+        self.messages = self.initialize_messages()
+        
         self.conversation_info = {
             "messages": self.messages,
             "user_id": self.user_id
