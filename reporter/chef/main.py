@@ -4,6 +4,15 @@ from flask import Flask
 from telegram_bot import run_bot  # Your bot script
 from threading import Thread
 from deployment import setup_hot_reload  # Your hot reload script
+import logger
+
+#logger setup
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s",
+    handlers=[logging.StreamHandler()]  # Ensures output to console
+)
 
 # Allow nested event loops for compatibility with Flask and asyncio
 nest_asyncio.apply()
@@ -20,10 +29,12 @@ def run_flask():
     app.run(host="0.0.0.0", port=3000)  # Runs Flask on port 3000 for Replit
 
 def main():
+    logging.info('main triggered')
     observer = None  # Initialize observer for hot-reloading
     try:
         # Start hot-reloading
         observer = setup_hot_reload()
+        logging.info('observer object inside main: ', observer)
 
         # Run Flask server in a separate thread
         flask_thread = Thread(target=run_flask, daemon=True)

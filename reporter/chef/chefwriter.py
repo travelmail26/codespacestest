@@ -860,7 +860,7 @@ class AIHandler:
 
     def agentchat(self, prompt=None):
         print('DEBUG: agent chat triggered')
-        logging.info('DEBU: agent chat triggered')
+        logging.info('DEBUG: agent chat triggered')
         print(f"DEBUG: user_id {self.user_id}")
 
         # Add user input to messages
