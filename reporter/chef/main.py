@@ -4,7 +4,7 @@ from flask import Flask
 from telegram_bot import run_bot  # Your bot script
 from threading import Thread
 from deployment import setup_hot_reload  # Your hot reload script
-import logger
+import logging
 
 # Configure root logger
 logging.basicConfig(
