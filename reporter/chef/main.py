@@ -13,12 +13,15 @@ from threading import Thread
 from deployment import setup_hot_reload  # Your hot reload script
 import logging
 
-# Configure root logger
+import sys
+
+#logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
+    handlers=[logging.StreamHandler(sys.stdout)]
 )
+sys.stdout.reconfigure(line_buffering=True)  # Force line buffering
 
 # Get logger for this module
 logger = logging.getLogger(__name__)
@@ -28,6 +31,18 @@ nest_asyncio.apply()
 
 # Flask app to keep Replit Reserved Server happy
 app = Flask(__name__)
+
+print("Flask app created")
+
+sys.stdout.flush()  # Force flush the output
+
+@app.route("/health")
+
+def health():
+
+    print("Health check called")
+
+    return "OK"
 
 @app.route("/")
 def home():
@@ -61,4 +76,11 @@ def main():
             print("Hot reload observer stopped.")
 
 if __name__ == "__main__":
+    print("Starting program...")
     main()
+    print("Program started, keeping alive...")
+    # Keep the program running
+
+    while True:
+
+        time.sleep(1)
