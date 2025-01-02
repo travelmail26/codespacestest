@@ -1,7 +1,7 @@
+print("Starting main before imports")
 
 import asyncio
 import nest_asyncio
-import os
 from flask import Flask
 from telegram_bot import run_bot  # Your bot script
 from threading import Thread
@@ -18,9 +18,6 @@ logging.basicConfig(
 # Get logger for this module
 logger = logging.getLogger(__name__)
 
-#main trigger
-logger.info('main triggered')
-
 # Allow nested event loops for compatibility with Flask and asyncio
 nest_asyncio.apply()
 
@@ -33,16 +30,7 @@ def home():
 
 def run_flask():
     """Runs the Flask server."""
-    logger.info('Starting Flask server...')
-    try:
-        if os.environ.get('PORT'):
-            port = int(os.environ.get('PORT'))
-        else:
-            port = 3000
-        app.run(host="0.0.0.0", port=port, debug=False, threaded=True, use_reloader=False)
-    except Exception as e:
-        logger.error(f'Failed to start Flask server: {e}')
-        raise
+    app.run(host="0.0.0.0", port=3000)  # Runs Flask on port 3000 for Replit
 
 def main():
     logger.info('main triggered')
@@ -60,7 +48,6 @@ def main():
         asyncio.run(run_bot())
     except Exception as e:
         print(f"Critical error in main: {e}")
-        logger.error(f"Critical error in main: {e}")
     finally:
         # Clean up the hot-reload observer
         if observer:
