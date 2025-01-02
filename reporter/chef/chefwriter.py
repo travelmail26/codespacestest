@@ -18,11 +18,7 @@ openai_api_key = os.environ['OPENAI_API_KEY']
 ##logging
 import logging
 
-# Configure logging
-logging.basicConfig(level=logging.INFO,
-                    format="%(asctime)s - %(message)s",
-                    handlers=[logging.StreamHandler()
-                              ])  # Ensures output to console
+logger = logging.getLogger(__name__)
 
 #print("DEBUG: openai_api_key: ", openai_api_key)
 
@@ -58,10 +54,12 @@ class AIHandler:
         current_time = datetime.now().isoformat()
         # Add system instruction to record conversation with user id
         system_content_parts.append(
-            '=== SYSTEM INSTRUCTION ===\nConversation with User ID: ' + str(self.user_id) + '\n=== END SYSTEM INSTRUCTION ===\n'
-        )
+            '=== SYSTEM INSTRUCTION ===\nConversation with User ID: ' +
+            str(self.user_id) + '\n=== END SYSTEM INSTRUCTION ===\n')
 
-        system_content_parts.append(f"=== CURRENT TIME CONTEXT ===\nCurrent time: {current_time} ==END CURRENT TIME CONTEXT==\n")
+        system_content_parts.append(
+            f"=== CURRENT TIME CONTEXT ===\nCurrent time: {current_time} ==END CURRENT TIME CONTEXT==\n"
+        )
 
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
@@ -354,7 +352,9 @@ class AIHandler:
                     if function_name == 'perplexitycall':
                         query = function_args.get('query')
                         if query:
-                            logging.info(f"Perplexity function called with query: {query}")
+                            logging.info(
+                                f"Perplexity function called with query: {query}"
+                            )
                             print(
                                 "Agent is searching the internet for an answer..."
                             )
