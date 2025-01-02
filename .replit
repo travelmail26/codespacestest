@@ -10,7 +10,7 @@ REPLIT_DISABLE_PACKAGE_LAYER = "1"
 channel = "stable-23_05"
 
 [deployment]
-run = "python reporter/chef/main.py"
+run = ["sh", "-c", "python reporter/chef/main.py"]
 deploymentTarget = "gce"
 
 [[ports]]
