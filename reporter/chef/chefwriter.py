@@ -47,11 +47,12 @@ class AIHandler:
         }
 
     def initialize_messages(self):
+        current_time = datetime.now().isoformat()
         # Initialize a list to hold parts of the system content
         system_content_parts = []
 
         # Add current time context as the first instruction
-        current_time = datetime.now().isoformat()
+        
         # Add system instruction to record conversation with user id
         system_content_parts.append(
             '=== SYSTEM INSTRUCTION ===\nConversation with User ID: ' +
