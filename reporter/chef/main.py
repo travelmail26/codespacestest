@@ -1,6 +1,7 @@
 
 import asyncio
 import nest_asyncio
+import os
 from flask import Flask
 from telegram_bot import run_bot  # Your bot script
 from threading import Thread
