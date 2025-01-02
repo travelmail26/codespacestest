@@ -33,6 +33,7 @@ def home():
 def run_flask():
     """Runs the Flask server."""
     app.run(host="0.0.0.0", port=3000, debug=False, threaded=True, use_reloader=False)  # Production settings for deployment
+    logger.info('Flask server started successfully on port 3000')
 
 def main():
     logger.info('main triggered')
