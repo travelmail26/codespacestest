@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 
 import sys
@@ -8,40 +9,29 @@ print(f"Python path: {sys.path}", flush=True)
 import asyncio
 import nest_asyncio
 from flask import Flask
-from telegram_bot import run_bot  # Your bot script
+from telegram_bot import run_bot
 from threading import Thread
-from deployment import setup_hot_reload  # Your hot reload script
+from deployment import setup_hot_reload
 import logging
+import time
 
-import sys
-
-#logging
+# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[logging.StreamHandler(sys.stdout)]
 )
-sys.stdout.reconfigure(line_buffering=True)  # Force line buffering
-
-# Get logger for this module
 logger = logging.getLogger(__name__)
+sys.stdout.reconfigure(line_buffering=True)
 
-# Allow nested event loops for compatibility with Flask and asyncio
+# Allow nested event loops
 nest_asyncio.apply()
 
-# Flask app to keep Replit Reserved Server happy
+# Flask app setup
 app = Flask(__name__)
 
-print("Flask app created")
-
-sys.stdout.flush()  # Force flush the output
-
 @app.route("/health")
-
 def health():
-
-    print("Health check called")
-
     return "OK"
 
 @app.route("/")
@@ -49,38 +39,38 @@ def home():
     return "Telegram Bot is running!"
 
 def run_flask():
-    """Runs the Flask server."""
-    app.run(host="0.0.0.0", port=3000)  # Runs Flask on port 3000 for Replit
+    app.run(host="0.0.0.0", port=3000)
 
 def main():
-    logger.info('main triggered')
-    observer = None  # Initialize observer for hot-reloading
     try:
-        # Start hot-reloading
-        observer = setup_hot_reload()
-        logger.info('observer started: %s', observer)
-
-        # Run Flask server in a separate thread
+        print("Main function started", flush=True)
+        
+        # Start Flask thread
         flask_thread = Thread(target=run_flask, daemon=True)
         flask_thread.start()
-
-        # Run the Telegram bot
+        print("Flask thread started", flush=True)
+        
+        # Start hot-reloading
+        observer = setup_hot_reload()
+        print("Hot reload observer started", flush=True)
+        
+        # Run telegram bot
+        print("Starting telegram bot", flush=True)
         asyncio.run(run_bot())
+        
     except Exception as e:
-        print(f"Critical error in main: {e}")
-    finally:
-        # Clean up the hot-reload observer
+        print(f"Critical error: {str(e)}", flush=True)
         if observer:
             observer.stop()
             observer.join()
-            print("Hot reload observer stopped.")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    print("Starting program...")
+    print("Starting program...", flush=True)
     main()
-    print("Program started, keeping alive...")
+    print("Program started, keeping alive...", flush=True)
+    
     # Keep the program running
-
     while True:
-
+        sys.stdout.flush()
         time.sleep(1)
