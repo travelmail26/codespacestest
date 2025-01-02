@@ -14,18 +14,18 @@ from pathlib import Path
 from testingscripts.accesschat import readchatfile, appendturn
 from firebase import firebase_get_media_url
 import traceback
-import logging
+# import logging
 
-#Disable debug logging
-logging.getLogger('httpx').setLevel(logging.WARNING)
-logging.getLogger('telegram').setLevel(logging.WARNING)
+# #Disable debug logging
+# logging.getLogger('httpx').setLevel(logging.WARNING)
+# logging.getLogger('telegram').setLevel(logging.WARNING)
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(message)s",
-    handlers=[logging.StreamHandler()]  # Ensures output to console
-)
+# # Configure logging
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s - %(message)s",
+#     handlers=[logging.StreamHandler()]  # Ensures output to console
+#)
 
 try:
     ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
@@ -113,8 +113,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         
 
     except Exception as e:
-        logging.error(f"Error in handle_message: {e}")
-        logging.error(traceback.format_exc())
+        #logging.error(f"Error in handle_message: {e}")
+        #logging.error(traceback.format_exc())
         await update.message.reply_text("An error occurred while processing your message. Please try again.")
 
         print('DEBUG: error in handle_message', e)
@@ -123,13 +123,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
 async def restart(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     try:
-        logging.info("Restart command received. Clearing memory and restarting...")
+        #logging.info("Restart command received. Clearing memory and restarting...")
         handlers_per_user.clear()
         conversations.clear()
         await update.message.reply_text("Bot memory cleared and restarting...")
         os.execv(sys.executable, ['python'] + sys.argv)
     except Exception as e:
-        logging.error(f"Error during restart: {e}")
+        #logging.error(f"Error during restart: {e}")
         await update.message.reply_text(f"Error during restart: {str(e)}")
 
 
