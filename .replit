@@ -1,5 +1,5 @@
-
 run = "python reporter/chef/main.py"
+modules = ["python-3.11"]
 
 [env]
 REPLIT_NO_WEBVIEW = "true"
