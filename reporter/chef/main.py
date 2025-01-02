@@ -16,6 +16,9 @@ logging.basicConfig(
 # Get logger for this module
 logger = logging.getLogger(__name__)
 
+#main trigger
+logger.info('main triggered')
+
 # Allow nested event loops for compatibility with Flask and asyncio
 nest_asyncio.apply()
 
