@@ -34,7 +34,11 @@ def run_flask():
     """Runs the Flask server."""
     logger.info('Starting Flask server...')
     try:
-        app.run(host="0.0.0.0", port=3000, debug=False, threaded=True, use_reloader=False)
+        if os.environ.get('PORT'):
+            port = int(os.environ.get('PORT'))
+        else:
+            port = 3000
+        app.run(host="0.0.0.0", port=port, debug=False, threaded=True, use_reloader=False)
     except Exception as e:
         logger.error(f'Failed to start Flask server: {e}')
         raise
