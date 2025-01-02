@@ -9,11 +9,11 @@ REPLIT_DISABLE_PACKAGE_LAYER = "1"
 [nix]
 channel = "stable-23_05"
 
-[deployment]
-run = ["sh", "-c", "python reporter/chef/main.py"]
-deploymentTarget = "gce"
-
 [[ports]]
 localPort = 3000
 externalPort = 80
 protocol = "http"
+
+[deployment]
+run = ["sh", "-c", "python3 -c \"print('test deployment')\""]
+deploymentTarget = "gce"
