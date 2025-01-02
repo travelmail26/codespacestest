@@ -1,6 +1,4 @@
 
-modules = ["python-3.10:v18-20230807-322e88b", "nodejs-18:v3-20230608-f4cd419"]
-hidden = [".pythonlibs"]
 run = "python reporter/chef/main.py"
 
 [env]
@@ -10,18 +8,11 @@ ENVIRONMENT = "production"
 [nix]
 channel = "stable-23_05"
 
-[unitTest]
-language = "python3"
-
 [deployment]
 run = "python reporter/chef/main.py"
 deploymentTarget = "gce"
-ignorePorts = false
 
 [[ports]]
 localPort = 3000
 externalPort = 80
 protocol = "http"
-
-[languages.javascript]
-pattern = "**/*.{js,jsx,ts,tsx,json}"
