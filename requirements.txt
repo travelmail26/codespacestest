@@ -23,5 +23,7 @@ firebase-admin==6.4.0
 google-auth==2.35.0
 google-auth-oauthlib==1.2.1
 pytz==2024.1
-telegram
+python-telegram-bot==20.7
 telegram.ext
+serpapi=0.1.5
+
