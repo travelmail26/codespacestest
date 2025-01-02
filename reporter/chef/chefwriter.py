@@ -15,6 +15,15 @@ from serpapirecipes import search_recipes_serpapi
 # Note for LLM agents: this is how the token secret is getting
 openai_api_key = os.environ['OPENAI_API_KEY']
 
+##logging
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO,
+                    format="%(asctime)s - %(message)s",
+                    handlers=[logging.StreamHandler()
+                              ])  # Ensures output to console
+
 #print("DEBUG: openai_api_key: ", openai_api_key)
 
 sheets_call_data = fetch_chatlog()
@@ -41,7 +50,6 @@ class AIHandler:
             "user_id": self.user_id
         }
 
-
     def initialize_messages(self):
         # Initialize a list to hold parts of the system content
         system_content_parts = []
@@ -54,22 +62,21 @@ class AIHandler:
 
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
-            system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +file.read())
-        # with open('reporter/chef/instructions_recipe.txt', 'r') as file:
-        #     system_content_parts.append("===RECIPE INSTRUCTIONS ===\n" +file.read())
+            system_content_parts.append("=== BASE DEFAULT INSTRUCTIONS ===\n" +
+                                        file.read())
         # with open('reporter/chef/instructions_diet_logistics.txt','r') as file:
         #     system_content_parts.append(
         #         "=== DIET LOGISTICS INSTRUCTIONS ===\n" + file.read())
-        # with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
-        #     system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
-        #                                 file.read())
+        with open('reporter/chef/instructions_brainstorm.txt', 'r') as file:
+            system_content_parts.append("=== BRAINSTORM INSTRUCTIONS ===\n" +
+                                        file.read())
         # with open('reporter/chef/exploring_additional_instructions.txt',
         #           'r') as file:
         #     system_content_parts.append(
         #         "=== EXPLORING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
-        # with open('reporter/chef/instructions_log.txt', 'r') as file:
-        #     system_content_parts.append(
-        #         "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
+        with open('reporter/chef/instructions_log.txt', 'r') as file:
+            system_content_parts.append(
+                "=== LOGGING ADDITIONAL INSTRUCTIONS ===\n" + file.read())
         # with open('reporter/chef/instructions_mealplan.txt', 'r') as file:
         #     system_content_parts.append(
         #         "=== MEAL PLAN ADDITIONAL INSTRUCTIONS ===\n" + file.read())
@@ -81,8 +88,6 @@ class AIHandler:
         # Return the full message content as a single system message
         return [{"role": "system", "content": combined_content}]
 
-    
-    
     def openai_request(self):
         print(f"DEBUG: openai_request triggered")
         if not self.openai_key:
@@ -116,23 +121,26 @@ class AIHandler:
             #         "strict": False
             #     }
             # },
-
-            
             {
                 "type": "function",
                 "function": {
                     "name": "append_alarm",
-                    "description": "Creates an alarm with a trigger time and message. Examples: 'set an alarm for 7 minutes' or 'reminder to flip the steak in 3 minutes' "  ,
+                    "description":
+                    "Creates an alarm with a trigger time and message. Examples: 'set an alarm for 7 minutes' or 'reminder to flip the steak in 3 minutes' ",
                     "parameters": {
                         "type": "object",
                         "properties": {
                             "trigger_time": {
-                                "type": "string",
-                                "description": "Number of seconds from now when alarm should trigger. For example, if the user mentions 5 minutes, fill in '300"
+                                "type":
+                                "string",
+                                "description":
+                                "Number of seconds from now when alarm should trigger. For example, if the user mentions 5 minutes, fill in '300"
                             },
                             "message": {
-                                "type": "string",
-                                "description": "Message to send when alarm triggers. everything in the user message but the trigger time"
+                                "type":
+                                "string",
+                                "description":
+                                "Message to send when alarm triggers. everything in the user message but the trigger time"
                             }
                         },
                         "required": ["trigger_time", "message"],
@@ -142,7 +150,6 @@ class AIHandler:
                 }
             },
             #tasks update
-            
             {
                 "type": "function",
                 "function": {
@@ -242,32 +249,6 @@ class AIHandler:
                     "strict": False
                 }
             },
-
-
-            ##latka load function
-            {
-                "type": "function",
-                "function": {
-                    "name": "sheets_call",
-                    "description":
-                    "return database recipe for Latkas, friend potato pancakes. User will ask to load latka recipes. Inform the user the recipe has been loaded",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "tab": {
-                                "type":
-                                "string",
-                                "description":
-                                "fill it verbatim with string 'latkatest' "
-                            }
-                        },
-                        "required": ["query"],
-                        "additionalProperties": False
-                    },
-                    "strict": False
-                }
-            },
-            
             {
                 "type": "function",
                 "function": {
@@ -338,9 +319,9 @@ class AIHandler:
         data = {
             'model': 'gpt-4o-mini',
             'messages': self.messages,
-            'temperature': 0.2,
+            'temperature': 0.5,
             'max_tokens': 4096,
-            'stream': False,
+            'stream': True,
             'tools': tools
         }
 
@@ -463,44 +444,44 @@ class AIHandler:
                     #     except Exception as e:
                     #         print(f"ERROR: fetching recipes: {e}")
                     #         return "Failed to fetch recipes"
-    
+
                     #     # First add the tool response message
                     #     function_call_result_message = {
                     #         "role": "tool",
                     #         "content": str(result_data),
                     #         "tool_call_id": tool_call_id
                     #     }
-    
+
                     #     # Create database context message
                     #     database_recipe_context = {
                     #         "role":
                     #         "system",
                     #         "content":
                     #         f"""This is a search result of recipes. THe user requested search results and this was the result
-    
+
                     #         *RECIPE CONTENT FOLLOWS*:
                     #         {str(result_data)} ~~*END RECIPE API CALL CONTENT*~~
-    
+
                     #         """
                     #     }
-    
+
                     #     # Update messages in correct sequence
                     #     self.messages.append(assistant_message)
                     #     self.messages.append(function_call_result_message
                     #                          )  # Required tool response
                     #     self.messages.append(database_recipe_context)
-    
+
                     #     # Second API call
                     #     completion_payload = {
                     #         "model": 'gpt-4o-mini',
                     #         "messages": self.messages
                     #     }
-    
+
                     #     # DEBUG: Print a slice of the API call payload
                     #     print(
                     #         f"DEBUG: first few recipe messages: {self.messages[:1]}"
                     #     )
-    
+
                     #     # Second API call
                     #     try:
                     #         second_response = requests.post(
@@ -511,20 +492,18 @@ class AIHandler:
                     #     except requests.exceptions.RequestException as e:
                     #         print(f"ERROR: API call failed: {e}")
                     #         return "Failed to fetch completion"
-    
+
                     #     # Process final response
                     #     second_response_json = second_response.json()
                     #     final_assistant_message = second_response_json[
                     #         'choices'][0]['message']
-    
+
                     #     # Add final response to conversation
                     #     self.messages.append(final_assistant_message)
-    
+
                     #     return final_assistant_message.get(
                     #         'content', 'No content in response.')
-                    
-                    
-                    
+
                     #recipes fetch
                     elif function_name == 'fetch_recipes':
                         print("DEBUG: triggered tool recipes")
@@ -600,12 +579,14 @@ class AIHandler:
                         print("DEBUG: alarm tool")
 
                         # Parse arguments from the function call
-                        function_args = json.loads(tool_call['function']['arguments'])
+                        function_args = json.loads(
+                            tool_call['function']['arguments'])
                         trigger_time = function_args.get('trigger_time')
                         message = function_args.get('message')
 
                         try:
-                            result_data = append_alarm(trigger_time=trigger_time, message=message)
+                            result_data = append_alarm(
+                                trigger_time=trigger_time, message=message)
                         except Exception as e:
                             print(f"ERROR: triggering alarm: {e}")
                             return "Failed to trigger alarm"
@@ -615,34 +596,30 @@ class AIHandler:
                             "content": str(result_data),
                             "tool_call_id": tool_call_id
                         }
-    
+
                         # Create database context message
                         database_recipe_context = {
                             "role":
                             "system",
                             "content":
                             f"""alarm notifiation message: {str(result_data)}"""
-    
-                            
                         }
-    
+
                         # Update messages in correct sequence
                         self.messages.append(assistant_message)
                         self.messages.append(function_call_result_message
                                              )  # Required tool response
                         self.messages.append(database_recipe_context)
-    
+
                         # Second API call
                         completion_payload = {
                             "model": 'gpt-4o-mini',
                             "messages": self.messages
                         }
-    
+
                         # DEBUG: Print a slice of the API call payload
-                        print(
-                            f"DEBUG: alarm after second api call"
-                        )
-    
+                        print(f"DEBUG: alarm after second api call")
+
                         # Second API call
                         try:
                             second_response = requests.post(
@@ -653,19 +630,18 @@ class AIHandler:
                         except requests.exceptions.RequestException as e:
                             print(f"ERROR: API call failed: {e}")
                             return "Failed to alarm completion"
-    
+
                         # Process final response
                         second_response_json = second_response.json()
                         final_assistant_message = second_response_json[
                             'choices'][0]['message']
-    
+
                         # Add final response to conversation
                         self.messages.append(final_assistant_message)
-    
-                        return final_assistant_message.get('content', 'No content in response.')
 
+                        return final_assistant_message.get(
+                            'content', 'No content in response.')
 
-                    
                     #update task
                     elif function_name == 'update_task':
                         print("DEBUG: triggered tool function update task")
@@ -883,24 +859,25 @@ class AIHandler:
 
     def agentchat(self, prompt=None):
         print('DEBUG: agent chat triggered')
+        logging.info('DEBU: agent chat triggered')
         print(f"DEBUG: user_id {self.user_id}")
 
         # Add user input to messages
 
-        
         self.messages.append({"role": "user", "content": prompt})
 
         # Get response from OpenAI
         response = self.openai_request()
 
         #function: add chats to google sheets
-        # try:
-        #     #print (f"DEBUG: attempt chatlog entry:")
-        #     self.logger.log_conversation(str(self.messages))
-        #     add_chatlog_entry(self.messages)
+        try:
+            #print (f"DEBUG: attempt chatlog entry:")
+            #self.logger.log_conversation(str(self.messages))
+            add_chatlog_entry(self.messages)
 
-        # except:
-        #     print("Error adding chatlog entry agentchat")
+        except:
+            print("Error adding chatlog entry agentchat")
+            logger.info(f"Error adding chatlog entry agentchat")
 
         # try:
         #     #print (f"DEBUG: attempt chatlog entry:")
@@ -908,7 +885,6 @@ class AIHandler:
         # except:
         #     print("Error adding summary")
         return response
-
 
 
 # Example usage
