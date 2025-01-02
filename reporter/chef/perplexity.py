@@ -48,6 +48,7 @@ def perplexitychat():
 
 
 def perplexitycall(messages):
+    logging.info('Perplexity API call triggered')
     print('**DEBUG: perplexitycall triggered**')
 
     client = OpenAI(api_key=YOUR_API_KEY, base_url="https://api.perplexity.ai")

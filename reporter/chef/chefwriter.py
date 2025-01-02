@@ -351,6 +351,7 @@ class AIHandler:
                     if function_name == 'perplexitycall':
                         query = function_args.get('query')
                         if query:
+                            logging.info(f"Perplexity function called with query: {query}")
                             print(
                                 "Agent is searching the internet for an answer..."
                             )
