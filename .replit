@@ -4,6 +4,7 @@ modules = ["python-3.11"]
 [env]
 REPLIT_NO_WEBVIEW = "true"
 ENVIRONMENT = "production"
+REPLIT_DISABLE_PACKAGE_LAYER = "1"
 
 [nix]
 channel = "stable-23_05"
