@@ -56,9 +56,12 @@ class AIHandler:
 
         # Add current time context as the first instruction
         current_time = datetime.now().isoformat()
+        # Add system instruction to record conversation with user id
         system_content_parts.append(
-            f"=== CURRENT TIME CONTEXT ===\nCurrent time: {current_time} ==END CURRENT TIME CONTEXT==\n"
+            '=== SYSTEM INSTRUCTION ===\nConversation with User ID: ' + str(self.user_id) + '\n=== END SYSTEM INSTRUCTION ===\n'
         )
+
+        system_content_parts.append(f"=== CURRENT TIME CONTEXT ===\nCurrent time: {current_time} ==END CURRENT TIME CONTEXT==\n")
 
         # Load and append contents from each file
         with open('reporter/chef/instructions_base.txt', 'r') as file:
