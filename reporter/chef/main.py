@@ -1,3 +1,4 @@
+
 import asyncio
 import nest_asyncio
 from flask import Flask
@@ -31,7 +32,7 @@ def home():
 
 def run_flask():
     """Runs the Flask server."""
-    app.run(host="0.0.0.0", port=3000, debug=False, threaded=True)  # Production settings for deployment
+    app.run(host="0.0.0.0", port=3000, debug=False, threaded=True, use_reloader=False)  # Production settings for deployment
 
 def main():
     logger.info('main triggered')
@@ -49,6 +50,7 @@ def main():
         asyncio.run(run_bot())
     except Exception as e:
         print(f"Critical error in main: {e}")
+        logger.error(f"Critical error in main: {e}")
     finally:
         # Clean up the hot-reload observer
         if observer:

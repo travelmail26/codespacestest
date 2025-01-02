@@ -21,6 +21,7 @@ ignorePorts = false
 [[ports]]
 localPort = 3000
 externalPort = 80
+protocol = "http"
 
 [languages.javascript]
 pattern = "**/*.{js,jsx,ts,tsx,json}"
