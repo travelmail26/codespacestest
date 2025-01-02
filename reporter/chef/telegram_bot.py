@@ -14,7 +14,6 @@ from pathlib import Path
 from testingscripts.accesschat import readchatfile, appendturn
 from firebase import firebase_get_media_url
 import traceback
-# import logging
 
 # #Disable debug logging
 # logging.getLogger('httpx').setLevel(logging.WARNING)
