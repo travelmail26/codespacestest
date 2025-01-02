@@ -1,4 +1,9 @@
-print("Starting main before imports")
+#!/usr/bin/env python3
+
+print("Deployment starting...")
+
+import sys
+print(f"Python path: {sys.path}")
 
 import asyncio
 import nest_asyncio
