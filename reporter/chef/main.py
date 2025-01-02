@@ -31,7 +31,7 @@ def home():
 
 def run_flask():
     """Runs the Flask server."""
-    app.run(host="0.0.0.0", port=3000)  # Runs Flask on port 3000 for Replit
+    app.run(host="0.0.0.0", port=3000, debug=False, threaded=True)  # Production settings for deployment
 
 def main():
     logger.info('main triggered')
