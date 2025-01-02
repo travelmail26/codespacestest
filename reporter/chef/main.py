@@ -6,13 +6,15 @@ from threading import Thread
 from deployment import setup_hot_reload  # Your hot reload script
 import logger
 
-#logger setup
-
+# Configure root logger
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(message)s",
-    handlers=[logging.StreamHandler()]  # Ensures output to console
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
 )
+
+# Get logger for this module
+logger = logging.getLogger(__name__)
 
 # Allow nested event loops for compatibility with Flask and asyncio
 nest_asyncio.apply()
@@ -29,12 +31,12 @@ def run_flask():
     app.run(host="0.0.0.0", port=3000)  # Runs Flask on port 3000 for Replit
 
 def main():
-    logging.info('main triggered')
+    logger.info('main triggered')
     observer = None  # Initialize observer for hot-reloading
     try:
         # Start hot-reloading
         observer = setup_hot_reload()
-        logging.info('observer object inside main: ', observer)
+        logger.info('observer started: %s', observer)
 
         # Run Flask server in a separate thread
         flask_thread = Thread(target=run_flask, daemon=True)
