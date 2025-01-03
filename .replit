@@ -1,3 +1,3 @@
 [deployment]
-run = ["sh", "-c", "python3 -c \"print('test deployment')\""]
+run = ["sh", "-c", "python -c \"print('test deployment')\""]
 deploymentTarget = "gce"
