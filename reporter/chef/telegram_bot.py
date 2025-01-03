@@ -119,10 +119,26 @@ async def handle_message(update: Update,
         )
 
 
+async def reset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    try:
+        await update.message.reply_text("Resetting bot...")
+        # Clear handlers and conversations
+        global handlers_per_user
+        handlers_per_user = {}
+        # Remove PID file to allow new instance
+        pid_file = "bot.pid"
+        if os.path.exists(pid_file):
+            os.remove(pid_file)
+        # Exit the current process
+        os._exit(0)
+    except Exception as e:
+        await update.message.reply_text(f"Error during reset: {str(e)}")
+
 async def setup_bot():
     application = Application.builder().token(TOKEN).build()
     await application.initialize()
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("reset", reset))
     application.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     application.add_handler(MessageHandler(filters.PHOTO, handle_message))
