@@ -6,7 +6,7 @@ modules = ["python-3.11:v18-20230807-322e88b"]
 channel = "stable-23_05"
 
 [deployment]
-run = ["python3", "reporter/chef/main.py"]
+run = ["sh", "-c", ["sh", "-c", "python app.py"]]
 deploymentTarget = "gce"
 
 [[ports]]
